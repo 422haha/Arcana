@@ -201,4 +201,13 @@ public class UserServiceImpl implements UserService {
             .orElseThrow(() -> new CustomException("사용자를 찾을 수 없습니다.", HttpStatus.NOT_FOUND))
             .getId();
     }
+
+    @Override
+    @Transactional
+    public void saveLanguage(String email, String language) {
+        User user = userRepository.findByEmail(email)
+            .orElseThrow(() -> new CustomException("사용자를 찾을 수 없습니다.", HttpStatus.NOT_FOUND));
+        user.setLanguage(language);
+        userRepository.save(user);
+    }
 }

@@ -19,4 +19,6 @@ public interface UserService {
     void logout(String email);
 
     Long getUserIdByEmail(String email);
+
+    void saveLanguage(String email, String language);
 }

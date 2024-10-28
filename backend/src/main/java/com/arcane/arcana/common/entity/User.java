@@ -34,6 +34,9 @@ public class User {
     @Column(nullable = false)
     private boolean isEmailVerified = false; // 이메일 인증 여부
 
+    @Column(nullable = false)
+    private String language; // 사용자 언어 설정
+
     /**
      * 비밀번호를 암호화
      */
