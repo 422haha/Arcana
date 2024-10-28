@@ -20,5 +20,7 @@ public interface UserService {
 
     Long getUserIdByEmail(String email);
 
+    void updateRefreshToken(String email, String newRefreshToken);
+
     void saveLanguage(String email, String language);
 }
