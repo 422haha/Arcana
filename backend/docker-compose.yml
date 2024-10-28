@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  springboot-blue:
+    image: aldus0422/arcana:blue
+    container_name: springboot-blue
+    ports:
+      - "8081:8080"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - TZ=Asia/Seoul
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  springboot-green:
+    image: aldus0422/arcana:green
+    container_name: springboot-green
+    ports:
+      - "8082:8080"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - TZ=Asia/Seoul
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  redis:
+    image: redis:7.0
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - arcana-network
+    restart: unless-stopped
+
+networks:
+  arcana-network:
+    driver: bridge
