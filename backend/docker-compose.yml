@@ -10,7 +10,7 @@ services:
       - REDIS_PORT=6379
       - TZ=Asia/Seoul
     networks:
-      - app-network
+      - arcana-network
     restart: unless-stopped
 
   springboot-green:
@@ -23,7 +23,7 @@ services:
       - REDIS_PORT=6379
       - TZ=Asia/Seoul
     networks:
-      - app-network
+      - arcana-network
     restart: unless-stopped
 
   redis:
