@@ -38,4 +38,8 @@ public interface UserService {
     User getUserByEmail(String email);
 
     LoginResponseDto login(LoginDto loginDto);
+
+    void verifyAuthNumber(String email, String authNumber);
+
+    void sendAuthNumber(String email);
 }

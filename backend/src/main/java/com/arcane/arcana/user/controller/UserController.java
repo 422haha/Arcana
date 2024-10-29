@@ -13,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-
 /**
  * 사용자 관련 요청을 처리하는 컨트롤러
  */
@@ -29,20 +28,27 @@ public class UserController {
         this.jwtUtil = jwtUtil;
     }
 
+    @PostMapping("/verify-email")
+    @ResponseBody
+    public ResponseEntity<ApiResponse<String>> sendAuthNumber(@RequestBody EmailDto emailDto) {
+        userService.sendAuthNumber(emailDto.getEmail());
+        return ResponseEntity.ok(new ApiResponse<>("인증번호가 이메일로 전송되었습니다.", null));
+    }
+
+    @PostMapping("/register/authnumber")
+    @ResponseBody
+    public ResponseEntity<ApiResponse<String>> verifyAuthNumber(
+        @RequestBody AuthNumberDto authNumberDto) {
+        userService.verifyAuthNumber(authNumberDto.getEmail(), authNumberDto.getAuthNumber());
+        return ResponseEntity.ok(new ApiResponse<>("인증 완료되었습니다.", null));
+    }
+
     @PostMapping("/register")
     @ResponseBody
     public ResponseEntity<ApiResponse<String>> register(
         @Valid @RequestBody RegisterDto registerDto) {
         userService.registerUser(registerDto);
-        return ResponseEntity.ok(new ApiResponse<>("회원 가입이 완료되었습니다. 이메일 인증을 진행해주세요.", null));
-    }
-
-    @GetMapping("/verify-email")
-    @ResponseBody
-    public ResponseEntity<ApiResponse<String>> verifyEmail(@RequestParam String email,
-        @RequestParam String token) {
-        userService.verifyEmail(email, token);
-        return ResponseEntity.ok(new ApiResponse<>("이메일 인증이 완료되었습니다.", null));
+        return ResponseEntity.ok(new ApiResponse<>("가입 성공", null));
     }
 
     @PutMapping("/update")
@@ -101,7 +107,7 @@ public class UserController {
         if (isValid) {
             model.addAttribute("email", email);
             model.addAttribute("token", token);
-            return "reset-password-form"; // 파일 이름에 맞춰 수정
+            return "reset-password-form";
         } else {
             throw new CustomException("유효하지 않은 토큰입니다.", HttpStatus.BAD_REQUEST);
         }
@@ -114,7 +120,7 @@ public class UserController {
         Model model) {
         userService.resetPassword(email, token, newPassword);
         model.addAttribute("message", "비밀번호가 성공적으로 재설정되었습니다.");
-        return "reset-password-confirm"; // 성공 페이지 파일 이름에 맞춰 수정
+        return "reset-password-confirm";
     }
 
     @PostMapping("/login")

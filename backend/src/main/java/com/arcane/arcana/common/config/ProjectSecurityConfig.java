@@ -84,7 +84,7 @@ public class ProjectSecurityConfig {
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/public/**", "/user/register", "/user/login",
-                    "/user/verify-email", "/user/forgot-password",
+                    "/user/verify-email", "/user/register/authnumber", "/user/forgot-password",
                     "/user/reset-password", "/user/reset-password**", "/user/reset-password/**",
                     "/health", "/swagger-ui/**", "/v3/api-docs/**",
                     "/subscribe", "/user/check-nickname", "/token/refresh")

@@ -61,14 +61,47 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
-    public void registerUser(RegisterDto registerDto) {
-        if (userRepository.existsByEmail(registerDto.getEmail())) {
+    public void sendAuthNumber(String email) {
+        if (userRepository.existsByEmail(email)) {
             throw new CustomException("이미 존재하는 이메일입니다.", HttpStatus.BAD_REQUEST);
         }
 
-        if (userRepository.existsByNickname(registerDto.getNickname())) {
-            throw new CustomException("이미 존재하는 닉네임입니다.", HttpStatus.BAD_REQUEST);
+        String authNumber = generateVerificationCode();
+        redisService.setStringValue("email_auth:" + email, authNumber, 10); // 10분 유효
+
+        sendAuthNumberEmail(email, authNumber);
+    }
+
+    private void sendAuthNumberEmail(String recipientEmail, String authNumber) {
+        String subject = "Arcana 이메일 인증번호";
+        String content = "<p>Arcana 서비스 인증번호: <b>" + authNumber + "</b></p>";
+
+        MimeMessagePreparator messagePreparator = mimeMessage -> {
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+            helper.setFrom(senderEmail, "Arcana Team");
+            helper.setTo(recipientEmail);
+            helper.setSubject(subject);
+            helper.setText(content, true);
+        };
+
+        mailSender.send(messagePreparator);
+    }
+
+    @Override
+    public void verifyAuthNumber(String email, String authNumber) {
+        String redisAuthNumber = redisService.getStringValue("email_auth:" + email);
+        if (redisAuthNumber == null || !redisAuthNumber.equals(authNumber)) {
+            throw new CustomException("인증번호가 일치하지 않습니다.", HttpStatus.BAD_REQUEST);
+        }
+
+        redisService.deleteValue("email_auth:" + email);
+    }
+
+    @Override
+    @Transactional
+    public void registerUser(RegisterDto registerDto) {
+        if (!redisService.exists("email_auth:" + registerDto.getEmail())) {
+            throw new CustomException("이메일 인증이 필요합니다.", HttpStatus.FORBIDDEN);
         }
 
         User user = new User();
@@ -77,37 +110,7 @@ public class UserServiceImpl implements UserService {
         user.encodePassword(registerDto.getPassword(), passwordEncoder);
         userRepository.save(user);
 
-        String emailVerificationToken = jwtUtil.generateEmailVerificationToken(user.getEmail());
-        String emailVerificationCode = generateVerificationCode();
-
-        redisService.setStringValue("email_verification:" + user.getEmail(), emailVerificationToken,
-            60); // 60분 유효
-        redisService.setStringValue("email_code:" + user.getEmail(), emailVerificationCode,
-            60); // 60분 유효
-
-        sendVerificationEmail(user.getEmail(), emailVerificationToken, emailVerificationCode);
-    }
-
-    private void sendVerificationEmail(String recipientEmail, String token, String code) {
-        String verificationUrl =
-            appDomain + "/user/verify-email?email=" + recipientEmail + "&token=" + token;
-        String subject = "이메일 인증";
-        String content = "<p>안녕하세요!</p>"
-            + "<p>Arcana 서비스에 가입해 주셔서 감사합니다.</p>"
-            + "<p>아래 링크를 클릭하여 이메일 인증을 완료하거나, 인증번호를 입력해 주세요:</p>"
-            + "<a href=\"" + verificationUrl + "\">이메일 인증하기</a>"
-            + "<p>인증번호: <b>" + code + "</b></p>"
-            + "<p>감사합니다.<br>Arcana 팀</p>";
-
-        MimeMessagePreparator messagePreparator = mimeMessage -> {
-            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-            helper.setFrom(senderEmail, "Arcana Team");
-            helper.setTo(recipientEmail);
-            helper.setSubject(subject);
-            helper.setText(content, true); // HTML 텍스트 설정
-        };
-
-        mailSender.send(messagePreparator);
+        redisService.deleteValue("email_auth:" + registerDto.getEmail());
     }
 
     private String generateVerificationCode() {
@@ -117,57 +120,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void verifyEmail(String email, String tokenOrCode) {
-        if (tokenOrCode.length() == 6) {
-            verifyEmailWithCode(email, tokenOrCode);
-        } else {
-            verifyEmailWithToken(email, tokenOrCode);
-        }
-    }
-
-    private void verifyEmailWithToken(String email, String token) {
-        String redisToken = redisService.getStringValue("email_verification:" + email);
-        if (redisToken != null && redisToken.equals(token)) {
-            Optional<User> userOpt = userRepository.findByEmail(email);
-            if (userOpt.isPresent()) {
-                User user = userOpt.get();
-                user.setEmailVerified(true);
-                userRepository.save(user);
-                redisService.deleteValue("email_verification:" + email);
-                redisService.deleteValue("email_code:" + email);
-            } else {
-                throw new CustomException("사용자를 찾을 수 없습니다.", HttpStatus.NOT_FOUND);
-            }
-        } else {
-            throw new CustomException("유효하지 않은 토큰입니다.", HttpStatus.BAD_REQUEST);
-        }
-    }
-
-    private void verifyEmailWithCode(String email, String code) {
-        String redisCode = redisService.getStringValue("email_code:" + email);
-        if (redisCode != null && redisCode.equals(code)) {
-            Optional<User> userOpt = userRepository.findByEmail(email);
-            if (userOpt.isPresent()) {
-                User user = userOpt.get();
-                user.setEmailVerified(true);
-                userRepository.save(user);
-                redisService.deleteValue("email_code:" + email);
-                redisService.deleteValue("email_verification:" + email);
-            } else {
-                throw new CustomException("사용자를 찾을 수 없습니다.", HttpStatus.NOT_FOUND);
-            }
-        } else {
-            throw new CustomException("유효하지 않은 인증번호입니다.", HttpStatus.BAD_REQUEST);
-        }
-    }
-
-    @Override
     @Transactional
     public void updateUser(Long userId, UpdateDto updateDto) {
         User user = userRepository.findById(userId)
             .orElseThrow(() -> new CustomException("사용자를 찾을 수 없습니다.", HttpStatus.NOT_FOUND));
 
-        // 닉네임 변경 시
         if (updateDto.getNickname() != null && !updateDto.getNickname().isEmpty() &&
             !updateDto.getNickname().equals(user.getNickname())) {
             if (userRepository.existsByNickname(updateDto.getNickname())) {
@@ -176,7 +133,6 @@ public class UserServiceImpl implements UserService {
             user.setNickname(updateDto.getNickname());
         }
 
-        // 비밀번호 변경 시
         if (updateDto.getPassword() != null && !updateDto.getPassword().isEmpty()) {
             if (updateDto.getOldPassword() == null || !passwordEncoder.matches(
                 updateDto.getOldPassword(), user.getPassword())) {
@@ -256,7 +212,7 @@ public class UserServiceImpl implements UserService {
             helper.setFrom(senderEmail, "Arcana Team");
             helper.setTo(recipientEmail);
             helper.setSubject(subject);
-            helper.setText(content, true); // HTML 텍스트 설정
+            helper.setText(content, true);
         };
 
         mailSender.send(messagePreparator);
@@ -305,23 +261,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public LoginResponseDto login(LoginDto loginDto) {
         try {
-            // 사용자 인증
             Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword())
             );
 
-            // 인증이 성공하면 JWT 토큰 생성
             String accessToken = jwtUtil.generateAccessToken(authentication.getName());
             String refreshToken = jwtUtil.generateRefreshToken(authentication.getName());
 
-            // Refresh Token을 Redis에 저장
             updateRefreshToken(authentication.getName(), refreshToken);
 
-            // 사용자 정보 조회
             Long userId = getUserIdByEmail(authentication.getName());
             User user = getUserByEmail(authentication.getName());
 
-            // 응답 DTO 생성 및 반환
             return new LoginResponseDto(
                 accessToken,
                 refreshToken,
