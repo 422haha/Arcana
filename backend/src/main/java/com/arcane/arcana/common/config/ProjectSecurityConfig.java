@@ -78,7 +78,7 @@ public class ProjectSecurityConfig {
             .addFilterBefore(jwtTokenValidatorFilter(), UsernamePasswordAuthenticationFilter.class)
             .addFilterBefore(apiKeyAuthFilter(), JWTTokenValidatorFilter.class)
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/public/**", "/user/login", "/user/verify-email", "/health", "/swagger-ui/**", "/v3/api-docs/**", "/user/register").permitAll()
+                .requestMatchers("/public/**", "/user/login", "/user/verify-email", "/health", "/swagger-ui/**", "/v3/api-docs/**", "/user/register", "/subscribe").permitAll()
                 .anyRequest().authenticated()
             );
         return http.build();
