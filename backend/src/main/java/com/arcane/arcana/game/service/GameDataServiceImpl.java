@@ -45,7 +45,8 @@ public class GameDataServiceImpl implements GameDataService {
 
         String s3Path = "maps/" + user.getId() + ".json";
         try {
-            s3Service.uploadFile(s3Path, mapSettingDto.getMapSetting().getBytes(StandardCharsets.UTF_8));
+            s3Service.uploadFile(s3Path,
+                mapSettingDto.getMapSetting().getBytes(StandardCharsets.UTF_8));
         } catch (Exception e) {
             throw new CustomException("S3 업로드 중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -125,7 +126,8 @@ public class GameDataServiceImpl implements GameDataService {
 
         String mapData;
         try {
-            mapData = new String(s3Service.downloadFile(gameMap.getMapInfo()), StandardCharsets.UTF_8);
+            mapData = new String(s3Service.downloadFile(gameMap.getMapInfo()),
+                StandardCharsets.UTF_8);
         } catch (Exception e) {
             throw new CustomException("S3 다운로드 중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -143,14 +145,16 @@ public class GameDataServiceImpl implements GameDataService {
 
         String itemData;
         try {
-            itemData = new String(s3Service.downloadFile(item.getItemList()), StandardCharsets.UTF_8);
+            itemData = new String(s3Service.downloadFile(item.getItemList()),
+                StandardCharsets.UTF_8);
         } catch (Exception e) {
             throw new CustomException("S3 다운로드 중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         List<String> itemInventory;
         try {
-            itemInventory = objectMapper.readValue(itemData, new TypeReference<List<String>>() {});
+            itemInventory = objectMapper.readValue(itemData, new TypeReference<List<String>>() {
+            });
         } catch (Exception e) {
             throw new CustomException("아이템 데이터 파싱 중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -168,16 +172,19 @@ public class GameDataServiceImpl implements GameDataService {
 
         String artifactData;
         try {
-            artifactData = new String(s3Service.downloadFile(artifact.getArtifactList()), StandardCharsets.UTF_8);
+            artifactData = new String(s3Service.downloadFile(artifact.getArtifactList()),
+                StandardCharsets.UTF_8);
         } catch (Exception e) {
             throw new CustomException("S3 다운로드 중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         List<String> artifactList;
         try {
-            artifactList = objectMapper.readValue(artifactData, new TypeReference<List<String>>() {});
+            artifactList = objectMapper.readValue(artifactData, new TypeReference<List<String>>() {
+            });
         } catch (Exception e) {
-            throw new CustomException("아티팩트 데이터 파싱 중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new CustomException("아티팩트 데이터 파싱 중 오류가 발생했습니다.",
+                HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         return new ArtifactDto(user.getId().toString(), artifactList);

@@ -35,7 +35,8 @@ public class GameDataController {
     }
 
     @PutMapping("/item")
-    public ResponseEntity<ApiResponse> saveItem(@RequestBody ItemDto itemDto, HttpServletRequest request) {
+    public ResponseEntity<ApiResponse> saveItem(@RequestBody ItemDto itemDto,
+        HttpServletRequest request) {
         String email = jwtUtil.extractEmailFromRequest(request);
         gameDataService.saveItem(email, itemDto);
         return ResponseEntity.ok(new ApiResponse("아이템 정보 저장 성공", null));
