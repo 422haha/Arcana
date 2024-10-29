@@ -4,11 +4,9 @@ import com.arcane.arcana.common.entity.Artifact;
 import com.arcane.arcana.common.entity.Card;
 import com.arcane.arcana.common.entity.Item;
 import com.arcane.arcana.common.entity.GameMap;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -19,7 +17,6 @@ public class GameDataRepository {
     private final ItemRepository itemRepository;
     private final GameMapRepository gameMapRepository;
 
-    @Autowired
     public GameDataRepository(CardRepository cardRepository,
         ArtifactRepository artifactRepository,
         ItemRepository itemRepository,
@@ -51,17 +48,17 @@ public class GameDataRepository {
     }
 
     @Transactional(readOnly = true)
-    public List<Card> findCardsByUserId(Long userId) {
+    public Optional<Card> findCardByUserId(Long userId) {
         return cardRepository.findByUser_Id(userId);
     }
 
     @Transactional(readOnly = true)
-    public List<Artifact> findArtifactsByUserId(Long userId) {
+    public Optional<Artifact> findArtifactByUserId(Long userId) {
         return artifactRepository.findByUser_Id(userId);
     }
 
     @Transactional(readOnly = true)
-    public List<Item> findItemsByUserId(Long userId) {
+    public Optional<Item> findItemByUserId(Long userId) {
         return itemRepository.findByUser_Id(userId);
     }
 
