@@ -203,6 +203,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void updateRefreshToken(String email, String newRefreshToken) {
+        redisService.setStringValue("refresh_token:" + email, newRefreshToken, jwtUtil.getRefreshTokenExpirationMinutes());
+    }
+
+    @Override
     @Transactional
     public void saveLanguage(String email, String language) {
         User user = userRepository.findByEmail(email)
