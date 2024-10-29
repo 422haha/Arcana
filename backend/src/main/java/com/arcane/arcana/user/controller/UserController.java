@@ -31,7 +31,8 @@ public class UserController {
 
     @PostMapping("/register")
     @ResponseBody
-    public ResponseEntity<ApiResponse<String>> register(@Valid @RequestBody RegisterDto registerDto) {
+    public ResponseEntity<ApiResponse<String>> register(
+        @Valid @RequestBody RegisterDto registerDto) {
         userService.registerUser(registerDto);
         return ResponseEntity.ok(new ApiResponse<>("회원 가입이 완료되었습니다. 이메일 인증을 진행해주세요.", null));
     }
@@ -67,7 +68,8 @@ public class UserController {
 
     @PostMapping("/language")
     @ResponseBody
-    public ResponseEntity<ApiResponse<LanguageDto>> saveLanguage(@Valid @RequestBody LanguageDto languageDto,
+    public ResponseEntity<ApiResponse<LanguageDto>> saveLanguage(
+        @Valid @RequestBody LanguageDto languageDto,
         HttpServletRequest request) {
         String email = jwtUtil.extractEmailFromRequest(request);
         userService.saveLanguage(email, languageDto.getLanguage());
@@ -78,7 +80,8 @@ public class UserController {
 
     @PostMapping("/check-nickname")
     @ResponseBody
-    public ResponseEntity<ApiResponse<Boolean>> checkNickname(@Valid @RequestBody NicknameCheckDto nicknameCheckDto) {
+    public ResponseEntity<ApiResponse<Boolean>> checkNickname(
+        @Valid @RequestBody NicknameCheckDto nicknameCheckDto) {
         boolean isAvailable = userService.isNicknameAvailable(nicknameCheckDto.getNickname());
         return ResponseEntity.ok(new ApiResponse<>("닉네임 사용 가능 여부 조회 성공", isAvailable));
     }
@@ -116,7 +119,8 @@ public class UserController {
 
     @PostMapping("/login")
     @ResponseBody
-    public ResponseEntity<ApiResponse<LoginResponseDto>> login(@Valid @RequestBody LoginDto loginDto) {
+    public ResponseEntity<ApiResponse<LoginResponseDto>> login(
+        @Valid @RequestBody LoginDto loginDto) {
         LoginResponseDto responseDto = userService.login(loginDto);
         return ResponseEntity.ok(new ApiResponse<>("로그인 성공", responseDto));
     }

@@ -80,14 +80,17 @@ public class UserServiceImpl implements UserService {
         String emailVerificationToken = jwtUtil.generateEmailVerificationToken(user.getEmail());
         String emailVerificationCode = generateVerificationCode();
 
-        redisService.setStringValue("email_verification:" + user.getEmail(), emailVerificationToken, 60); // 60분 유효
-        redisService.setStringValue("email_code:" + user.getEmail(), emailVerificationCode, 60); // 60분 유효
+        redisService.setStringValue("email_verification:" + user.getEmail(), emailVerificationToken,
+            60); // 60분 유효
+        redisService.setStringValue("email_code:" + user.getEmail(), emailVerificationCode,
+            60); // 60분 유효
 
         sendVerificationEmail(user.getEmail(), emailVerificationToken, emailVerificationCode);
     }
 
     private void sendVerificationEmail(String recipientEmail, String token, String code) {
-        String verificationUrl = appDomain + "/user/verify-email?email=" + recipientEmail + "&token=" + token;
+        String verificationUrl =
+            appDomain + "/user/verify-email?email=" + recipientEmail + "&token=" + token;
         String subject = "이메일 인증";
         String content = "<p>안녕하세요!</p>"
             + "<p>Arcana 서비스에 가입해 주셔서 감사합니다.</p>"
@@ -175,7 +178,8 @@ public class UserServiceImpl implements UserService {
 
         // 비밀번호 변경 시
         if (updateDto.getPassword() != null && !updateDto.getPassword().isEmpty()) {
-            if (updateDto.getOldPassword() == null || !passwordEncoder.matches(updateDto.getOldPassword(), user.getPassword())) {
+            if (updateDto.getOldPassword() == null || !passwordEncoder.matches(
+                updateDto.getOldPassword(), user.getPassword())) {
                 throw new CustomException("기존 비밀번호가 일치하지 않습니다.", HttpStatus.BAD_REQUEST);
             }
             user.encodePassword(updateDto.getPassword(), passwordEncoder);
@@ -187,7 +191,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public void logout(String email, String accessToken) {
         redisService.deleteValue("refresh_token:" + email);
-        long expirationMillis = jwtUtil.getExpirationFromToken(accessToken).getTime() - System.currentTimeMillis();
+        long expirationMillis =
+            jwtUtil.getExpirationFromToken(accessToken).getTime() - System.currentTimeMillis();
         if (expirationMillis > 0) {
             redisService.blacklistToken(accessToken, expirationMillis);
         }
@@ -202,7 +207,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateRefreshToken(String email, String newRefreshToken) {
-        redisService.setStringValue("refresh_token:" + email, newRefreshToken, jwtUtil.getRefreshTokenExpirationMinutes());
+        redisService.setStringValue("refresh_token:" + email, newRefreshToken,
+            jwtUtil.getRefreshTokenExpirationMinutes());
     }
 
     @Override
@@ -236,7 +242,8 @@ public class UserServiceImpl implements UserService {
     }
 
     private void sendPasswordResetEmail(String recipientEmail, String token) {
-        String resetUrl = appDomain + "/user/reset-password?email=" + recipientEmail + "&token=" + token;
+        String resetUrl =
+            appDomain + "/user/reset-password?email=" + recipientEmail + "&token=" + token;
         String subject = "비밀번호 재설정";
         String content = "<p>안녕하세요!</p>"
             + "<p>Arcana 서비스의 비밀번호 재설정을 요청하셨습니다.</p>"

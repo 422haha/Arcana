@@ -70,7 +70,8 @@ public class RedisService {
      * 토큰 블랙리스트에 추가
      */
     public void blacklistToken(String token, long expirationTimeMillis) {
-        redisTemplate.opsForValue().set("blacklist:" + token, true, Duration.ofMillis(expirationTimeMillis));
+        redisTemplate.opsForValue()
+            .set("blacklist:" + token, true, Duration.ofMillis(expirationTimeMillis));
     }
 
     /**

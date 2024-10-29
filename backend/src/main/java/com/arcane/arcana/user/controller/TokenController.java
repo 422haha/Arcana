@@ -23,7 +23,8 @@ public class TokenController {
     }
 
     @PostMapping("/refresh")
-    public ResponseEntity<ApiResponse<TokenRefreshDto>> refreshToken(@RequestBody TokenRefreshDto tokenRefreshDto) {
+    public ResponseEntity<ApiResponse<TokenRefreshDto>> refreshToken(
+        @RequestBody TokenRefreshDto tokenRefreshDto) {
         String refreshToken = tokenRefreshDto.getRefreshToken();
         if (!jwtUtil.isTokenValid(refreshToken)) {
             return ResponseEntity.status(401).body(new ApiResponse<>("유효하지 않은 리프레시 토큰입니다.", null));

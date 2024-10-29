@@ -27,7 +27,8 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     private final UserRepository userRepository;
     private final RedisService redisService;
 
-    public CustomAuthenticationSuccessHandler(JwtUtil jwtUtil, UserRepository userRepository, RedisService redisService) {
+    public CustomAuthenticationSuccessHandler(JwtUtil jwtUtil, UserRepository userRepository,
+        RedisService redisService) {
         this.jwtUtil = jwtUtil;
         this.userRepository = userRepository;
         this.redisService = redisService;
@@ -53,7 +54,8 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         String refreshToken = jwtUtil.generateRefreshToken(email);
 
         // Redis에 Refresh Token 저장
-        redisService.setStringValue("refresh_token:" + email, refreshToken, jwtUtil.getRefreshTokenExpirationMinutes());
+        redisService.setStringValue("refresh_token:" + email, refreshToken,
+            jwtUtil.getRefreshTokenExpirationMinutes());
 
         response.setContentType("application/json;charset=UTF-8");
 
