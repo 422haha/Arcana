@@ -12,6 +12,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class RegisterDto {
     private String email;    // 사용자 이메일
-    private String username; // 사용자 닉네임
+    private String nickname; // 사용자 닉네임
     private String password; // 사용자 비밀번호
 }

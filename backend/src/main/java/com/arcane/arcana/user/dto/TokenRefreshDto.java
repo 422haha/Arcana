@@ -5,12 +5,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * 토큰 갱신 요청을 위한 DTO
+ * 토큰 갱신 요청 및 응답을 위한 DTO
  */
 @Getter
 @Setter
 @NoArgsConstructor
 public class TokenRefreshDto {
 
+    private String accessToken;
     private String refreshToken;
 }
