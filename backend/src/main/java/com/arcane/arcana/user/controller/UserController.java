@@ -3,6 +3,7 @@ package com.arcane.arcana.user.controller;
 import com.arcane.arcana.user.dto.LoginDto;
 import com.arcane.arcana.user.dto.RegisterDto;
 import com.arcane.arcana.user.dto.UpdateDto;
+import com.arcane.arcana.user.dto.LanguageDto;
 import com.arcane.arcana.user.service.UserService;
 import com.arcane.arcana.common.util.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
@@ -37,11 +38,11 @@ public class UserController {
         return ResponseEntity.ok("이메일 인증이 완료되었습니다.");
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginDto loginDto) {
-        String accessToken = userService.login(loginDto.getEmail(), loginDto.getPassword());
-        return ResponseEntity.ok("로그인 성공. 액세스 토큰: " + accessToken);
-    }
+//    @PostMapping("/login")
+//    public ResponseEntity<String> login(@RequestBody LoginDto loginDto) {
+//        String accessToken = userService.login(loginDto.getEmail(), loginDto.getPassword());
+//        return ResponseEntity.ok("로그인 성공. 액세스 토큰: " + accessToken);
+//    }
 
     @PutMapping("/update")
     public ResponseEntity<String> updateUser(@RequestBody UpdateDto updateDto,
@@ -69,5 +70,22 @@ public class UserController {
 
         userService.logout(email);
         return ResponseEntity.ok("로그아웃이 완료되었습니다.");
+    }
+
+    @PostMapping("/language")
+    public ResponseEntity<?> saveLanguage(@RequestBody LanguageDto languageDto, HttpServletRequest request) {
+        String email = extractEmailFromRequest(request);
+        userService.saveLanguage(email, languageDto.getLanguage());
+        return ResponseEntity.ok("{\"message\": \"언어 저장 성공\", \"data\": {\"language\": \""
+            + languageDto.getLanguage() + "\"}}");
+    }
+
+    private String extractEmailFromRequest(HttpServletRequest request) {
+        String authHeader = request.getHeader("Authorization");
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            throw new RuntimeException("인증 헤더가 유효하지 않습니다."); // 예외 처리 필요
+        }
+        String token = authHeader.substring(7);
+        return jwtUtil.getUsernameFromToken(token);
     }
 }
