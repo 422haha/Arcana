@@ -11,15 +11,15 @@ import com.arcane.arcana.game.dto.ProgressDto;
 import com.arcane.arcana.game.repository.GameDataRepository;
 import com.arcane.arcana.user.repository.UserRepository;
 import com.arcane.arcana.common.service.S3Service;
-import com.arcane.arcana.common.service.RedisService;
 import com.arcane.arcana.common.exception.CustomException;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class GameDataServiceImpl implements GameDataService {
@@ -27,17 +27,15 @@ public class GameDataServiceImpl implements GameDataService {
     private final UserRepository userRepository;
     private final GameDataRepository gameDataRepository;
     private final S3Service s3Service;
-    private final RedisService redisService;
+    private final ObjectMapper objectMapper;
 
-    @Autowired
     public GameDataServiceImpl(UserRepository userRepository,
         GameDataRepository gameDataRepository,
-        S3Service s3Service,
-        RedisService redisService) {
+        S3Service s3Service) {
         this.userRepository = userRepository;
         this.gameDataRepository = gameDataRepository;
         this.s3Service = s3Service;
-        this.redisService = redisService;
+        this.objectMapper = new ObjectMapper();
     }
 
     @Override
@@ -47,14 +45,22 @@ public class GameDataServiceImpl implements GameDataService {
 
         String s3Path = "maps/" + user.getId() + ".json";
         try {
-            s3Service.uploadFile(s3Path, mapSettingDto.getMapSetting().getBytes());
+            s3Service.uploadFile(s3Path,
+                mapSettingDto.getMapSetting().getBytes(StandardCharsets.UTF_8));
         } catch (Exception e) {
             throw new CustomException("S3 업로드 중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        GameMap gameMap = new GameMap();
-        gameMap.setUser(user);
-        gameMap.setMapInfo(s3Path);
+        Optional<GameMap> existingGameMap = gameDataRepository.findGameMapByUserId(user.getId());
+        GameMap gameMap;
+        if (existingGameMap.isPresent()) {
+            gameMap = existingGameMap.get();
+            gameMap.setMapInfo(s3Path);
+        } else {
+            gameMap = new GameMap();
+            gameMap.setUser(user);
+            gameMap.setMapInfo(s3Path);
+        }
         gameDataRepository.saveGameMap(gameMap);
     }
 
@@ -65,14 +71,22 @@ public class GameDataServiceImpl implements GameDataService {
 
         String s3Path = "items/" + user.getId() + ".json";
         try {
-            s3Service.uploadFile(s3Path, itemDto.getItemInventory().toString().getBytes());
+            String itemData = objectMapper.writeValueAsString(itemDto.getItemInventory());
+            s3Service.uploadFile(s3Path, itemData.getBytes(StandardCharsets.UTF_8));
         } catch (Exception e) {
             throw new CustomException("S3 업로드 중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        Item item = new Item();
-        item.setUser(user);
-        item.setItemList(s3Path);
+        Optional<Item> existingItem = gameDataRepository.findItemByUserId(user.getId());
+        Item item;
+        if (existingItem.isPresent()) {
+            item = existingItem.get();
+            item.setItemList(s3Path);
+        } else {
+            item = new Item();
+            item.setUser(user);
+            item.setItemList(s3Path);
+        }
         gameDataRepository.saveItem(item);
     }
 
@@ -83,14 +97,22 @@ public class GameDataServiceImpl implements GameDataService {
 
         String s3Path = "artifacts/" + user.getId() + ".json";
         try {
-            s3Service.uploadFile(s3Path, artifactDto.getArtifacts().toString().getBytes());
+            String artifactData = objectMapper.writeValueAsString(artifactDto.getArtifacts());
+            s3Service.uploadFile(s3Path, artifactData.getBytes(StandardCharsets.UTF_8));
         } catch (Exception e) {
             throw new CustomException("S3 업로드 중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        Artifact artifact = new Artifact();
-        artifact.setUser(user);
-        artifact.setArtifactList(s3Path);
+        Optional<Artifact> existingArtifact = gameDataRepository.findArtifactByUserId(user.getId());
+        Artifact artifact;
+        if (existingArtifact.isPresent()) {
+            artifact = existingArtifact.get();
+            artifact.setArtifactList(s3Path);
+        } else {
+            artifact = new Artifact();
+            artifact.setUser(user);
+            artifact.setArtifactList(s3Path);
+        }
         gameDataRepository.saveArtifact(artifact);
     }
 
@@ -102,7 +124,15 @@ public class GameDataServiceImpl implements GameDataService {
         GameMap gameMap = gameDataRepository.findGameMapByUserId(user.getId())
             .orElseThrow(() -> new CustomException("진행 정보를 찾을 수 없습니다.", HttpStatus.NOT_FOUND));
 
-        return new ProgressDto(user.getId().toString(), gameMap.getMapInfo());
+        String mapData;
+        try {
+            mapData = new String(s3Service.downloadFile(gameMap.getMapInfo()),
+                StandardCharsets.UTF_8);
+        } catch (Exception e) {
+            throw new CustomException("S3 다운로드 중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return new ProgressDto(user.getId().toString(), mapData);
     }
 
     @Override
@@ -110,12 +140,26 @@ public class GameDataServiceImpl implements GameDataService {
         User user = userRepository.findByEmail(email)
             .orElseThrow(() -> new CustomException("사용자를 찾을 수 없습니다.", HttpStatus.NOT_FOUND));
 
-        List<Item> items = gameDataRepository.findItemsByUserId(user.getId());
-        List<String> itemList = items.stream()
-            .map(Item::getItemList)
-            .collect(Collectors.toList());
+        Item item = gameDataRepository.findItemByUserId(user.getId())
+            .orElseThrow(() -> new CustomException("아이템 정보를 찾을 수 없습니다.", HttpStatus.NOT_FOUND));
 
-        return new ItemDto(user.getId().toString(), itemList);
+        String itemData;
+        try {
+            itemData = new String(s3Service.downloadFile(item.getItemList()),
+                StandardCharsets.UTF_8);
+        } catch (Exception e) {
+            throw new CustomException("S3 다운로드 중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        List<String> itemInventory;
+        try {
+            itemInventory = objectMapper.readValue(itemData, new TypeReference<List<String>>() {
+            });
+        } catch (Exception e) {
+            throw new CustomException("아이템 데이터 파싱 중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return new ItemDto(user.getId().toString(), itemInventory);
     }
 
     @Override
@@ -123,10 +167,25 @@ public class GameDataServiceImpl implements GameDataService {
         User user = userRepository.findByEmail(email)
             .orElseThrow(() -> new CustomException("사용자를 찾을 수 없습니다.", HttpStatus.NOT_FOUND));
 
-        List<Artifact> artifacts = gameDataRepository.findArtifactsByUserId(user.getId());
-        List<String> artifactList = artifacts.stream()
-            .map(Artifact::getArtifactList)
-            .collect(Collectors.toList());
+        Artifact artifact = gameDataRepository.findArtifactByUserId(user.getId())
+            .orElseThrow(() -> new CustomException("아티팩트 정보를 찾을 수 없습니다.", HttpStatus.NOT_FOUND));
+
+        String artifactData;
+        try {
+            artifactData = new String(s3Service.downloadFile(artifact.getArtifactList()),
+                StandardCharsets.UTF_8);
+        } catch (Exception e) {
+            throw new CustomException("S3 다운로드 중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        List<String> artifactList;
+        try {
+            artifactList = objectMapper.readValue(artifactData, new TypeReference<List<String>>() {
+            });
+        } catch (Exception e) {
+            throw new CustomException("아티팩트 데이터 파싱 중 오류가 발생했습니다.",
+                HttpStatus.INTERNAL_SERVER_ERROR);
+        }
 
         return new ArtifactDto(user.getId().toString(), artifactList);
     }

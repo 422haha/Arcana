@@ -2,6 +2,7 @@ package com.arcane.arcana.subscribe.controller;
 
 import com.arcane.arcana.subscribe.dto.SubscribeDto;
 import com.arcane.arcana.subscribe.service.SubscribeService;
+import com.arcane.arcana.common.dto.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,8 +17,8 @@ public class SubscribeController {
     }
 
     @PostMapping
-    public ResponseEntity<?> subscribe(@RequestBody SubscribeDto subscribeDto) {
+    public ResponseEntity<ApiResponse> subscribe(@RequestBody SubscribeDto subscribeDto) {
         subscribeService.subscribe(subscribeDto.getSubscribe());
-        return ResponseEntity.ok("{\"message\": \"구독 성공\", \"data\": null }");
+        return ResponseEntity.ok(new ApiResponse("구독 성공", null));
     }
 }

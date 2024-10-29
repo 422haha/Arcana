@@ -15,5 +15,5 @@ import lombok.Setter;
 public class ProgressDto {
 
     private String userId;
-    private String data; // S3 JSON 파일 경로
+    private String data;
 }

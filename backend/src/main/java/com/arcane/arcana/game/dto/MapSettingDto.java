@@ -15,5 +15,5 @@ import lombok.Setter;
 public class MapSettingDto {
 
     private String userId;
-    private String mapSetting; // S3 JSON 파일 경로
+    private String mapSetting;
 }
