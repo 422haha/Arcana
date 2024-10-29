@@ -11,7 +11,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class UpdateDto {
-    private String username;    // 새로운 닉네임
+
+    private String nickname;    // 새로운 닉네임
     private String password;    // 새로운 비밀번호
     private String oldPassword; // 기존 비밀번호 (패스워드 변경 시 필요)
 }

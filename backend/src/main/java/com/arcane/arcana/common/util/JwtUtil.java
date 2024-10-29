@@ -1,11 +1,17 @@
 package com.arcane.arcana.common.util;
 
+import com.arcane.arcana.common.exception.CustomException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+
+import io.jsonwebtoken.io.Decoders;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import jakarta.servlet.http.HttpServletRequest;
+
 import java.security.Key;
 import java.util.Date;
 import org.slf4j.Logger;
@@ -32,15 +38,16 @@ public class JwtUtil {
      * 서명 키를 생성
      */
     private Key getSigningKey() {
-        return Keys.hmacShaKeyFor(secret.getBytes());
+        byte[] keyBytes = Decoders.BASE64.decode(secret);
+        return Keys.hmacShaKeyFor(keyBytes);
     }
 
     /**
      * 액세스 토큰을 생성
      */
-    public String generateAccessToken(String username) {
+    public String generateAccessToken(String email) {
         return Jwts.builder()
-            .setSubject(username)
+            .setSubject(email)
             .setIssuedAt(new Date())
             .setExpiration(new Date(System.currentTimeMillis() + accessTokenExpiration))
             .signWith(getSigningKey(), SignatureAlgorithm.HS256)
@@ -50,9 +57,9 @@ public class JwtUtil {
     /**
      * 리프레시 토큰을 생성
      */
-    public String generateRefreshToken(String username) {
+    public String generateRefreshToken(String email) {
         return Jwts.builder()
-            .setSubject(username)
+            .setSubject(email)
             .setIssuedAt(new Date())
             .setExpiration(new Date(System.currentTimeMillis() + refreshTokenExpiration))
             .signWith(getSigningKey(), SignatureAlgorithm.HS256)
@@ -70,15 +77,15 @@ public class JwtUtil {
                 .parseClaimsJws(token);
             return true;
         } catch (Exception e) {
-            logger.error("Invalid JWT token: {}", e.getMessage());
+            logger.error("유효하지 않은 JWT 토큰: {}", e.getMessage());
             return false;
         }
     }
 
     /**
-     * 토큰에서 사용자명을 추출
+     * 토큰에서 이메일을 추출
      */
-    public String getUsernameFromToken(String token) {
+    public String getEmailFromToken(String token) {
         Claims claims = Jwts.parserBuilder()
             .setSigningKey(getSigningKey())
             .build()
@@ -104,5 +111,51 @@ public class JwtUtil {
             .setExpiration(new Date(System.currentTimeMillis() + 3600000)) // 1시간 유효
             .signWith(getSigningKey(), SignatureAlgorithm.HS256)
             .compact();
+    }
+
+    /**
+     * 비밀번호 재설정 토큰 생성
+     */
+    public String generatePasswordResetToken(String email) {
+        return Jwts.builder()
+            .setSubject(email)
+            .setIssuedAt(new Date())
+            .setExpiration(new Date(System.currentTimeMillis() + 3600000)) // 1시간 유효
+            .signWith(getSigningKey(), SignatureAlgorithm.HS256)
+            .compact();
+    }
+
+    /**
+     * 요청에서 이메일 추출
+     */
+    public String extractEmailFromRequest(HttpServletRequest request) {
+        String authHeader = request.getHeader("Authorization");
+        String token = extractTokenFromHeader(authHeader);
+        if (!isTokenValid(token)) {
+            throw new CustomException("유효하지 않은 토큰입니다.", HttpStatus.UNAUTHORIZED);
+        }
+        return getEmailFromToken(token);
+    }
+
+    /**
+     * 인증 헤더에서 토큰 추출
+     */
+    public String extractTokenFromHeader(String authHeader) {
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            throw new CustomException("인증 헤더가 유효하지 않습니다.", HttpStatus.UNAUTHORIZED);
+        }
+        return authHeader.substring(7);
+    }
+
+    /**
+     * 토큰의 만료 시간을 가져옴
+     */
+    public Date getExpirationFromToken(String token) {
+        Claims claims = Jwts.parserBuilder()
+            .setSigningKey(getSigningKey())
+            .build()
+            .parseClaimsJws(token)
+            .getBody();
+        return claims.getExpiration();
     }
 }

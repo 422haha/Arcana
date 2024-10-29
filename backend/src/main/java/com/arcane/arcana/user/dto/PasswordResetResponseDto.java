@@ -1,17 +1,18 @@
 package com.arcane.arcana.user.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * 토큰 갱신 요청 및 응답을 위한 DTO
+ * 비밀번호 재설정 응답 DTO
  */
 @Getter
 @Setter
 @NoArgsConstructor
-public class TokenRefreshDto {
+@AllArgsConstructor
+public class PasswordResetResponseDto {
 
-    private String accessToken;
-    private String refreshToken;
+    private String message;
 }
