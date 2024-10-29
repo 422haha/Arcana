@@ -23,7 +23,7 @@ public class User {
     private String email; // 사용자 이메일
 
     @Column(nullable = false, unique = true)
-    private String username; // 사용자 이름
+    private String nickname; // 사용자 닉네임
 
     @Column(nullable = false)
     private String password; // 사용자 비밀번호
@@ -35,7 +35,13 @@ public class User {
     private boolean isEmailVerified = false; // 이메일 인증 여부
 
     @Column(nullable = false)
-    private String language; // 사용자 언어 설정
+    private String language = "ko"; // 사용자 언어 설정, 기본값 "ko"
+
+    @Column(nullable = false)
+    private Integer money = 0; // 초기 값 0
+
+    @Column(nullable = false)
+    private Integer health = 100; // 초기 값 100
 
     /**
      * 비밀번호를 암호화
