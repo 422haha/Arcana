@@ -84,7 +84,7 @@ public class ProjectSecurityConfig {
                     "/user/verify-email", "/user/register/authnumber", "/user/forgot-password",
                     "/user/reset-password", "/user/reset-password**", "/user/reset-password/**",
                     "/health", "/swagger-ui/**", "/v3/api-docs/**",
-                    "/subscribe", "/user/check-nickname", "/token/refresh")
+                    "/subscribe", "/support", "/user/check-nickname", "/token/refresh")
                 .permitAll()
                 .anyRequest().authenticated()
             )
