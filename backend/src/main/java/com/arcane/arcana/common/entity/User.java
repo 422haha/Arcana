@@ -32,9 +32,6 @@ public class User {
     private boolean isDeleted = false; // 탈퇴 여부
 
     @Column(nullable = false)
-    private boolean isEmailVerified = false; // 이메일 인증 여부
-
-    @Column(nullable = false)
     private String language = "ko"; // 사용자 언어 설정, 기본값 "ko"
 
     @Column(nullable = false)

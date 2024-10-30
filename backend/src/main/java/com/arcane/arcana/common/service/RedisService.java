@@ -81,4 +81,11 @@ public class RedisService {
         Boolean isBlacklisted = (Boolean) redisTemplate.opsForValue().get("blacklist:" + token);
         return isBlacklisted != null && isBlacklisted;
     }
+
+    /**
+     * 키의 존재 여부 확인
+     */
+    public boolean exists(String key) {
+        return Boolean.TRUE.equals(redisTemplate.hasKey(key));
+    }
 }

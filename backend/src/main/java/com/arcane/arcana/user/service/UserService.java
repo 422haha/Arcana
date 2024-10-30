@@ -13,8 +13,6 @@ public interface UserService {
 
     void registerUser(RegisterDto registerDto);
 
-    void verifyEmail(String email, String tokenOrCode);
-
     void updateUser(Long userId, UpdateDto updateDto);
 
     void logout(String email, String accessToken);
@@ -38,4 +36,8 @@ public interface UserService {
     User getUserByEmail(String email);
 
     LoginResponseDto login(LoginDto loginDto);
+
+    void verifyAuthNumber(String email, String authNumber);
+
+    void sendAuthNumber(String email);
 }
