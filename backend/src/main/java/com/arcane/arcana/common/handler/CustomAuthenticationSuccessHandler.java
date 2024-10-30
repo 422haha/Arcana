@@ -2,10 +2,9 @@ package com.arcane.arcana.common.handler;
 
 import com.arcane.arcana.common.dto.ApiResponse;
 import com.arcane.arcana.user.dto.LoginResponseDto;
-import com.arcane.arcana.common.entity.User;
 import com.arcane.arcana.common.service.RedisService;
 import com.arcane.arcana.common.util.JwtUtil;
-import com.arcane.arcana.user.repository.UserRepository;
+import com.arcane.arcana.user.dto.CustomUserDetails;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,7 +14,6 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.Optional;
 
 /**
  * 인증 성공 시 동작을 정의
@@ -24,13 +22,10 @@ import java.util.Optional;
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
     private final JwtUtil jwtUtil;
-    private final UserRepository userRepository;
     private final RedisService redisService;
 
-    public CustomAuthenticationSuccessHandler(JwtUtil jwtUtil, UserRepository userRepository,
-        RedisService redisService) {
+    public CustomAuthenticationSuccessHandler(JwtUtil jwtUtil, RedisService redisService) {
         this.jwtUtil = jwtUtil;
-        this.userRepository = userRepository;
         this.redisService = redisService;
     }
 
@@ -40,15 +35,14 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
         String email = authentication.getName();
 
-        Optional<User> userOptional = userRepository.findByEmail(email);
-
-        if (!userOptional.isPresent()) {
+        Object principal = authentication.getPrincipal();
+        if (!(principal instanceof CustomUserDetails)) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            response.getWriter().write("{\"message\": \"사용자를 찾을 수 없습니다.\", \"data\": null}");
+            response.getWriter().write("{\"message\": \"사용자 정보를 찾을 수 없습니다.\", \"data\": null}");
             return;
         }
 
-        User user = userOptional.get();
+        CustomUserDetails userDetails = (CustomUserDetails) principal;
 
         String accessToken = jwtUtil.generateAccessToken(email);
         String refreshToken = jwtUtil.generateRefreshToken(email);
@@ -62,11 +56,11 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         LoginResponseDto loginResponseDto = new LoginResponseDto(
             accessToken,
             refreshToken,
-            user.getId(),
-            user.getNickname(),
-            user.getLanguage(),
-            user.getMoney(),
-            user.getHealth()
+            userDetails.getId(),
+            userDetails.getNickname(),
+            userDetails.getLanguage(),
+            userDetails.getMoney(),
+            userDetails.getHealth()
         );
 
         ApiResponse<LoginResponseDto> apiResponse = new ApiResponse<>("로그인 성공", loginResponseDto);

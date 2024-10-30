@@ -6,7 +6,6 @@ import com.arcane.arcana.common.handler.CustomAuthenticationSuccessHandler;
 import com.arcane.arcana.common.handler.CustomLoginFailureHandler;
 import com.arcane.arcana.common.service.RedisService;
 import com.arcane.arcana.common.util.JwtUtil;
-import com.arcane.arcana.user.repository.UserRepository;
 import com.arcane.arcana.user.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -33,16 +32,14 @@ public class ProjectSecurityConfig {
     private String apiKey;
 
     private final JwtUtil jwtUtil;
-    private final UserRepository userRepository;
-    private final CustomUserDetailsService userDetailsService;
     private final RedisTemplate<String, Object> redisTemplate;
+    private final CustomUserDetailsService customUserDetailsService;
 
-    public ProjectSecurityConfig(JwtUtil jwtUtil, UserRepository userRepository,
-        CustomUserDetailsService userDetailsService, RedisTemplate<String, Object> redisTemplate) {
+    public ProjectSecurityConfig(JwtUtil jwtUtil, RedisTemplate<String, Object> redisTemplate,
+        CustomUserDetailsService customUserDetailsService) {
         this.jwtUtil = jwtUtil;
-        this.userRepository = userRepository;
-        this.userDetailsService = userDetailsService;
         this.redisTemplate = redisTemplate;
+        this.customUserDetailsService = customUserDetailsService;
     }
 
     /**
@@ -59,7 +56,7 @@ public class ProjectSecurityConfig {
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setUserDetailsService(customUserDetailsService); // CustomUserDetailsService 참조
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
@@ -79,8 +76,7 @@ public class ProjectSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .sessionManagement(
-                session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/public/**", "/user/register", "/user/login",
@@ -104,7 +100,7 @@ public class ProjectSecurityConfig {
      */
     @Bean
     public CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler() {
-        return new CustomAuthenticationSuccessHandler(jwtUtil, userRepository, redisService());
+        return new CustomAuthenticationSuccessHandler(jwtUtil, redisService());
     }
 
     /**

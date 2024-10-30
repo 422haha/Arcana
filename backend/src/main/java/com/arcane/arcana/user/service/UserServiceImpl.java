@@ -9,7 +9,6 @@ import com.arcane.arcana.user.repository.UserRepository;
 import com.arcane.arcana.common.util.JwtUtil;
 import com.arcane.arcana.common.service.RedisService;
 import com.arcane.arcana.common.exception.CustomException;
-import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -23,10 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
 import java.util.Random;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * 사용자 서비스 클래스 구현
@@ -39,7 +35,6 @@ public class UserServiceImpl implements UserService {
     private final JwtUtil jwtUtil;
     private final RedisService redisService;
     private final JavaMailSender mailSender;
-    private final ObjectMapper objectMapper;
     private final AuthenticationManager authenticationManager;
 
     @Value("${spring.mail.username}")
@@ -57,7 +52,6 @@ public class UserServiceImpl implements UserService {
         this.redisService = redisService;
         this.mailSender = mailSender;
         this.authenticationManager = authenticationManager;
-        this.objectMapper = new ObjectMapper();
     }
 
     @Override
@@ -87,6 +81,12 @@ public class UserServiceImpl implements UserService {
         mailSender.send(messagePreparator);
     }
 
+    private String generateVerificationCode() {
+        Random random = new Random();
+        int code = 100000 + random.nextInt(900000); // 6자리 인증번호 생성
+        return String.valueOf(code);
+    }
+
     @Override
     public void verifyAuthNumber(String email, String authNumber) {
         String redisAuthNumber = redisService.getStringValue("email_auth:" + email);
@@ -94,29 +94,32 @@ public class UserServiceImpl implements UserService {
             throw new CustomException("인증번호가 일치하지 않습니다.", HttpStatus.BAD_REQUEST);
         }
 
+        // 인증 완료 상태를 Redis에 설정
+        redisService.setStringValue("email_verified:" + email, "verified", 60); // 60분 유효
+
+        // 인증 번호 키 삭제
         redisService.deleteValue("email_auth:" + email);
     }
 
     @Override
     @Transactional
     public void registerUser(RegisterDto registerDto) {
-        if (!redisService.exists("email_auth:" + registerDto.getEmail())) {
+        String email = registerDto.getEmail();
+
+        // 인증 완료 상태 확인
+        if (!redisService.exists("email_verified:" + email)) {
             throw new CustomException("이메일 인증이 필요합니다.", HttpStatus.FORBIDDEN);
         }
 
+        // 인증 완료 상태 삭제
+        redisService.deleteValue("email_verified:" + email);
+
+        // 사용자 등록
         User user = new User();
-        user.setEmail(registerDto.getEmail());
+        user.setEmail(email);
         user.setNickname(registerDto.getNickname());
         user.encodePassword(registerDto.getPassword(), passwordEncoder);
         userRepository.save(user);
-
-        redisService.deleteValue("email_auth:" + registerDto.getEmail());
-    }
-
-    private String generateVerificationCode() {
-        Random random = new Random();
-        int code = 100000 + random.nextInt(900000); // 6자리 인증번호 생성
-        return String.valueOf(code);
     }
 
     @Override
@@ -247,17 +250,6 @@ public class UserServiceImpl implements UserService {
             .orElseThrow(() -> new CustomException("사용자를 찾을 수 없습니다.", HttpStatus.NOT_FOUND));
     }
 
-    private String generateRandomPassword() {
-        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        StringBuilder password = new StringBuilder();
-        Random random = new Random();
-
-        for (int i = 0; i < 10; i++) { // 임시 비밀번호 길이: 10자리
-            password.append(chars.charAt(random.nextInt(chars.length())));
-        }
-        return password.toString();
-    }
-
     @Override
     public LoginResponseDto login(LoginDto loginDto) {
         try {
@@ -268,7 +260,9 @@ public class UserServiceImpl implements UserService {
             String accessToken = jwtUtil.generateAccessToken(authentication.getName());
             String refreshToken = jwtUtil.generateRefreshToken(authentication.getName());
 
-            updateRefreshToken(authentication.getName(), refreshToken);
+            // Redis에 Refresh Token 저장
+            redisService.setStringValue("refresh_token:" + authentication.getName(), refreshToken,
+                jwtUtil.getRefreshTokenExpirationMinutes());
 
             Long userId = getUserIdByEmail(authentication.getName());
             User user = getUserByEmail(authentication.getName());

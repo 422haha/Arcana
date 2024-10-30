@@ -1,16 +1,17 @@
 package com.arcane.arcana.user.service;
 
 import com.arcane.arcana.common.entity.User;
+import com.arcane.arcana.user.dto.CustomUserDetails;
 import com.arcane.arcana.user.repository.UserRepository;
+import com.arcane.arcana.common.exception.CustomException;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-
 /**
- * 사용자 상세 정보 서비스를 제공
+ * 사용자 인증을 위한 서비스 인터페이스
  */
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -24,16 +25,8 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email)
-            .orElseThrow(() -> new UsernameNotFoundException("사용자를 찾을 수 없습니다."));
+            .orElseThrow(() -> new CustomException("사용자를 찾을 수 없습니다.", HttpStatus.NOT_FOUND));
 
-        return new org.springframework.security.core.userdetails.User(
-            user.getEmail(),
-            user.getPassword(),
-            user.isEmailVerified(), // 계정 활성화 여부
-            true, // 계정 만료 여부
-            true, // 자격 증명 만료 여부
-            !user.isDeleted(), // 계정 비활성화 여부
-            Collections.emptyList()
-        );
+        return new CustomUserDetails(user);
     }
 }
