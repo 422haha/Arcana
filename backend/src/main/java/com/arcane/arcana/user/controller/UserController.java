@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * 사용자 관련 요청을 처리하는 컨트롤러
  */
-@RestController
+@Controller
 @RequestMapping("/user")
 public class UserController {
 
@@ -28,13 +28,14 @@ public class UserController {
         this.jwtUtil = jwtUtil;
     }
 
-    // 이메일 인증번호 전송
+    @ResponseBody
     @PostMapping("/verify-email")
     public ResponseEntity<ApiResponse<String>> sendAuthNumber(@RequestBody EmailDto emailDto) {
         userService.sendAuthNumber(emailDto.getEmail());
         return ResponseEntity.ok(new ApiResponse<>("인증번호가 이메일로 전송되었습니다.", null));
     }
 
+    @ResponseBody
     @PostMapping("/register/authnumber")
     public ResponseEntity<ApiResponse<String>> verifyAuthNumber(
         @RequestBody AuthNumberDto authNumberDto) {
@@ -42,6 +43,7 @@ public class UserController {
         return ResponseEntity.ok(new ApiResponse<>("인증 완료되었습니다.", null));
     }
 
+    @ResponseBody
     @PostMapping("/register")
     public ResponseEntity<ApiResponse<String>> register(
         @Valid @RequestBody RegisterDto registerDto) {
@@ -49,6 +51,7 @@ public class UserController {
         return new ResponseEntity<>(new ApiResponse<>("가입 성공", null), HttpStatus.CREATED);
     }
 
+    @ResponseBody
     @PutMapping("/update")
     public ResponseEntity<ApiResponse<String>> updateUser(@Valid @RequestBody UpdateDto updateDto,
         HttpServletRequest request) {
@@ -59,6 +62,7 @@ public class UserController {
         return ResponseEntity.ok(new ApiResponse<>("사용자 정보가 수정되었습니다.", null));
     }
 
+    @ResponseBody
     @PostMapping("/logout")
     public ResponseEntity<ApiResponse<String>> logout(HttpServletRequest request) {
         String email = jwtUtil.extractEmailFromRequest(request);
@@ -68,10 +72,10 @@ public class UserController {
         return ResponseEntity.ok(new ApiResponse<>("로그아웃이 완료되었습니다.", null));
     }
 
+    @ResponseBody
     @PostMapping("/language")
     public ResponseEntity<ApiResponse<LanguageDto>> saveLanguage(
-        @Valid @RequestBody LanguageDto languageDto,
-        HttpServletRequest request) {
+        @Valid @RequestBody LanguageDto languageDto, HttpServletRequest request) {
         String email = jwtUtil.extractEmailFromRequest(request);
         userService.saveLanguage(email, languageDto.getLanguage());
         LanguageDto responseDto = new LanguageDto();
@@ -79,6 +83,7 @@ public class UserController {
         return ResponseEntity.ok(new ApiResponse<>("언어 저장 성공", responseDto));
     }
 
+    @ResponseBody
     @PostMapping("/check-nickname")
     public ResponseEntity<ApiResponse<Boolean>> checkNickname(
         @Valid @RequestBody NicknameCheckDto nicknameCheckDto) {
@@ -86,6 +91,7 @@ public class UserController {
         return ResponseEntity.ok(new ApiResponse<>("닉네임 사용 가능 여부 조회 성공", isAvailable));
     }
 
+    @ResponseBody
     @PostMapping("/forgot-password")
     public ResponseEntity<ApiResponse<String>> forgotPassword(@RequestParam String email) {
         userService.sendPasswordResetEmail(email);
@@ -93,31 +99,27 @@ public class UserController {
     }
 
     @GetMapping("/reset-password")
-    public ResponseEntity<ApiResponse<String>> showResetPasswordPage(@RequestParam String email,
-        @RequestParam String token,
+    public String showResetPasswordPage(@RequestParam String email, @RequestParam String token,
         Model model) {
         boolean isValid = userService.isResetTokenValid(email, token);
         if (isValid) {
             model.addAttribute("email", email);
             model.addAttribute("token", token);
-            // 실제로는 View 템플릿을 반환해야 하지만, API 응답으로 처리
-            return ResponseEntity.ok(new ApiResponse<>("유효한 토큰입니다.", null));
+            return "reset-password-form";
         } else {
             throw new CustomException("유효하지 않은 토큰입니다.", HttpStatus.BAD_REQUEST);
         }
     }
 
     @PostMapping("/reset-password")
-    public ResponseEntity<ApiResponse<String>> resetPassword(@RequestParam String email,
-        @RequestParam String token,
-        @RequestParam String newPassword,
-        Model model) {
+    public String resetPassword(@RequestParam String email, @RequestParam String token,
+        @RequestParam String newPassword, Model model) {
         userService.resetPassword(email, token, newPassword);
         model.addAttribute("message", "비밀번호가 성공적으로 재설정되었습니다.");
-        // 실제로는 View 템플릿을 반환해야 하지만, API 응답으로 처리
-        return ResponseEntity.ok(new ApiResponse<>("비밀번호가 성공적으로 재설정되었습니다.", null));
+        return "reset-password-confirm";
     }
 
+    @ResponseBody
     @PostMapping("/login")
     public ResponseEntity<ApiResponse<LoginResponseDto>> login(
         @Valid @RequestBody LoginDto loginDto) {
