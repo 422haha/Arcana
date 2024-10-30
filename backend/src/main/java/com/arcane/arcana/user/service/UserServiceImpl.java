@@ -150,11 +150,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public void logout(String email, String accessToken) {
         redisService.deleteValue("refresh_token:" + email);
-        long expirationMillis =
-            jwtUtil.getExpirationFromToken(accessToken).getTime() - System.currentTimeMillis();
-        if (expirationMillis > 0) {
-            redisService.blacklistToken(accessToken, expirationMillis);
-        }
     }
 
     @Override
