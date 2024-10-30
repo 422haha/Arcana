@@ -113,11 +113,11 @@ public class ProjectSecurityConfig {
     }
 
     /**
-     * JWT 토큰 검증 필터 빈 생성 (RedisService 제거)
+     * JWT 토큰 검증 필터 빈 생성
      */
     @Bean
     public JWTTokenValidatorFilter jwtTokenValidatorFilter() {
-        return new JWTTokenValidatorFilter(jwtUtil); // RedisService 제거
+        return new JWTTokenValidatorFilter(jwtUtil);
     }
 
     /**
