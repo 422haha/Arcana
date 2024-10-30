@@ -67,22 +67,6 @@ public class RedisService {
     }
 
     /**
-     * 토큰 블랙리스트에 추가
-     */
-    public void blacklistToken(String token, long expirationTimeMillis) {
-        redisTemplate.opsForValue()
-            .set("blacklist:" + token, true, Duration.ofMillis(expirationTimeMillis));
-    }
-
-    /**
-     * 토큰이 블랙리스트에 있는지 확인
-     */
-    public boolean isTokenBlacklisted(String token) {
-        Boolean isBlacklisted = (Boolean) redisTemplate.opsForValue().get("blacklist:" + token);
-        return isBlacklisted != null && isBlacklisted;
-    }
-
-    /**
      * 키의 존재 여부 확인
      */
     public boolean exists(String key) {

@@ -56,7 +56,7 @@ public class ProjectSecurityConfig {
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(customUserDetailsService); // CustomUserDetailsService 참조
+        authProvider.setUserDetailsService(customUserDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
@@ -76,7 +76,8 @@ public class ProjectSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .sessionManagement(
+                session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/public/**", "/user/register", "/user/login",
@@ -112,11 +113,11 @@ public class ProjectSecurityConfig {
     }
 
     /**
-     * JWT 토큰 검증 필터 빈 생성
+     * JWT 토큰 검증 필터 빈 생성 (RedisService 제거)
      */
     @Bean
     public JWTTokenValidatorFilter jwtTokenValidatorFilter() {
-        return new JWTTokenValidatorFilter(jwtUtil, redisService());
+        return new JWTTokenValidatorFilter(jwtUtil); // RedisService 제거
     }
 
     /**
