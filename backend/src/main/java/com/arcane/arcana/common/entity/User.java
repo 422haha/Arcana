@@ -3,6 +3,7 @@ package com.arcane.arcana.common.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import java.util.List;
 
 /**
  * 사용자 엔티티
@@ -40,6 +41,16 @@ public class User {
     @Column(nullable = false)
     private Integer health = 100; // 초기 값 100
 
+
+    @Column(nullable = false)
+    private Integer gameSession = 0;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MapData> mapDataList;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProgressData> progressDataList;
+
     /**
      * 비밀번호를 암호화
      */
@@ -52,5 +63,12 @@ public class User {
      */
     public boolean isPasswordMatch(String rawPassword, PasswordEncoder passwordEncoder) {
         return passwordEncoder.matches(rawPassword, this.password);
+    }
+
+    /**
+     * 게임 시작 시 gameSession 증가
+     */
+    public void startNewGameSession() {
+        this.gameSession += 1;
     }
 }
