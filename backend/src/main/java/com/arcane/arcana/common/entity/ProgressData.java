@@ -19,13 +19,13 @@ public class ProgressData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String progressInfo;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private Integer gameSession;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable=false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 }
