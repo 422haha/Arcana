@@ -6,14 +6,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * 맵 설정 DTO
+ * 맵 데이터 응답 DTO
  */
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MapSettingDto {
+public class MapDataDto {
 
-    private String userId;
-    private String mapSetting;
+    private String mapsetting;
 }

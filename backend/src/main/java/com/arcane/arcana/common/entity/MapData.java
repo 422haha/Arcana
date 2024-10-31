@@ -6,23 +6,26 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * 맵 엔티티
+ * 맵 데이터 엔티티
  */
 @Entity
-@Table(name = "GameMap")
+@Table(name = "map_data")
 @Getter
 @Setter
 @NoArgsConstructor
-public class GameMap {
+public class MapData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user; // 외래 키: 사용자
+    @Column(nullable = false)
+    private String mapInfo;
 
     @Column(nullable = false)
-    private String mapInfo; // S3 맵 정보 JSON 링크
+    private Integer gameSession;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 }
