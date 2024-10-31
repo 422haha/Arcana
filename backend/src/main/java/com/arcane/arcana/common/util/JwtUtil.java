@@ -1,21 +1,23 @@
 package com.arcane.arcana.common.util;
 
 import com.arcane.arcana.common.exception.CustomException;
+import com.arcane.arcana.common.entity.User;
+import com.arcane.arcana.user.repository.UserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
-
 import io.jsonwebtoken.io.Decoders;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
-import jakarta.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.security.Key;
 import java.util.Date;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.Optional;
 
 /**
  * JWT 토큰 생성을 담당
@@ -25,6 +27,8 @@ public class JwtUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtUtil.class);
 
+    private final UserRepository userRepository;
+
     @Value("${jwt.secret}")
     private String secret;
 
@@ -33,6 +37,10 @@ public class JwtUtil {
 
     @Value("${jwt.refreshTokenExpiration}")
     private long refreshTokenExpiration;
+
+    public JwtUtil(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     /**
      * 서명 키를 생성
@@ -92,6 +100,19 @@ public class JwtUtil {
             .parseClaimsJws(token)
             .getBody();
         return claims.getSubject();
+    }
+
+    /**
+     * 토큰에서 사용자 ID를 추출
+     */
+    public long getUserIdFromToken(String bearerToken) {
+        String token = extractTokenFromHeader(bearerToken);
+        String email = getEmailFromToken(token);
+
+        return userRepository.findByEmail(email)
+            .map(User::getId)
+            .orElseThrow(
+                () -> new CustomException("해당 이메일의 사용자를 찾을 수 없습니다.", HttpStatus.NOT_FOUND));
     }
 
     /**
