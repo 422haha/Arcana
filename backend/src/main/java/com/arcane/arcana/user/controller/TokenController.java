@@ -4,6 +4,7 @@ import com.arcane.arcana.common.dto.ApiResponse;
 import com.arcane.arcana.user.dto.TokenRefreshDto;
 import com.arcane.arcana.user.service.UserService;
 import com.arcane.arcana.common.util.JwtUtil;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +23,10 @@ public class TokenController {
         this.jwtUtil = jwtUtil;
     }
 
+    @Operation(
+        summary = "토큰 갱신",
+        description = "유효한 리프레시 토큰을 통해 새로운 액세스 토큰과 리프레시 토큰을 발급받습니다."
+    )
     @PostMapping("/refresh")
     public ResponseEntity<ApiResponse<TokenRefreshDto>> refreshToken(
         @RequestBody TokenRefreshDto tokenRefreshDto) {
@@ -31,7 +36,7 @@ public class TokenController {
         }
 
         String email = jwtUtil.getEmailFromToken(refreshToken);
-        String storedRefreshToken = userService.getStoredRefreshToken(email); // 수정된 부분
+        String storedRefreshToken = userService.getStoredRefreshToken(email);
 
         if (!refreshToken.equals(storedRefreshToken)) {
             return ResponseEntity.status(401).body(new ApiResponse<>("일치하지 않는 리프레시 토큰입니다.", null));
