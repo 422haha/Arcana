@@ -1,0 +1,25 @@
+:root {
+    /* Colors */
+    --color-primary: theme('colors.retro.blue.DEFAULT');
+    --color-secondary: theme('colors.retro.teal.DEFAULT');
+    --color-background: theme('colors.zinc.900');
+    --color-text: theme('colors.gray.200');
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(
+      to right,
+      theme('colors.retro.blue.DEFAULT'),
+      theme('colors.retro.teal.DEFAULT')
+    );
+    
+    /* Borders */
+    --border-primary: theme('colors.zinc.700');
+    --border-hover: theme('colors.zinc.600');
+    
+    /* Shadows */
+    --shadow-neon: theme('boxShadow.neon-blue');
+    
+    /* Transitions */
+    --transition-normal: 300ms;
+    --transition-slow: 500ms;
+  }
