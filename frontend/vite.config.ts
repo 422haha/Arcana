@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
-// ProxyOptions import 제거 (사용하지 않으므로)
 
 export default defineConfig({
   plugins: [react()],
@@ -23,7 +22,7 @@ export default defineConfig({
           proxy.on('error', (err) => {
             console.log('proxy error', err);
           });
-          proxy.on('proxyReq', (_, req) => { // proxyReq 파라미터 제거
+          proxy.on('proxyReq', (_, req) => {
             console.log('Sending Request:', req.method, req.url);
           });
           proxy.on('proxyRes', (proxyRes, req) => {
@@ -45,7 +44,6 @@ export default defineConfig({
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],
-          retro: ['98.js']
         }
       }
     }

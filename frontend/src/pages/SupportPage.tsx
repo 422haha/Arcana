@@ -28,10 +28,9 @@ const SupportPage: React.FC<SupportPageProps> = ({ setPressKitOpen }) => {
     screenshots: []
   });
   const [isDragging, setIsDragging] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [error] = useState<string | null>(null);
+  const [successMessage] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const MAX_FILE_SIZE = 1 * 1024 * 1024; // 10MB
   const MAX_FILES = 5;
   const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg'];
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -41,17 +40,17 @@ const SupportPage: React.FC<SupportPageProps> = ({ setPressKitOpen }) => {
     return emailRegex.test(email);
   };
 
-  const validateFile = (file: File): string | null => {
-    const sizeInMB = file.size / (1024 * 1024); // Convert to MB
+  // const validateFile = (file: File): string | null => {
+  //   const sizeInMB = file.size / (1024 * 1024); // Convert to MB
   
-    if (!ALLOWED_TYPES.includes(file.type)) {
-      return 'JPG, PNG, GIF 형식의 이미지만 업로드 가능합니다.';
-    }
-    if (sizeInMB > 1) {
-      return `파일 크기가 너무 큽니다: ${file.name} (${sizeInMB.toFixed(1)}MB)`;
-    }
-    return null;
-  };
+  //   if (!ALLOWED_TYPES.includes(file.type)) {
+  //     return 'JPG, PNG, GIF 형식의 이미지만 업로드 가능합니다.';
+  //   }
+  //   if (sizeInMB > 1) {
+  //     return `파일 크기가 너무 큽니다: ${file.name} (${sizeInMB.toFixed(1)}MB)`;
+  //   }
+  //   return null;
+  // };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

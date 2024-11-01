@@ -2,7 +2,6 @@ import React, { useState, FormEvent } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import { Check, X, Mail, AlertCircle } from 'lucide-react';
 
 interface SubscribeResponse {
   success: boolean;
@@ -24,7 +23,6 @@ const Footer: React.FC = () => {
     if (!email) {
       toast.error(
         <div className="flex items-center space-x-2">
-          <AlertCircle className="w-5 h-5" />
           <span>이메일을 입력해주세요</span>
         </div>,
         {
@@ -48,7 +46,6 @@ const Footer: React.FC = () => {
       toast.dismiss();
       toast.error(
         <div className="flex items-center space-x-2">
-          {/* <X className="w-5 h-5" /> */}
           <span>올바른 이메일 형식이 아닙니다</span>
         </div>,
         {
