@@ -19,6 +19,4 @@ public class LoginResponseDto {
     private Long userId;
     private String nickname;
     private String language;
-    private Integer money;
-    private Integer health;
 }

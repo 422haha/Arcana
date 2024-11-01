@@ -36,13 +36,6 @@ public class User {
     private String language = "ko"; // 사용자 언어 설정, 기본값 "ko"
 
     @Column(nullable = false)
-    private Integer money = 0; // 초기 값 0
-
-    @Column(nullable = false)
-    private Integer health = 100; // 초기 값 100
-
-
-    @Column(nullable = false)
     private Integer gameSession = 0;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)

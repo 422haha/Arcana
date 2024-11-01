@@ -19,8 +19,6 @@ public class CustomUserDetails implements UserDetails {
     private final String nickname;
     private final String password;
     private final String language;
-    private final Integer money;
-    private final Integer health;
     private final boolean isDeleted;
 
     public CustomUserDetails(User user) {
@@ -29,8 +27,6 @@ public class CustomUserDetails implements UserDetails {
         this.nickname = user.getNickname();
         this.password = user.getPassword();
         this.language = user.getLanguage();
-        this.money = user.getMoney();
-        this.health = user.getHealth();
         this.isDeleted = user.isDeleted();
     }
 
