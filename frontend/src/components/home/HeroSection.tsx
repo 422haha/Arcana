@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import '@/styles/components/CRT.css';
+import '@/styles/components/crt.css';
 
 const HeroSection = () => {
   const [scale, setScale] = useState(2);
