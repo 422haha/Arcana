@@ -1,5 +1,4 @@
 // src/pages/PressKitModal.tsx
-import React from 'react';
 interface PressKitModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -55,7 +54,7 @@ interface PressKitModalProps {
  
         {/* Categories */}
         <div className="space-y-6 relative">
-          {categories.map((category, index) => (
+          {categories.map((category) => (
             <div
               key={category.name}
               className="relative p-6 bg-zinc-800/50 rounded-xl

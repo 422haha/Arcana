@@ -1,4 +1,3 @@
-import React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import '@/styles/components/CRT.css';
 
@@ -227,7 +226,7 @@ const HeroSection = () => {
             {/* Iframe 설정 */}
             <iframe
               ref={iframeRef}
-              src="/98/index.html"
+              src={`${import.meta.env.BASE_URL}98/index.html`}
               style={{
                 width: '990px',
                 height: '615px',

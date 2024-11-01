@@ -1,4 +1,3 @@
-import React from 'react';
 import GameIntro from './sections/GameIntro';
 import RaceFeatures from './sections/RaceFeatures';
 import GameGallery from './sections/GameGallery';

@@ -13,7 +13,7 @@ interface DownloadPageProps {
 
 const DownloadPage: React.FC<DownloadPageProps> = ({ setPressKitOpen }) => {
  const [downloadStarted, setDownloadStarted] = useState(false);
- const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
+//  const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
  const [error, setError] = useState<string | null>(null);
 
  const handleDownload = async () => {
@@ -25,7 +25,7 @@ const DownloadPage: React.FC<DownloadPageProps> = ({ setPressKitOpen }) => {
      if (!response.ok) throw new Error('다운로드 링크를 가져오는 데 실패했습니다.');
 
      const data: DownloadResponse = await response.json();
-     setDownloadUrl(data.url);
+    //  setDownloadUrl(data.url);
      setDownloadStarted(true);
      window.location.href = data.url;
    } catch (err) {
