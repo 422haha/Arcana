@@ -21,9 +21,6 @@ RUN npm run build
 # Production 단계: Nginx를 활용해 정적 파일 서빙
 FROM nginx:stable-alpine
 
-# 빌드 결과물을 Nginx 정적 파일 디렉토리로 복사
-COPY --from=build /app/build /usr/share/nginx/html
-
 # Nginx 포트 개방
 EXPOSE 80
 
