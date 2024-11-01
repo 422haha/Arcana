@@ -267,9 +267,7 @@ public class UserServiceImpl implements UserService {
                 refreshToken,
                 userId,
                 user.getNickname(),
-                user.getLanguage(),
-                user.getMoney(),
-                user.getHealth()
+                user.getLanguage()
             );
 
         } catch (AuthenticationException e) {

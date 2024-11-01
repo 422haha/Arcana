@@ -58,9 +58,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
             refreshToken,
             userDetails.getId(),
             userDetails.getNickname(),
-            userDetails.getLanguage(),
-            userDetails.getMoney(),
-            userDetails.getHealth()
+            userDetails.getLanguage()
         );
 
         ApiResponse<LoginResponseDto> apiResponse = new ApiResponse<>("로그인 성공", loginResponseDto);
