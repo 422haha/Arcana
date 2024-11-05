@@ -35,10 +35,22 @@ public class GameDataController {
         this.userRepository = userRepository;
     }
 
+    /*
     @Operation(summary = "맵 설정 저장", description = "사용자의 현재 게임 세션에 대한 맵 설정을 저장합니다.")
     @PostMapping(value = "/mapsetting", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ApiResponse<String>> saveMapSetting(
         @RequestPart("mapSetting") MultipartFile mapSetting,
+        HttpServletRequest request) {
+        Long userId = jwtUtil.getUserIdFromToken(request.getHeader("Authorization"));
+        mapDataService.saveMapSetting(userId, mapSetting);
+        return ResponseEntity.ok(new ApiResponse<>("맵 정보 저장 성공", null));
+    }
+    */
+
+    @Operation(summary = "맵 설정 저장", description = "사용자의 현재 게임 세션에 대한 맵 설정을 저장합니다.")
+    @PostMapping("/mapsetting")
+    public ResponseEntity<ApiResponse<String>> saveMapSetting(
+        @RequestParam("mapSetting") String mapSetting,
         HttpServletRequest request) {
         Long userId = jwtUtil.getUserIdFromToken(request.getHeader("Authorization"));
         mapDataService.saveMapSetting(userId, mapSetting);
@@ -53,10 +65,22 @@ public class GameDataController {
         return ResponseEntity.ok(new ApiResponse<>("맵 정보 불러오기 성공", gameData));
     }
 
+    /*
     @Operation(summary = "진행 정보 저장", description = "사용자의 현재 게임 세션에 대한 진행 정보를 저장합니다.")
     @PostMapping(value = "/progress", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ApiResponse<String>> saveProgress(
         @RequestPart("progress") MultipartFile progress,
+        HttpServletRequest request) {
+        Long userId = jwtUtil.getUserIdFromToken(request.getHeader("Authorization"));
+        progressDataService.saveProgress(userId, progress);
+        return ResponseEntity.ok(new ApiResponse<>("진행 정보 저장 성공", null));
+    }
+    */
+
+    @Operation(summary = "진행 정보 저장", description = "사용자의 현재 게임 세션에 대한 진행 정보를 저장합니다.")
+    @PostMapping("/progress")
+    public ResponseEntity<ApiResponse<String>> saveProgress(
+        @RequestParam("progress") String progress,
         HttpServletRequest request) {
         Long userId = jwtUtil.getUserIdFromToken(request.getHeader("Authorization"));
         progressDataService.saveProgress(userId, progress);
