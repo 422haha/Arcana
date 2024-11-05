@@ -36,7 +36,7 @@ public class GameDataController {
     }
 
     @Operation(summary = "맵 설정 저장", description = "사용자의 현재 게임 세션에 대한 맵 설정을 저장합니다.")
-    @PutMapping(value = "/mapsetting", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/mapsetting", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ApiResponse<String>> saveMapSetting(
         @RequestPart("mapSetting") MultipartFile mapSetting,
         HttpServletRequest request) {
@@ -54,7 +54,7 @@ public class GameDataController {
     }
 
     @Operation(summary = "진행 정보 저장", description = "사용자의 현재 게임 세션에 대한 진행 정보를 저장합니다.")
-    @PutMapping(value = "/progress", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/progress", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ApiResponse<String>> saveProgress(
         @RequestPart("progress") MultipartFile progress,
         HttpServletRequest request) {
