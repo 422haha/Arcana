@@ -19,19 +19,20 @@ import java.io.IOException;
 public class ProgressDataServiceImpl implements ProgressDataService {
 
     private final ProgressDataRepository progressDataRepository;
-    private final S3Service s3Service;
-    private final PresignedUrlService presignedUrlService;
     private final UserRepository userRepository;
 
+    /*
+    private final S3Service s3Service;
+    private final PresignedUrlService presignedUrlService;
+    */
+
     public ProgressDataServiceImpl(ProgressDataRepository progressDataRepository,
-        S3Service s3Service,
-        PresignedUrlService presignedUrlService, UserRepository userRepository) {
+        UserRepository userRepository) {
         this.progressDataRepository = progressDataRepository;
-        this.s3Service = s3Service;
-        this.presignedUrlService = presignedUrlService;
         this.userRepository = userRepository;
     }
 
+    /*
     @Override
     @Transactional
     public void saveProgress(Long userId, MultipartFile progress) {
@@ -59,6 +60,28 @@ public class ProgressDataServiceImpl implements ProgressDataService {
             throw new CustomException("진행 정보 파일 업로드 실패", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    */
+
+    @Override
+    @Transactional
+    public void saveProgress(Long userId, String progress) {
+        User user = userRepository.findById(userId)
+            .orElseThrow(() -> new CustomException("사용자를 찾을 수 없습니다.", HttpStatus.NOT_FOUND));
+
+        Integer currentGameSession = user.getGameSession();
+
+        progressDataRepository.findByUserAndGameSession(user, currentGameSession)
+            .ifPresentOrElse(progressData -> {
+                progressData.setProgressInfo(progress);
+                progressDataRepository.save(progressData);
+            }, () -> {
+                ProgressData newData = new ProgressData();
+                newData.setUser(user);
+                newData.setGameSession(currentGameSession);
+                newData.setProgressInfo(progress);
+                progressDataRepository.save(newData);
+            });
+    }
 
     @Override
     public ProgressDataDto getProgress(Long userId) {
@@ -71,7 +94,11 @@ public class ProgressDataServiceImpl implements ProgressDataService {
                 currentGameSession)
             .orElseThrow(() -> new CustomException("진행 정보를 찾을 수 없습니다.", HttpStatus.NOT_FOUND));
 
+        /*
         String presignedUrl = presignedUrlService.getPresignedUrl(progressData.getProgressInfo());
         return new ProgressDataDto(presignedUrl);
+        */
+
+        return new ProgressDataDto(progressData.getProgressInfo());
     }
 }

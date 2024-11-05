@@ -19,18 +19,19 @@ import java.io.IOException;
 public class MapDataServiceImpl implements MapDataService {
 
     private final MapDataRepository mapDataRepository;
-    private final S3Service s3Service;
-    private final PresignedUrlService presignedUrlService;
     private final UserRepository userRepository;
 
-    public MapDataServiceImpl(MapDataRepository mapDataRepository, S3Service s3Service,
-        PresignedUrlService presignedUrlService, UserRepository userRepository) {
+    /*
+    private final S3Service s3Service;
+    private final PresignedUrlService presignedUrlService;
+    */
+
+    public MapDataServiceImpl(MapDataRepository mapDataRepository, UserRepository userRepository) {
         this.mapDataRepository = mapDataRepository;
-        this.s3Service = s3Service;
-        this.presignedUrlService = presignedUrlService;
         this.userRepository = userRepository;
     }
 
+    /*
     @Override
     @Transactional
     public void saveMapSetting(Long userId, MultipartFile mapSetting) {
@@ -58,6 +59,28 @@ public class MapDataServiceImpl implements MapDataService {
             throw new CustomException("맵 설정 파일 업로드 실패", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    */
+
+    @Override
+    @Transactional
+    public void saveMapSetting(Long userId, String mapSetting) {
+        User user = userRepository.findById(userId)
+            .orElseThrow(() -> new CustomException("사용자를 찾을 수 없습니다.", HttpStatus.NOT_FOUND));
+
+        Integer currentGameSession = user.getGameSession();
+
+        mapDataRepository.findByUserAndGameSession(user, currentGameSession)
+            .ifPresentOrElse(mapData -> {
+                mapData.setMapInfo(mapSetting);
+                mapDataRepository.save(mapData);
+            }, () -> {
+                MapData newData = new MapData();
+                newData.setUser(user);
+                newData.setGameSession(currentGameSession);
+                newData.setMapInfo(mapSetting);
+                mapDataRepository.save(newData);
+            });
+    }
 
     @Override
     public MapDataDto getMapSetting(Long userId) {
@@ -69,7 +92,11 @@ public class MapDataServiceImpl implements MapDataService {
         MapData mapData = mapDataRepository.findByUserAndGameSession(user, currentGameSession)
             .orElseThrow(() -> new CustomException("맵 정보를 찾을 수 없습니다.", HttpStatus.NOT_FOUND));
 
+        /*
         String presignedUrl = presignedUrlService.getPresignedUrl(mapData.getMapInfo());
         return new MapDataDto(presignedUrl);
+        */
+
+        return new MapDataDto(mapData.getMapInfo());
     }
 }
