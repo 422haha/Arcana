@@ -1,0 +1,184 @@
+{
+  "data": [
+    {
+      "recipeId": 1,
+      "name": "김치찌개",
+      "kind": "찌개",
+      "image": ""
+    },
+    {
+      "recipeId": 2,
+      "name": "된장찌개",
+      "kind": "찌개",
+      "image": ""
+    },
+    {
+      "recipeId": 3,
+      "name": "삼계탕",
+      "kind": "국/탕",
+      "image": ""
+    },
+    {
+      "recipeId": 4,
+      "name": "비빔밥",
+      "kind": "밥류",
+      "image": ""
+    },
+    {
+      "recipeId": 5,
+      "name": "불고기",
+      "kind": "구이",
+      "image": ""
+    },
+    {
+      "recipeId": 6,
+      "name": "잡채",
+      "kind": "반찬",
+      "image": ""
+    },
+    {
+      "recipeId": 7,
+      "name": "떡볶이",
+      "kind": "간식",
+      "image": ""
+    },
+    {
+      "recipeId": 8,
+      "name": "갈비찜",
+      "kind": "찜",
+      "image": ""
+    },
+    {
+      "recipeId": 9,
+      "name": "파전",
+      "kind": "부침",
+      "image": ""
+    },
+    {
+      "recipeId": 10,
+      "name": "냉면",
+      "kind": "면류",
+      "image": ""
+    },
+    {
+      "recipeId": 11,
+      "name": "동태찌개",
+      "kind": "찌개",
+      "image": ""
+    },
+    {
+      "recipeId": 12,
+      "name": "삼겹살",
+      "kind": "구이",
+      "image": ""
+    },
+    {
+      "recipeId": 13,
+      "name": "순두부찌개",
+      "kind": "찌개",
+      "image": ""
+    },
+    {
+      "recipeId": 14,
+      "name": "칼국수",
+      "kind": "면류",
+      "image": ""
+    },
+    {
+      "recipeId": 15,
+      "name": "닭갈비",
+      "kind": "구이",
+      "image": ""
+    },
+    {
+      "recipeId": 16,
+      "name": "김치볶음밥",
+      "kind": "밥류",
+      "image": ""
+    },
+    {
+      "recipeId": 17,
+      "name": "미역국",
+      "kind": "국/탕",
+      "image": ""
+    },
+    {
+      "recipeId": 18,
+      "name": "LA갈비",
+      "kind": "구이",
+      "image": ""
+    },
+    {
+      "recipeId": 19,
+      "name": "동그랑땡",
+      "kind": "부침",
+      "image": ""
+    },
+    {
+      "recipeId": 20,
+      "name": "오징어볶음",
+      "kind": "볶음",
+      "image": ""
+    },
+    {
+      "recipeId": 21,
+      "name": "육개장",
+      "kind": "국/탕",
+      "image": ""
+    },
+    {
+      "recipeId": 22,
+      "name": "돼지갈비찜",
+      "kind": "찜",
+      "image": ""
+    },
+    {
+      "recipeId": 23,
+      "name": "라볶이",
+      "kind": "간식",
+      "image": ""
+    },
+    {
+      "recipeId": 24,
+      "name": "콩나물국",
+      "kind": "국/탕",
+      "image": ""
+    },
+    {
+      "recipeId": 25,
+      "name": "닭볶음탕",
+      "kind": "국/탕",
+      "image": ""
+    },
+    {
+      "recipeId": 26,
+      "name": "김밥",
+      "kind": "간식",
+      "image": ""
+    },
+    {
+      "recipeId": 27,
+      "name": "갈비탕",
+      "kind": "국/탕",
+      "image": ""
+    },
+    {
+      "recipeId": 28,
+      "name": "감자전",
+      "kind": "부침",
+      "image": ""
+    },
+    {
+      "recipeId": 29,
+      "name": "제육볶음",
+      "kind": "볶음",
+      "image": ""
+    },
+    {
+      "recipeId": 30,
+      "name": "물냉면",
+      "kind": "면류",
+      "image": ""
+    }
+  ]
+}

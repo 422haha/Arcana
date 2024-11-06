@@ -1,0 +1,69 @@
+{
+  "data": [
+    {
+      "recipeId": 1,
+      "name": "감자탕",
+      "kind": "국/탕",
+      "image": ""
+    },
+    {
+      "recipeId": 2,
+      "name": "김치찌개",
+      "kind": "찌개",
+      "image": ""
+    },
+    {
+      "recipeId": 3,
+      "name": "비빔밥",
+      "kind": "밥",
+      "image": ""
+    },
+    {
+      "recipeId": 4,
+      "name": "삼겹살",
+      "kind": "구이",
+      "image": ""
+    },
+    {
+      "recipeId": 5,
+      "name": "된장찌개",
+      "kind": "찌개",
+      "image": ""
+    },
+    {
+      "recipeId": 6,
+      "name": "불고기",
+      "kind": "구이",
+      "image": ""
+    },
+    {
+      "recipeId": 7,
+      "name": "잡채",
+      "kind": "볶음",
+      "image": ""
+    },
+    {
+      "recipeId": 8,
+      "name": "갈비찜",
+      "kind": "찜",
+      "image": ""
+    },
+    {
+      "recipeId": 9,
+      "name": "김치볶음밥",
+      "kind": "밥",
+      "image": ""
+    },
+    {
+      "recipeId": 10,
+      "name": "순두부찌개",
+      "kind": "찌개",
+      "image": ""
+    }
+  ],
+  "pagination": {
+    "total": 32,
+    "page": 1,
+    "perPage": 10
+  }
+}

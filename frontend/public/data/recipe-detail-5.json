@@ -1,0 +1,53 @@
+{
+  "data": {
+    "recipeId": 5,
+    "name": "김치볶음밥",
+    "kind": "밥",
+    "image": "",
+    "inbun": "2인분",
+    "level": "아무나",
+    "time": "15분이내",
+    "material": [
+      {
+        "materialId": 1,
+        "name": "밥",
+        "capacity": "2공기",
+        "type": "재료",
+        "ingredientId": 5
+      },
+      {
+        "materialId": 2,
+        "name": "김치",
+        "capacity": "150g",
+        "type": "재료",
+        "ingredientId": 1
+      }
+    ],
+    "etc": [
+      {
+        "etcId": 1,
+        "name": "식용유",
+        "capacity": "1큰술",
+        "type": "양념"
+      },
+      {
+        "etcId": 2,
+        "name": "프라이팬",
+        "capacity": "",
+        "type": "조리도구"
+      }
+    ],
+    "steps": [
+      {
+        "stepId": 1,
+        "content": "김치를 잘게 썰어주세요.",
+        "image": ""
+      },
+      {
+        "stepId": 2,
+        "content": "팬에 기름을 두르고 김치를 볶다가 밥을 넣고 함께 볶아주세요.",
+        "image": ""
+      }
+    ]
+  }
+}

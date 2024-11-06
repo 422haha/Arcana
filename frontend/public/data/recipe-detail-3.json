@@ -1,0 +1,53 @@
+{
+  "data": {
+    "recipeId": 3,
+    "name": "비빔밥",
+    "kind": "밥",
+    "image": "",
+    "inbun": "1인분",
+    "level": "초보환영",
+    "time": "30분이내",
+    "material": [
+      {
+        "materialId": 1,
+        "name": "밥",
+        "capacity": "1공기",
+        "type": "재료",
+        "ingredientId": 5
+      },
+      {
+        "materialId": 2,
+        "name": "고추장",
+        "capacity": "1큰술",
+        "type": "재료",
+        "ingredientId": 6
+      }
+    ],
+    "etc": [
+      {
+        "etcId": 1,
+        "name": "참기름",
+        "capacity": "1작은술",
+        "type": "양념"
+      },
+      {
+        "etcId": 2,
+        "name": "볼",
+        "capacity": "",
+        "type": "조리도구"
+      }
+    ],
+    "steps": [
+      {
+        "stepId": 1,
+        "content": "밥 위에 준비한 나물들을 올려주세요.",
+        "image": ""
+      },
+      {
+        "stepId": 2,
+        "content": "고추장과 참기름을 넣고 비벼주세요.",
+        "image": ""
+      }
+    ]
+  }
+}

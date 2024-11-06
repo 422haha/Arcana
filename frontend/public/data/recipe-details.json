@@ -1,0 +1,1279 @@
+{
+  "data": [
+    {
+      "recipeId": 1,
+      "name": "김치찌개",
+      "kind": "찌개",
+      "image": "",
+      "inbun": "2인분",
+      "level": "초보환영",
+      "time": "30분이내",
+      "material": [
+        {
+          "materialId": 1,
+          "name": "김치",
+          "capacity": "300g",
+          "type": "재료",
+          "ingredientId": 1
+        },
+        {
+          "materialId": 2,
+          "name": "돼지고기",
+          "capacity": "150g",
+          "type": "재료",
+          "ingredientId": 2
+        }
+      ],
+      "etc": [
+        {
+          "etcId": 1,
+          "name": "고춧가루",
+          "capacity": "1큰술",
+          "type": "양념"
+        },
+        {
+          "etcId": 2,
+          "name": "냄비",
+          "capacity": "",
+          "type": "조리도구"
+        }
+      ],
+      "steps": [
+        {
+          "stepId": 1,
+          "content": "김치를 적당한 크기로 썰어주세요.",
+          "image": ""
+        },
+        {
+          "stepId": 2,
+          "content": "돼지고기를 먼저 볶다가 김치를 넣고 함께 볶아주세요.",
+          "image": ""
+        }
+      ]
+    },
+    {
+      "recipeId": 2,
+      "name": "된장찌개",
+      "kind": "찌개",
+      "image": "",
+      "inbun": "2인분",
+      "level": "아무나",
+      "time": "20분이내",
+      "material": [
+        {
+          "materialId": 1,
+          "name": "된장",
+          "capacity": "2큰술",
+          "type": "재료",
+          "ingredientId": 3
+        },
+        {
+          "materialId": 2,
+          "name": "두부",
+          "capacity": "1/2모",
+          "type": "재료",
+          "ingredientId": 4
+        }
+      ],
+      "etc": [
+        {
+          "etcId": 1,
+          "name": "대파",
+          "capacity": "1대",
+          "type": "재료"
+        },
+        {
+          "etcId": 2,
+          "name": "냄비",
+          "capacity": "",
+          "type": "조리도구"
+        }
+      ],
+      "steps": [
+        {
+          "stepId": 1,
+          "content": "냄비에 물을 붓고 된장을 풀어주세요.",
+          "image": ""
+        },
+        {
+          "stepId": 2,
+          "content": "두부를 깍둑썰기하여 넣고 끓여주세요.",
+          "image": ""
+        }
+      ]
+    },
+    {
+      "recipeId": 3,
+      "name": "비빔밥",
+      "kind": "밥",
+      "image": "",
+      "inbun": "1인분",
+      "level": "초보환영",
+      "time": "30분이내",
+      "material": [
+        {
+          "materialId": 1,
+          "name": "밥",
+          "capacity": "1공기",
+          "type": "재료",
+          "ingredientId": 5
+        },
+        {
+          "materialId": 2,
+          "name": "고추장",
+          "capacity": "1큰술",
+          "type": "재료",
+          "ingredientId": 6
+        }
+      ],
+      "etc": [
+        {
+          "etcId": 1,
+          "name": "참기름",
+          "capacity": "1작은술",
+          "type": "양념"
+        },
+        {
+          "etcId": 2,
+          "name": "볼",
+          "capacity": "",
+          "type": "조리도구"
+        }
+      ],
+      "steps": [
+        {
+          "stepId": 1,
+          "content": "밥 위에 준비한 나물들을 올려주세요.",
+          "image": ""
+        },
+        {
+          "stepId": 2,
+          "content": "고추장과 참기름을 넣고 비벼주세요.",
+          "image": ""
+        }
+      ]
+    },
+    {
+      "recipeId": 4,
+      "name": "불고기",
+      "kind": "구이",
+      "image": "",
+      "inbun": "3인분",
+      "level": "보통",
+      "time": "1시간이내",
+      "material": [
+        {
+          "materialId": 1,
+          "name": "소고기",
+          "capacity": "400g",
+          "type": "재료",
+          "ingredientId": 7
+        },
+        {
+          "materialId": 2,
+          "name": "간장",
+          "capacity": "3큰술",
+          "type": "재료",
+          "ingredientId": 8
+        }
+      ],
+      "etc": [
+        {
+          "etcId": 1,
+          "name": "설탕",
+          "capacity": "1큰술",
+          "type": "양념"
+        },
+        {
+          "etcId": 2,
+          "name": "팬",
+          "capacity": "",
+          "type": "조리도구"
+        }
+      ],
+      "steps": [
+        {
+          "stepId": 1,
+          "content": "소고기를 얇게 썰어 양념과 함께 재워두세요.",
+          "image": ""
+        },
+        {
+          "stepId": 2,
+          "content": "팬을 달궈 고기를 구워주세요.",
+          "image": ""
+        }
+      ]
+    },
+    {
+      "recipeId": 5,
+      "name": "김치볶음밥",
+      "kind": "밥",
+      "image": "",
+      "inbun": "2인분",
+      "level": "아무나",
+      "time": "15분이내",
+      "material": [
+        {
+          "materialId": 1,
+          "name": "밥",
+          "capacity": "2공기",
+          "type": "재료",
+          "ingredientId": 5
+        },
+        {
+          "materialId": 2,
+          "name": "김치",
+          "capacity": "150g",
+          "type": "재료",
+          "ingredientId": 1
+        }
+      ],
+      "etc": [
+        {
+          "etcId": 1,
+          "name": "식용유",
+          "capacity": "1큰술",
+          "type": "양념"
+        },
+        {
+          "etcId": 2,
+          "name": "프라이팬",
+          "capacity": "",
+          "type": "조리도구"
+        }
+      ],
+      "steps": [
+        {
+          "stepId": 1,
+          "content": "김치를 잘게 썰어주세요.",
+          "image": ""
+        },
+        {
+          "stepId": 2,
+          "content": "팬에 기름을 두르고 김치를 볶다가 밥을 넣고 함께 볶아주세요.",
+          "image": ""
+        }
+      ]
+    },
+    {
+      "recipeId": 6,
+      "name": "떡볶이",
+      "kind": "볶음",
+      "image": "",
+      "inbun": "2인분",
+      "level": "초보환영",
+      "time": "20분이내",
+      "material": [
+        {
+          "materialId": 1,
+          "name": "떡",
+          "capacity": "300g",
+          "type": "재료",
+          "ingredientId": 9
+        },
+        {
+          "materialId": 2,
+          "name": "고추장",
+          "capacity": "2큰술",
+          "type": "재료",
+          "ingredientId": 6
+        }
+      ],
+      "etc": [
+        {
+          "etcId": 1,
+          "name": "설탕",
+          "capacity": "1큰술",
+          "type": "양념"
+        },
+        {
+          "etcId": 2,
+          "name": "냄비",
+          "capacity": "",
+          "type": "조리도구"
+        }
+      ],
+      "steps": [
+        {
+          "stepId": 1,
+          "content": "냄비에 물을 붓고 고추장, 설탕을 넣어 소스를 만들어주세요.",
+          "image": ""
+        },
+        {
+          "stepId": 2,
+          "content": "소스가 끓으면 떡을 넣고 함께 끓여주세요.",
+          "image": ""
+        }
+      ]
+    },
+    {
+      "recipeId": 7,
+      "name": "된장국",
+      "kind": "국/탕",
+      "image": "",
+      "inbun": "2인분",
+      "level": "아무나",
+      "time": "15분이내",
+      "material": [
+        {
+          "materialId": 1,
+          "name": "된장",
+          "capacity": "2큰술",
+          "type": "재료",
+          "ingredientId": 3
+        },
+        {
+          "materialId": 2,
+          "name": "두부",
+          "capacity": "1/2모",
+          "type": "재료",
+          "ingredientId": 4
+        }
+      ],
+      "etc": [
+        {
+          "etcId": 1,
+          "name": "파",
+          "capacity": "1대",
+          "type": "재료"
+        },
+        {
+          "etcId": 2,
+          "name": "냄비",
+          "capacity": "",
+          "type": "조리도구"
+        }
+      ],
+      "steps": [
+        {
+          "stepId": 1,
+          "content": "냄비에 물을 붓고 된장을 풀어주세요.",
+          "image": ""
+        },
+        {
+          "stepId": 2,
+          "content": "두부를 썰어 넣고 파를 넣어 끓여주세요.",
+          "image": ""
+        }
+      ]
+    },
+    {
+      "recipeId": 8,
+      "name": "돼지갈비찜",
+      "kind": "찜",
+      "image": "",
+      "inbun": "4인분",
+      "level": "어려움",
+      "time": "1시간이상",
+      "material": [
+        {
+          "materialId": 1,
+          "name": "돼지갈비",
+          "capacity": "1kg",
+          "type": "재료",
+          "ingredientId": 10
+        },
+        {
+          "materialId": 2,
+          "name": "간장",
+          "capacity": "1/2컵",
+          "type": "재료",
+          "ingredientId": 8
+        }
+      ],
+      "etc": [
+        {
+          "etcId": 1,
+          "name": "설탕",
+          "capacity": "3큰술",
+          "type": "양념"
+        },
+        {
+          "etcId": 2,
+          "name": "압력솥",
+          "capacity": "",
+          "type": "조리도구"
+        }
+      ],
+      "steps": [
+        {
+          "stepId": 1,
+          "content": "돼지갈비를 물에 담가 핏물을 빼주세요.",
+          "image": ""
+        },
+        {
+          "stepId": 2,
+          "content": "양념을 만들어 갈비에 버무린 후 압력솥에서 조리해주세요.",
+          "image": ""
+        }
+      ]
+    },
+    {
+      "recipeId": 9,
+      "name": "계란말이",
+      "kind": "부침",
+      "image": "",
+      "inbun": "2인분",
+      "level": "초보환영",
+      "time": "10분이내",
+      "material": [
+        {
+          "materialId": 1,
+          "name": "계란",
+          "capacity": "4개",
+          "type": "재료",
+          "ingredientId": 11
+        },
+        {
+          "materialId": 2,
+          "name": "대파",
+          "capacity": "1/2대",
+          "type": "재료",
+          "ingredientId": 12
+        }
+      ],
+      "etc": [
+        {
+          "etcId": 1,
+          "name": "소금",
+          "capacity": "1/4작은술",
+          "type": "양념"
+        },
+        {
+          "etcId": 2,
+          "name": "사각팬",
+          "capacity": "",
+          "type": "조리도구"
+        }
+      ],
+      "steps": [
+        {
+          "stepId": 1,
+          "content": "계란을 풀어 대파를 넣고 소금으로 간해주세요.",
+          "image": ""
+        },
+        {
+          "stepId": 2,
+          "content": "팬에 기름을 두르고 계란물을 부어 말아가며 구워주세요.",
+          "image": ""
+        }
+      ]
+    },
+    {
+      "recipeId": 10,
+      "name": "삼겹살",
+      "kind": "구이",
+      "image": "",
+      "inbun": "2인분",
+      "level": "초보환영",
+      "time": "20분이내",
+      "material": [
+        {
+          "materialId": 1,
+          "name": "삼겹살",
+          "capacity": "400g",
+          "type": "재료",
+          "ingredientId": 14
+        },
+        {
+          "materialId": 2,
+          "name": "상추",
+          "capacity": "1봉",
+          "type": "재료",
+          "ingredientId": 15
+        }
+      ],
+      "etc": [
+        {
+          "etcId": 1,
+          "name": "쌈장",
+          "capacity": "적당량",
+          "type": "양념"
+        },
+        {
+          "etcId": 2,
+          "name": "불판",
+          "capacity": "",
+          "type": "조리도구"
+        }
+      ],
+      "steps": [
+        {
+          "stepId": 1,
+          "content": "불판을 달궈주세요.",
+          "image": ""
+        },
+        {
+          "stepId": 2,
+          "content": "삼겹살을 구워 상추에 싸서 쌈장과 함께 먹습니다.",
+          "image": ""
+        }
+      ]
+    },
+    {
+      "recipeId": 11,
+      "name": "냉면",
+      "kind": "면",
+      "image": "",
+      "inbun": "2인분",
+      "level": "보통",
+      "time": "30분이내",
+      "material": [
+        {
+          "materialId": 1,
+          "name": "냉면",
+          "capacity": "2인분",
+          "type": "재료",
+          "ingredientId": 16
+        },
+        {
+          "materialId": 2,
+          "name": "오이",
+          "capacity": "1/2개",
+          "type": "재료",
+          "ingredientId": 17
+        }
+      ],
+      "etc": [
+        {
+          "etcId": 1,
+          "name": "식초",
+          "capacity": "1큰술",
+          "type": "양념"
+        },
+        {
+          "etcId": 2,
+          "name": "냄비",
+          "capacity": "",
+          "type": "조리도구"
+        }
+      ],
+      "steps": [
+        {
+          "stepId": 1,
+          "content": "냉면 육수를 준비하고 차갑게 식혀주세요.",
+          "image": ""
+        },
+        {
+          "stepId": 2,
+          "content": "냉면을 삶아 찬물에 헹군 후 육수와 함께 그릇에 담아주세요.",
+          "image": ""
+        }
+      ]
+    },
+    {
+      "recipeId": 12,
+      "name": "김치전",
+      "kind": "부침",
+      "image": "",
+      "inbun": "2인분",
+      "level": "초보환영",
+      "time": "20분이내",
+      "material": [
+        {
+          "materialId": 1,
+          "name": "김치",
+          "capacity": "1컵",
+          "type": "재료",
+          "ingredientId": 1
+        },
+        {
+          "materialId": 2,
+          "name": "밀가루",
+          "capacity": "1컵",
+          "type": "재료",
+          "ingredientId": 18
+        }
+      ],
+      "etc": [
+        {
+          "etcId": 1,
+          "name": "식용유",
+          "capacity": "2큰술",
+          "type": "양념"
+        },
+        {
+          "etcId": 2,
+          "name": "프라이팬",
+          "capacity": "",
+          "type": "조리도구"
+        }
+      ],
+      "steps": [
+        {
+          "stepId": 1,
+          "content": "김치를 잘게 썰고 밀가루와 물을 섞어 반죽을 만듭니다.",
+          "image": ""
+        },
+        {
+          "stepId": 2,
+          "content": "팬에 기름을 두르고 반죽을 부어 노릇하게 구워주세요.",
+          "image": ""
+        }
+      ]
+    },
+    {
+      "recipeId": 13,
+      "name": "닭갈비",
+      "kind": "볶음",
+      "image": "",
+      "inbun": "3인분",
+      "level": "보통",
+      "time": "40분이내",
+      "material": [
+        {
+          "materialId": 1,
+          "name": "닭고기",
+          "capacity": "500g",
+          "type": "재료",
+          "ingredientId": 19
+        },
+        {
+          "materialId": 2,
+          "name": "양배추",
+          "capacity": "1/4개",
+          "type": "재료",
+          "ingredientId": 20
+        }
+      ],
+      "etc": [
+        {
+          "etcId": 1,
+          "name": "고추장",
+          "capacity": "3큰술",
+          "type": "양념"
+        },
+        {
+          "etcId": 2,
+          "name": "철판",
+          "capacity": "",
+          "type": "조리도구"
+        }
+      ],
+      "steps": [
+        {
+          "stepId": 1,
+          "content": "닭고기를 양념에 재워둡니다.",
+          "image": ""
+        },
+        {
+          "stepId": 2,
+          "content": "철판에 양념한 닭고기와 야채를 함께 볶아주세요.",
+          "image": ""
+        }
+      ]
+    },
+    {
+      "recipeId": 14,
+      "name": "미역국",
+      "kind": "국/탕",
+      "image": "",
+      "inbun": "3인분",
+      "level": "초보환영",
+      "time": "20분이내",
+      "material": [
+        {
+          "materialId": 1,
+          "name": "미역",
+          "capacity": "20g",
+          "type": "재료",
+          "ingredientId": 21
+        },
+        {
+          "materialId": 2,
+          "name": "소고기",
+          "capacity": "100g",
+          "type": "재료",
+          "ingredientId": 7
+        }
+      ],
+      "etc": [
+        {
+          "etcId": 1,
+          "name": "참기름",
+          "capacity": "1큰술",
+          "type": "양념"
+        },
+        {
+          "etcId": 2,
+          "name": "냄비",
+          "capacity": "",
+          "type": "조리도구"
+        }
+      ],
+      "steps": [
+        {
+          "stepId": 1,
+          "content": "미역을 불려 적당한 크기로 자릅니다.",
+          "image": ""
+        },
+        {
+          "stepId": 2,
+          "content": "소고기를 볶다가 미역을 넣고 물을 부어 끓여주세요.",
+          "image": ""
+        }
+      ]
+    },
+    {
+      "recipeId": 15,
+      "name": "LA갈비",
+      "kind": "구이",
+      "image": "",
+      "inbun": "3인분",
+      "level": "보통",
+      "time": "1시간이내",
+      "material": [
+        {
+          "materialId": 1,
+          "name": "LA갈비",
+          "capacity": "600g",
+          "type": "재료",
+          "ingredientId": 22
+        },
+        {
+          "materialId": 2,
+          "name": "간장",
+          "capacity": "1/4컵",
+          "type": "재료",
+          "ingredientId": 8
+        }
+      ],
+      "etc": [
+        {
+          "etcId": 1,
+          "name": "맛술",
+          "capacity": "2큰술",
+          "type": "양념"
+        },
+        {
+          "etcId": 2,
+          "name": "그릴",
+          "capacity": "",
+          "type": "조리도구"
+        }
+      ],
+      "steps": [
+        {
+          "stepId": 1,
+          "content": "LA갈비를 양념에 재워 1시간 정도 숙성시킵니다.",
+          "image": ""
+        },
+        {
+          "stepId": 2,
+          "content": "그릴을 달궈 갈비를 굽습니다.",
+          "image": ""
+        }
+      ]
+    },
+    {
+      "recipeId": 16,
+      "name": "김치볶음",
+      "kind": "볶음",
+      "image": "",
+      "inbun": "2인분",
+      "level": "초보환영",
+      "time": "15분이내",
+      "material": [
+        {
+          "materialId": 1,
+          "name": "김치",
+          "capacity": "300g",
+          "type": "재료",
+          "ingredientId": 1
+        },
+        {
+          "materialId": 2,
+          "name": "돼지고기",
+          "capacity": "100g",
+          "type": "재료",
+          "ingredientId": 2
+        }
+      ],
+      "etc": [
+        {
+          "etcId": 1,
+          "name": "설탕",
+          "capacity": "1작은술",
+          "type": "양념"
+        },
+        {
+          "etcId": 2,
+          "name": "프라이팬",
+          "capacity": "",
+          "type": "조리도구"
+        }
+      ],
+      "steps": [
+        {
+          "stepId": 1,
+          "content": "김치를 적당한 크기로 썰어주세요.",
+          "image": ""
+        },
+        {
+          "stepId": 2,
+          "content": "팬에 돼지고기를 볶다가 김치를 넣고 함께 볶아주세요.",
+          "image": ""
+        }
+      ]
+    },
+    {
+      "recipeId": 17,
+      "name": "파전",
+      "kind": "부침",
+      "image": "",
+      "inbun": "2인분",
+      "level": "초보환영",
+      "time": "20분이내",
+      "material": [
+        {
+          "materialId": 1,
+          "name": "대파",
+          "capacity": "1단",
+          "type": "재료",
+          "ingredientId": 12
+        },
+        {
+          "materialId": 2,
+          "name": "밀가루",
+          "capacity": "1컵",
+          "type": "재료",
+          "ingredientId": 18
+        }
+      ],
+      "etc": [
+        {
+          "etcId": 1,
+          "name": "식용유",
+          "capacity": "2큰술",
+          "type": "양념"
+        },
+        {
+          "etcId": 2,
+          "name": "프라이팬",
+          "capacity": "",
+          "type": "조리도구"
+        }
+      ],
+      "steps": [
+        {
+          "stepId": 1,
+          "content": "대파를 어슷하게 썰어주세요.",
+          "image": ""
+        },
+        {
+          "stepId": 2,
+          "content": "밀가루에 물을 넣어 반죽을 만들고 대파를 섞어 팬에 부어 굽습니다.",
+          "image": ""
+        }
+      ]
+    },
+    {
+      "recipeId": 18,
+      "name": "계란국",
+      "kind": "국/탕",
+      "image": "",
+      "inbun": "2인분",
+      "level": "초보환영",
+      "time": "10분이내",
+      "material": [
+        {
+          "materialId": 1,
+          "name": "계란",
+          "capacity": "2개",
+          "type": "재료",
+          "ingredientId": 11
+        },
+        {
+          "materialId": 2,
+          "name": "대파",
+          "capacity": "1/4대",
+          "type": "재료",
+          "ingredientId": 12
+        }
+      ],
+      "etc": [
+        {
+          "etcId": 1,
+          "name": "소금",
+          "capacity": "1/4작은술",
+          "type": "양념"
+        },
+        {
+          "etcId": 2,
+          "name": "냄비",
+          "capacity": "",
+          "type": "조리도구"
+        }
+      ],
+      "steps": [
+        {
+          "stepId": 1,
+          "content": "냄비에 물을 붓고 끓여주세요.",
+          "image": ""
+        },
+        {
+          "stepId": 2,
+          "content": "계란을 풀어 끓는 물에 천천히 부어주고 대파를 넣어 마무리합니다.",
+          "image": ""
+        }
+      ]
+    },
+    {
+      "recipeId": 19,
+      "name": "오이무침",
+      "kind": "무침",
+      "image": "",
+      "inbun": "2인분",
+      "level": "초보환영",
+      "time": "10분이내",
+      "material": [
+        {
+          "materialId": 1,
+          "name": "오이",
+          "capacity": "2개",
+          "type": "재료",
+          "ingredientId": 17
+        },
+        {
+          "materialId": 2,
+          "name": "고추가루",
+          "capacity": "1큰술",
+          "type": "재료",
+          "ingredientId": 23
+        }
+      ],
+      "etc": [
+        {
+          "etcId": 1,
+          "name": "참기름",
+          "capacity": "1작은술",
+          "type": "양념"
+        },
+        {
+          "etcId": 2,
+          "name": "볼",
+          "capacity": "",
+          "type": "조리도구"
+        }
+      ],
+      "steps": [
+        {
+          "stepId": 1,
+          "content": "오이를 얇게 썰어주세요.",
+          "image": ""
+        },
+        {
+          "stepId": 2,
+          "content": "볼에 오이, 고추가루, 참기름을 넣고 잘 버무려주세요.",
+          "image": ""
+        }
+      ]
+    },
+    {
+      "recipeId": 20,
+      "name": "콩나물국",
+      "kind": "국/탕",
+      "image": "",
+      "inbun": "2인분",
+      "level": "초보환영",
+      "time": "15분이내",
+      "material": [
+        {
+          "materialId": 1,
+          "name": "콩나물",
+          "capacity": "200g",
+          "type": "재료",
+          "ingredientId": 24
+        },
+        {
+          "materialId": 2,
+          "name": "대파",
+          "capacity": "1/2대",
+          "type": "재료",
+          "ingredientId": 12
+        }
+      ],
+      "etc": [
+        {
+          "etcId": 1,
+          "name": "국간장",
+          "capacity": "1큰술",
+          "type": "양념"
+        },
+        {
+          "etcId": 2,
+          "name": "냄비",
+          "capacity": "",
+          "type": "조리도구"
+        }
+      ],
+      "steps": [
+        {
+          "stepId": 1,
+          "content": "냄비에 물을 붓고 콩나물을 넣어 끓여주세요.",
+          "image": ""
+        },
+        {
+          "stepId": 2,
+          "content": "콩나물이 익으면 대파와 국간장을 넣어 마무리합니다.",
+          "image": ""
+        }
+      ]
+    },
+    {
+      "recipeId": 21,
+      "name": "제육볶음",
+      "kind": "볶음",
+      "image": "",
+      "inbun": "3인분",
+      "level": "보통",
+      "time": "30분이내",
+      "material": [
+        {
+          "materialId": 1,
+          "name": "돼지고기",
+          "capacity": "400g",
+          "type": "재료",
+          "ingredientId": 2
+        },
+        {
+          "materialId": 2,
+          "name": "양파",
+          "capacity": "1개",
+          "type": "재료",
+          "ingredientId": 25
+        }
+      ],
+      "etc": [
+        {
+          "etcId": 1,
+          "name": "고추장",
+          "capacity": "2큰술",
+          "type": "양념"
+        },
+        {
+          "etcId": 2,
+          "name": "프라이팬",
+          "capacity": "",
+          "type": "조리도구"
+        }
+      ],
+      "steps": [
+        {
+          "stepId": 1,
+          "content": "돼지고기를 얇게 썰어 고추장 양념에 재워둡니다.",
+          "image": ""
+        },
+        {
+          "stepId": 2,
+          "content": "팬에 재운 고기를 넣고 양파와 함께 볶아주세요.",
+          "image": ""
+        }
+      ]
+    },
+    {
+      "recipeId": 22,
+      "name": "김치찜",
+      "kind": "찜",
+      "image": "",
+      "inbun": "3인분",
+      "level": "보통",
+      "time": "40분이내",
+      "material": [
+        {
+          "materialId": 1,
+          "name": "김치",
+          "capacity": "500g",
+          "type": "재료",
+          "ingredientId": 1
+        },
+        {
+          "materialId": 2,
+          "name": "돼지고기",
+          "capacity": "200g",
+          "type": "재료",
+          "ingredientId": 2
+        }
+      ],
+      "etc": [
+        {
+          "etcId": 1,
+          "name": "설탕",
+          "capacity": "1큰술",
+          "type": "양념"
+        },
+        {
+          "etcId": 2,
+          "name": "냄비",
+          "capacity": "",
+          "type": "조리도구"
+        }
+      ],
+      "steps": [
+        {
+          "stepId": 1,
+          "content": "김치를 큼직하게 썰고 돼지고기는 적당한 크기로 잘라주세요.",
+          "image": ""
+        },
+        {
+          "stepId": 2,
+          "content": "냄비에 김치와 돼지고기를 넣고 양념을 더해 중간 불에서 끓여주세요.",
+          "image": ""
+        }
+      ]
+    },
+    {
+      "recipeId": 23,
+      "name": "감자조림",
+      "kind": "조림",
+      "image": "",
+      "inbun": "2인분",
+      "level": "초보환영",
+      "time": "20분이내",
+      "material": [
+        {
+          "materialId": 1,
+          "name": "감자",
+          "capacity": "3개",
+          "type": "재료",
+          "ingredientId": 26
+        },
+        {
+          "materialId": 2,
+          "name": "간장",
+          "capacity": "2큰술",
+          "type": "재료",
+          "ingredientId": 8
+        }
+      ],
+      "etc": [
+        {
+          "etcId": 1,
+          "name": "올리고당",
+          "capacity": "1큰술",
+          "type": "양념"
+        },
+        {
+          "etcId": 2,
+          "name": "냄비",
+          "capacity": "",
+          "type": "조리도구"
+        }
+      ],
+      "steps": [
+        {
+          "stepId": 1,
+          "content": "감자를 깨끗이 씻어 적당한 크기로 잘라주세요.",
+          "image": ""
+        },
+        {
+          "stepId": 2,
+          "content": "냄비에 감자, 간장, 올리고당을 넣고 조린 후 물을 약간 부어 끓여주세요.",
+          "image": ""
+        }
+      ]
+    },
+    {
+      "recipeId": 24,
+      "name": "부추전",
+      "kind": "부침",
+      "image": "",
+      "inbun": "2인분",
+      "level": "초보환영",
+      "time": "20분이내",
+      "material": [
+        {
+          "materialId": 1,
+          "name": "부추",
+          "capacity": "1단",
+          "type": "재료",
+          "ingredientId": 27
+        },
+        {
+          "materialId": 2,
+          "name": "밀가루",
+          "capacity": "1컵",
+          "type": "재료",
+          "ingredientId": 18
+        }
+      ],
+      "etc": [
+        {
+          "etcId": 1,
+          "name": "식용유",
+          "capacity": "2큰술",
+          "type": "양념"
+        },
+        {
+          "etcId": 2,
+          "name": "프라이팬",
+          "capacity": "",
+          "type": "조리도구"
+        }
+      ],
+      "steps": [
+        {
+          "stepId": 1,
+          "content": "부추를 씻어 4cm 길이로 자르고, 밀가루와 물을 섞어 반죽을 만듭니다.",
+          "image": ""
+        },
+        {
+          "stepId": 2,
+          "content": "반죽에 부추를 넣고 섞은 후 프라이팬에 기름을 두르고 부쳐주세요.",
+          "image": ""
+        }
+      ]
+    },
+    {
+      "recipeId": 25,
+      "name": "고등어구이",
+      "kind": "구이",
+      "image": "",
+      "inbun": "2인분",
+      "level": "보통",
+      "time": "20분이내",
+      "material": [
+        {
+          "materialId": 1,
+          "name": "고등어",
+          "capacity": "1마리",
+          "type": "재료",
+          "ingredientId": 28
+        },
+        {
+          "materialId": 2,
+          "name": "소금",
+          "capacity": "1큰술",
+          "type": "재료",
+          "ingredientId": 29
+        }
+      ],
+      "etc": [
+        {
+          "etcId": 1,
+          "name": "레몬",
+          "capacity": "1/2개",
+          "type": "재료"
+        },
+        {
+          "etcId": 2,
+          "name": "그릴",
+          "capacity": "",
+          "type": "조리도구"
+        }
+      ],
+      "steps": [
+        {
+          "stepId": 1,
+          "content": "고등어를 손질하고 소금을 뿌려 20분간 재워둡니다.",
+          "image": ""
+        },
+        {
+          "stepId": 2,
+          "content": "그릴을 달궈 고등어를 구워주고, 레몬즙을 뿌려 마무리합니다.",
+          "image": ""
+        }
+      ]
+    }
+  ]
+}

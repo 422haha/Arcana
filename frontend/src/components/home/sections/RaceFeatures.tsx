@@ -182,22 +182,23 @@ const RaceFeatures: React.FC = () => {
         </div>
 
         {/* Description paragraphs */}
-        <div className="space-y-6">
-          {[
-            "이 게임에서는 다양한 종족이 등장하며, 각 종족은 고유한 능력과 특성을 지니고 있습니다. 실키(Silky)와 브라우니(Brownie) 같은 요정들은 주로 집안일과 안락함을 책임지는 반면, 드래곤(Dragon)과 자이언트(Giant) 같은 종족은 압도적인 힘과 전투 능력을 자랑합니다.",
-            "플레이어는 이들 종족의 고유한 특성을 이해하고 전략적으로 활용하여 게임을 진행해야 합니다. 어떤 종족은 뛰어난 체력을, 다른 종족은 마법적 능력을 보유하고 있어, 다양한 전략이 필요합니다.",
-            "이처럼 다양한 종족 간의 상호작용과 전략적 선택이 이 게임의 핵심입니다. 각 종족의 특성을 최대한 활용해 최적의 팀을 구성하세요!"
-          ].map((text, index) => (
-            <div key={index} className="relative p-4 bg-zinc-800/50 rounded-lg
-                                    border border-zinc-700 group">
-              <p className="text-base md:text-lg text-gray-300 leading-relaxed">
-                {text}
-              </p>
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100
-                           bg-gradient-to-r from-blue-500/5 to-teal-500/5
-                           transition-opacity duration-300 rounded-lg" />
-            </div>
-          ))}
+        <div className="relative p-6 bg-zinc-800/50 rounded-lg border border-zinc-700/50 group">
+          <p className="text-base md:text-lg lg:text-xl font-pretendard text-gray-300 
+                      leading-7 md:leading-8 lg:leading-9
+                      tracking-normal
+                      max-w-prose 
+                      break-keep 
+                      [text-wrap:pretty]
+                      space-y-6">
+            이 게임에서는 다양한 종족이 등장하며, 각 종족은 고유한 능력과 특성을 지니고 있습니다. 실키(Silky)와 브라우니(Brownie) 같은 요정들은 주로 집안일과 안락함을 책임지는 반면, 드래곤(Dragon)과 자이언트(Giant) 같은 종족은 압도적인 힘과 전투 능력을 자랑합니다.
+            
+            플레이어는 이들 종족의 고유한 특성을 이해하고 전략적으로 활용하여 게임을 진행해야 합니다. 어떤 종족은 뛰어난 체력을, 다른 종족은 마법적 능력을 보유하고 있어, 다양한 전략이 필요합니다.
+            
+            이처럼 다양한 종족 간의 상호작용과 전략적 선택이 이 게임의 핵심입니다. 각 종족의 특성을 최대한 활용해 최적의 팀을 구성하세요!
+          </p>
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100
+                        bg-gradient-to-r from-blue-500/5 to-teal-500/5
+                        transition-opacity duration-300 rounded-lg" />
         </div>
       </div>
 

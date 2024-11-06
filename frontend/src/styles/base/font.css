@@ -2,8 +2,8 @@
 @font-face {
   font-family: 'NeoDunggeunmo';
   src: local('NeoDunggeunmo'),
-       url('../fonts/NeoDunggeunmo.woff2') format('woff2'),
-       url('../fonts/NeoDunggeunmo.woff') format('woff');
+       url('/fonts/neodgm.woff2') format('woff2'),
+       url('/fonts/neodgm.woff') format('woff');
   font-display: swap;
   font-weight: normal;
   font-style: normal;

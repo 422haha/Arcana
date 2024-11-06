@@ -43,19 +43,12 @@ const Navbar: React.FC<NavbarProps> = ({ setPressKitOpen }) => {
         
         <div className="flex justify-between items-center p-4">
           <Link to="/" className="flex items-center gap-5 group">
-            <div className="relative">
-              <div className="absolute inset-0 bg-blue-500/10 blur-lg group-hover:bg-blue-500/20 
-                          transition-all duration-300" />
-              <div className="relative bg-zinc-800/80 p-3 rounded-lg 
-                          border border-zinc-700/50 group-hover:border-zinc-600
-                          transition-all duration-300">
-                <img src="/logo.png" alt="Logo" className="h-10 w-10 relative z-10
-                                                        group-hover:scale-105 transition-transform
-                                                        duration-300" />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-500/10 to-transparent 
-                            rounded-lg pointer-events-none" />
-              </div>
-            </div>
+            {/* 크기가 조정된 로고 이미지 */}
+            <img src="/logo.png" alt="Logo" className="h-14 w-14 relative z-10
+                                                     group-hover:scale-105 transition-transform
+                                                     duration-300" />
+
+            {/* 로고 이름 텍스트 복원 */}
             <div className="relative">
               <span className="font-pixel text-3xl text-gray-300 tracking-wider 
                              group-hover:text-gray-100 transition-colors duration-300
@@ -70,7 +63,7 @@ const Navbar: React.FC<NavbarProps> = ({ setPressKitOpen }) => {
           </Link>
 
           <div className="flex gap-8">
-            {[
+            {[ 
               { text: 'Press Kit', onClick: () => setPressKitOpen(true) },
               { text: 'Download', to: '/download' },
               { text: 'Support', to: '/support' }
