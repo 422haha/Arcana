@@ -9,22 +9,22 @@
 var chord_audio = new Audio("/audio/CHORD.WAV");
 
 window.showMessageBox = window.showMessageBox || (({
-	title = window.defaultMessageBoxTitle ?? "Alert",
-	message,
-	messageHTML,
-	buttons = [{ label: "OK", value: "ok", default: true }],
-	iconID = "warning", // "error", "warning", "info", or "nuke" for deleting files/folders
-	windowOptions = {}, // for controlling width, etc.
+    title = window.defaultMessageBoxTitle ?? "Alert",
+    message,
+    messageHTML,
+    buttons = [{ label: "OK", value: "ok", default: true }],
+    iconID = "warning",
+    windowOptions = {},
 }) => {
-	let $window, $message;
-	const promise = new Promise((resolve, reject) => {
-		$window = new $Window(Object.assign({
-			title,
-			resizable: false,
-			innerWidth: 400,
-			maximizeButton: false,
-			minimizeButton: false,
-		}, windowOptions));
+    let $window, $message;
+    const promise = new Promise((resolve, reject) => {
+        $window = new $Window(Object.assign({
+            title,
+            resizable: false,
+            innerWidth: 400,
+            maximizeButton: false,
+            minimizeButton: false,
+        }, windowOptions));
 		// $window.addClass("dialog-window horizontal-buttons");
 		$message =
 			$("<div>").css({
@@ -89,11 +89,11 @@ window.showMessageBox = window.showMessageBox || (({
 	promise.$window = $window;
 	promise.$message = $message;
 	promise.promise = promise; // for easy destructuring
-	try {
-		chord_audio.play();
-	} catch (error) {
-		console.log(`Failed to play ${chord_audio.src}: `, error);
-	}
+	// try {
+	// 	chord_audio.play();
+	// } catch (error) {
+	// 	console.log(`Failed to play ${chord_audio.src}: `, error);
+	// }
 	return promise;
 });
 

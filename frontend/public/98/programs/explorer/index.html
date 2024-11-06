@@ -3,27 +3,27 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Explorer</title>
-		<link href="../../layout.css" rel="stylesheet" type="text/css">
-		<link href="../../classic.css" rel="stylesheet" type="text/css">
-		<link href="../../lib/os-gui/layout.css" rel="stylesheet" type="text/css">
-		<link href="../../lib/os-gui/windows-98.css" rel="stylesheet" type="text/css">
-		<link rel="icon" href="../../images/icons/explorer-16x16.png" sizes="16x16" type="image/png">
-		<link rel="icon" href="../../images/icons/explorer-32x32.png" sizes="32x32" type="image/png">
+		<link href="/98/layout.css" rel="stylesheet" type="text/css">
+		<link href="/98/classic.css" rel="stylesheet" type="text/css">
+		<link href="/98/lib/os-gui/layout.css" rel="stylesheet" type="text/css">
+		<link href="/98/lib/os-gui/windows-98.css" rel="stylesheet" type="text/css">
+		<link rel="icon" href="/98/images/icons/explorer-16x16.png" sizes="16x16" type="image/png">
+		<link rel="icon" href="/98/images/icons/explorer-32x32.png" sizes="32x32" type="image/png">
 		<meta name="viewport" content="width=device-width, user-scalable=no">
-		<script src="../../lib/jquery.min.js"></script>
-		<script src="../../lib/browserfs.js"></script>
-		<script src="../../src/filesystem-setup.js"></script>
-		<script src="../../lib/os-gui/MenuBar.js"></script>
-		<script src="../../lib/os-gui/$Window.js"></script>
-		<script src="../../src/msgbox.js"></script>
-		<script src="../../src/iframe-windows.js"></script>
+		<script src="/98/lib/jquery.min.js"></script>
+		<script src="/98/lib/browserfs.js"></script>
+		<script src="/98/src/filesystem-setup.js"></script>
+		<script src="/98/lib/os-gui/MenuBar.js"></script>
+		<script src="/98/lib/os-gui/$Window.js"></script>
+		<script src="/98/src/msgbox.js"></script>
+		<script src="/98/src/iframe-windows.js"></script>
 		<script>defaultMessageBoxTitle = "Explorer";</script>
-		<script src="../../src/helpers.js"></script>
-		<script src="../../src/FolderView.js"></script>
-		<script src="../../src/FolderViewItem.js"></script>
-		<script src="menus.js"></script>
-		<script src="explorer.js"></script>
-		<link href="explorer.css" rel="stylesheet" type="text/css">
+		<script src="/98/src/helpers.js"></script>
+		<script src="/98/src/FolderView.js"></script>
+		<script src="/98/src/FolderViewItem.js"></script>
+		<script src="/98/menus.js"></script>
+		<script src="/98/programs/explorer/explorer.js"></script>
+		<link href="/98/programs/explorer/explorer.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
 		<div class="toolbars">
@@ -125,7 +125,7 @@
 			<!-- @TODO: d access key -->
 			<label for="address">Address</label>
 			<div id="address-compound-input" class="inset-deep">
-				<img id="address-icon" width="16" height="16" src="../../images/icons/folder-16x16.png" alt="">
+				<img id="address-icon" width="16" height="16" src="/98/images/icons/folder-16x16.png" alt="">
 				<input type="text" id="address" autocomplete="off">
 				<button id="address-dropdown-button" disabled>
 					<!-- Outer SVG must not have the transform, because it has a filter when disabled which would get rotated. -->
@@ -142,19 +142,19 @@
 		<div id="content" class="inset-deep"></div>
 		<div id="status-bar">
 			<div id="status-bar-left" class="inset-shallow">
-				<img id="status-bar-left-icon" style="display: none;" width="16" height="16" src="../../images/icons/folder-16x16.png" alt="">
+				<img id="status-bar-left-icon" style="display: none;" width="16" height="16" src="/98/images/icons/folder-16x16.png" alt="">
 				<span id="status-bar-left-text"></span>
 			</div>
 			<div id="status-bar-middle" class="inset-shallow">
 				<span id="status-bar-middle-text"></span>
 			</div>
 			<div id="status-bar-right" class="inset-shallow">
-				<img id="status-bar-right-icon" style="display: none;" width="16" height="16" src="../../images/icons/my-computer-16x16.png" alt="">
+				<img id="status-bar-right-icon" style="display: none;" width="16" height="16" src="/98/images/icons/my-computer-16x16.png" alt="">
 				<span id="status-bar-right-text"></span>
 			</div>
 			<!-- for menu descriptions, replace left/middle/right layout with non-inset, singular area -->
 			<div id="status-bar-simple" style="display: none;">
-				<img id="status-bar-simple-icon" width="16" height="16" src="../../images/icons/my-computer-16x16.png" alt="">
+				<img id="status-bar-simple-icon" width="16" height="16" src="/98/images/icons/my-computer-16x16.png" alt="">
 				<span id="status-bar-simple-text"></span>
 			</div>
 		</div>

@@ -59,7 +59,7 @@ function get_icon_for_address(address) {
 	}
 }
 
-var navigate_audio = new Audio("/audio/START.WAV");
+var navigate_audio = new Audio("/98/audio/START.WAV");
 
 var offline_mode = false;
 
@@ -694,10 +694,10 @@ ${doc.documentElement.outerHTML}`;
 						this.shadowRoot.append(folder_view.element);
 						// jQuery's append does HTML, vs native which does Text
 						$(this.shadowRoot).append(`
-							<link href="/layout.css" rel="stylesheet" type="text/css">
-							<link href="/classic.css" rel="stylesheet" type="text/css">
-							<link href="/lib/os-gui/layout.css" rel="stylesheet" type="text/css">
-							<link href="/lib/os-gui/windows-98.css" rel="stylesheet" type="text/css">
+							<link href="/98/layout.css" rel="stylesheet" type="text/css">
+							<link href="/98/classic.css" rel="stylesheet" type="text/css">
+							<link href="/98/lib/os-gui/layout.css" rel="stylesheet" type="text/css">
+							<link href="/98/lib/os-gui/windows-98.css" rel="stylesheet" type="text/css">
 							<style>
 								:host {
 									display: flex;
@@ -774,13 +774,13 @@ ${doc.documentElement.outerHTML}`;
 										case "Type":
 											// @TODO: DRY, and move file type code/data to one central place
 											const system_folder_path_to_name = {
-												"/": "(C:)", //"My Computer",
-												"/my-pictures/": "My Pictures",
-												"/my-documents/": "My Documents",
-												"/network-neighborhood/": "Network Neighborhood",
-												"/desktop/": "Desktop",
-												"/programs/": "Program Files",
-												"/recycle-bin/": "Recycle Bin",
+												"/98/": "(C:)", //"My Computer",
+												"/98/my-pictures/": "My Pictures",
+												"/98/my-documents/": "My Documents",
+												"/98/network-neighborhood/": "Network Neighborhood",
+												"/98/desktop/": "Desktop",
+												"/98/programs/": "Program Files",
+												"/98/recycle-bin/": "Recycle Bin",
 											};
 											if (system_folder_path_to_name[item._item.file_path]) {
 												return "System Folder";
@@ -828,7 +828,7 @@ ${doc.documentElement.outerHTML}`;
 	const head_start_injected_html = `
 		<meta charset="utf-8">
 		<title>Folder Template</title>
-		<link href="/src/ie-6.css" rel="stylesheet" type="text/css">
+		<link href="/98/src/ie-6.css" rel="stylesheet" type="text/css">
 		<style>
 		p {margin: 0;}
 
@@ -843,14 +843,14 @@ ${doc.documentElement.outerHTML}`;
 	`;
 
 	const head_end_injected_html = `
-		<link href="/layout.css" rel="stylesheet" type="text/css">
-		<link href="/classic.css" rel="stylesheet" type="text/css">
-		<link href="/lib/os-gui/layout.css" rel="stylesheet" type="text/css">
-		<link href="/lib/os-gui/windows-98.css" rel="stylesheet" type="text/css">
+		<link href="/98/layout.css" rel="stylesheet" type="text/css">
+		<link href="/98/classic.css" rel="stylesheet" type="text/css">
+		<link href="/98/lib/os-gui/layout.css" rel="stylesheet" type="text/css">
+		<link href="/98/lib/os-gui/windows-98.css" rel="stylesheet" type="text/css">
 		<meta name="viewport" content="width=device-width, user-scalable=no">
-		<script src="/lib/jquery.min.js"></script>
-		<script src="/lib/os-gui/$Window.js"></script>
-		<script src="/src/msgbox.js"></script>
+		<script src="/98/lib/jquery.min.js"></script>
+		<script src="/98/lib/os-gui/$Window.js"></script>
+		<script src="/98/src/msgbox.js"></script>
 		<script>defaultMessageBoxTitle = "Explorer";</script>
 		<script>
 			(${head_end_injected_script_fn})();
@@ -964,31 +964,31 @@ function go_home() {
 	go_to("https://isaiahodhner.io/"); // My personal homepage; I might use a search engine, but they don't support iframes
 }
 
+const projectRoot = "/98/";
 function executeFile(file_path) {
-	// I don't think this withFilesystem is necessary
-	withFilesystem(function () {
-		var fs = BrowserFS.BFSRequire("fs");
-		fs.stat(file_path, function (err, stats) {
-			if (err) {
-				return alert("Failed to get info about " + file_path + "\n\n" + err);
-			}
-			if (stats.isDirectory()) {
-				go_to(file_path);
-			} else {
-				// (can either check frameElement or parent !== window, but not parent by itself, because `parent === window` when there's no actual parent frame)
-				if (frameElement) {
-					const systemExecuteFile = parent.systemExecuteFile || parent.parent.systemExecuteFile; // dunno if I'll keep the folder view in an iframe
-					if (systemExecuteFile) {
-						systemExecuteFile(file_path);
-					} else {
-						alert("Failed to execute " + file_path + "\n\n" + "systemExecuteFile not found");
-					}
-				} else {
-					alert("Can't open files in standalone mode. Explorer must be run in a desktop.");
-				}
-			}
-		});
-	});
+    const fullPath = projectRoot + file_path;
+    withFilesystem(function () {
+        var fs = BrowserFS.BFSRequire("fs");
+        fs.stat(fullPath, function (err, stats) {
+            if (err) {
+                return alert("Failed to get info about " + fullPath + "\n\n" + err);
+            }
+            if (stats.isDirectory()) {
+                go_to(fullPath);
+            } else {
+                if (frameElement) {
+                    const systemExecuteFile = parent.systemExecuteFile || parent.parent.systemExecuteFile;
+                    if (systemExecuteFile) {
+                        systemExecuteFile(fullPath);
+                    } else {
+                        alert("Failed to execute " + fullPath + "\n\n" + "systemExecuteFile not found");
+                    }
+                } else {
+                    alert("Can't open files in standalone mode. Explorer must be run in a desktop.");
+                }
+            }
+        });
+    });
 }
 
 $(function () {

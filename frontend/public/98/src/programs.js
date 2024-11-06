@@ -79,7 +79,7 @@ function show_help(options) {
 	});
 
 	const $iframe = $("<iframe sandbox='allow-same-origin allow-scripts allow-forms allow-modals allow-popups allow-downloads'>")
-		.attr({ src: "help/default.html" })
+		.attr({ src: "/98/help/default.html" })
 		.addClass("inset-deep");
 	const iframe = $iframe[0];
 	enhance_iframe(iframe);
@@ -191,7 +191,7 @@ function show_help(options) {
 
 	const $default_item_li = $(E("li")).addClass("page");
 	$default_item_li.append(make_$item("Welcome to Help").on("click", () => {
-		$iframe.attr({ src: "help/default.html" });
+		$iframe.attr({ src: "/98/help/default.html" });
 	}));
 	$contents.append($default_item_li);
 
@@ -248,7 +248,7 @@ function Notepad(file_path) {
 	// TODO: focus existing window if file is currently open?
 
 	var $win = make_iframe_window({
-		src: "programs/notepad/index.html" + (file_path ? ("?path=" + file_path) : ""),
+		src: "/98/programs/notepad/index.html" + (file_path ? ("?path=" + file_path) : ""),
 		icons: iconsAtTwoSizes("notepad"),
 		title: win_title,
 		outerWidth: 480,
@@ -261,7 +261,7 @@ Notepad.acceptsFilePaths = true;
 
 function Paint(file_path) {
 	var $win = make_iframe_window({
-		src: "programs/jspaint/index.html",
+		src: "/98/programs/jspaint/index.html",
 		icons: iconsAtTwoSizes("paint"),
 		// NOTE: in Windows 98, "untitled" is lowercase, but TODO: we should just make it consistent
 		title: "untitled - Paint",
@@ -346,8 +346,8 @@ function Paint(file_path) {
 			}
 			$help_window = show_help({
 				title: "Paint Help",
-				contentsFile: "programs/jspaint/help/mspaint.hhc",
-				root: "programs/jspaint/help",
+				contentsFile: "/98/programs/jspaint/help/mspaint.hhc",
+				root: "/98/programs/jspaint/help",
 			}).$help_window;
 			$help_window.on("close", () => {
 				$help_window = null;
@@ -380,7 +380,7 @@ Paint.acceptsFilePaths = true;
 
 function Minesweeper() {
 	var $win = make_iframe_window({
-		src: "programs/minesweeper/index.html",
+		src: "/98/programs/minesweeper/index.html",
 		icons: iconsAtTwoSizes("minesweeper"),
 		title: "Minesweeper",
 		innerWidth: 280,
@@ -396,7 +396,7 @@ function SoundRecorder(file_path) {
 	var win_title = document_title + " - Sound Recorder";
 	// TODO: focus existing window if file is currently open?
 	var $win = make_iframe_window({
-		src: "programs/sound-recorder/index.html" + (file_path ? ("?path=" + file_path) : ""),
+		src: "/98/programs/sound-recorder/index.html" + (file_path ? ("?path=" + file_path) : ""),
 		icons: iconsAtTwoSizes("speaker"),
 		title: win_title,
 		innerWidth: 270,
@@ -410,7 +410,7 @@ SoundRecorder.acceptsFilePaths = true;
 
 function Solitaire() {
 	var $win = make_iframe_window({
-		src: "programs/js-solitaire/index.html",
+		src: "/98/programs/js-solitaire/index.html",
 		icons: iconsAtTwoSizes("solitaire"),
 		title: "Solitaire",
 		innerWidth: 585,
@@ -497,7 +497,7 @@ function FlowerBox() {
 
 function CommandPrompt() {
 	var $win = make_iframe_window({
-		src: "programs/command/index.html",
+		src: "/98/programs/command/index.html",
 		icons: iconsAtTwoSizes("msdos"),
 		title: "MS-DOS Prompt",
 		// TODO: default dimensions
@@ -545,7 +545,7 @@ function CommandPrompt() {
 
 function Calculator() {
 	var $win = make_iframe_window({
-		src: "programs/calculator/index.html",
+		src: "/98/programs/calculator/index.html",
 		icons: iconsAtTwoSizes("calculator"),
 		title: "Calculator",
 		innerWidth: 256,
@@ -556,9 +556,11 @@ function Calculator() {
 	return new Task($win);
 }
 
+
+
 function Pinball() {
 	var $win = make_iframe_window({
-		src: "programs/pinball/space-cadet.html",
+		src: "/98/programs/pinball/space-cadet.html",
 		icons: iconsAtTwoSizes("pinball"),
 		title: "3D Pinball for Windows - Space Cadet",
 		innerWidth: 600,
@@ -604,7 +606,7 @@ function Explorer(address) {
 	var win_title = document_title;
 	// TODO: focus existing window if folder is currently open
 	var $win = make_iframe_window({
-		src: "programs/explorer/index.html" + (address ? ("?address=" + encodeURIComponent(address)) : ""),
+		src: "/98/programs/explorer/index.html" + (address ? ("?address=" + encodeURIComponent(address)) : ""),
 		icons: iconsAtTwoSizes("folder-open"),
 		title: win_title,
 		// this is based on one measurement, but it uses different sizes depending on the screen resolution,
@@ -1178,39 +1180,41 @@ var add_icon_not_via_filesystem = function (options) {
 	}));
 };
 add_icon_not_via_filesystem({
-	title: "My Computer",
-	iconID: "my-computer",
-	open: function () { systemExecuteFile("/"); },
-	// file_path: "/",
-	is_system_folder: true,
+    title: "My Computer",
+    iconID: "my-computer",
+    open: function () { Explorer("/98"); }, // 루트 경로를 Explorer 함수에 전달
+    is_system_folder: true,
 });
-add_icon_not_via_filesystem({
-	title: "My Documents",
-	iconID: "my-documents-folder",
-	open: function () { systemExecuteFile("/my-documents"); },
-	// file_path: "/my-documents/",
-	is_system_folder: true,
-});
-add_icon_not_via_filesystem({
-	title: "Network Neighborhood",
-	iconID: "network",
-	open: function () { systemExecuteFile("/network-neighborhood"); },
-	// file_path: "/network-neighborhood/",
-	is_system_folder: true,
-});
+// add_icon_not_via_filesystem({
+// 	title: "My Documents",
+// 	iconID: "my-documents-folder",
+// 	open: function () { systemExecuteFile("/my-documents"); },
+// 	// file_path: "/my-documents/",
+// 	is_system_folder: true,
+// });
+// add_icon_not_via_filesystem({
+// 	title: "Network Neighborhood",
+// 	iconID: "network",
+// 	open: function () { systemExecuteFile("/network-neighborhood"); },
+// 	// file_path: "/network-neighborhood/",
+// 	is_system_folder: true,
+// });
 add_icon_not_via_filesystem({
 	title: "Recycle Bin",
 	iconID: "recycle-bin",
-	open: function () { Explorer("https://www.epa.gov/recycle/"); },
+	open: function () { Explorer("https://www.amazon.com/trash-can/s?k=trash+can"); },
 	is_system_folder: true,
 });
 add_icon_not_via_filesystem({
-	title: "My Pictures",
-	iconID: "folder",
-	open: function () { systemExecuteFile("/my-pictures"); },
-	// file_path: "/my-pictures/",
-	is_system_folder: true,
+    title: "My Pictures",
+    iconID: "folder",
+    open: function () {
+        console.log("Explorer function called with path: /98/my-pictures"); // 디버그 로그 추가
+        Explorer("/98/my-pictures"); // 폴더 경로를 Explorer 함수에 전달
+    },
+    is_system_folder: true,
 });
+
 add_icon_not_via_filesystem({
 	title: "Internet Explorer",
 	iconID: "internet-explorer",
@@ -1282,6 +1286,19 @@ add_icon_not_via_filesystem({
 	open: Pinball,
 	shortcut: true
 });
+
+add_icon_not_via_filesystem({
+	title: "Arcana",
+	iconID: "arcana",
+	open: function() {
+	  const isProduction = window.location.hostname !== 'localhost';
+	  const downloadUrl = isProduction 
+		? 'https://k11d103.p.ssafy.io/download'
+		: 'http://localhost:3000/download';
+	  window.open(downloadUrl, '_blank');
+	},
+	shortcut: true
+  });
 
 folder_view.arrange_icons();
 
