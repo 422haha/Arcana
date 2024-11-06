@@ -226,7 +226,7 @@ const HeroSection = () => {
             {/* Iframe 설정 */}
             <iframe
               ref={iframeRef}
-              src={`${import.meta.env.BASE_URL}98/index.html`}
+              src="/98/index.html"
               style={{
                 width: '990px',
                 height: '615px',
@@ -251,4 +251,4 @@ const HeroSection = () => {
   
 };
 
-export default HeroSection;
+export { HeroSection };

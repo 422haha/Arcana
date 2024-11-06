@@ -1,0 +1,124 @@
+{
+  "data": [
+    {
+      "ingredientId": 1,
+      "name": "감자"
+    },
+    {
+      "ingredientId": 2,
+      "name": "고구마"
+    },
+    {
+      "ingredientId": 3,
+      "name": "양파"
+    },
+    {
+      "ingredientId": 4,
+      "name": "당근"
+    },
+    {
+      "ingredientId": 5,
+      "name": "배추"
+    },
+    {
+      "ingredientId": 6,
+      "name": "무"
+    },
+    {
+      "ingredientId": 7,
+      "name": "고추"
+    },
+    {
+      "ingredientId": 8,
+      "name": "마늘"
+    },
+    {
+      "ingredientId": 9,
+      "name": "생강"
+    },
+    {
+      "ingredientId": 10,
+      "name": "대파"
+    },
+    {
+      "ingredientId": 11,
+      "name": "시금치"
+    },
+    {
+      "ingredientId": 12,
+      "name": "상추"
+    },
+    {
+      "ingredientId": 13,
+      "name": "토마토"
+    },
+    {
+      "ingredientId": 14,
+      "name": "오이"
+    },
+    {
+      "ingredientId": 15,
+      "name": "가지"
+    },
+    {
+      "ingredientId": 16,
+      "name": "호박"
+    },
+    {
+      "ingredientId": 17,
+      "name": "버섯"
+    },
+    {
+      "ingredientId": 18,
+      "name": "콩나물"
+    },
+    {
+      "ingredientId": 19,
+      "name": "두부"
+    },
+    {
+      "ingredientId": 20,
+      "name": "계란"
+    },
+    {
+      "ingredientId": 21,
+      "name": "쌀"
+    },
+    {
+      "ingredientId": 22,
+      "name": "보리"
+    },
+    {
+      "ingredientId": 23,
+      "name": "밀가루"
+    },
+    {
+      "ingredientId": 24,
+      "name": "돼지고기"
+    },
+    {
+      "ingredientId": 25,
+      "name": "소고기"
+    },
+    {
+      "ingredientId": 26,
+      "name": "닭고기"
+    },
+    {
+      "ingredientId": 27,
+      "name": "고등어"
+    },
+    {
+      "ingredientId": 28,
+      "name": "갈치"
+    },
+    {
+      "ingredientId": 29,
+      "name": "오징어"
+    },
+    {
+      "ingredientId": 30,
+      "name": "새우"
+    }
+  ]
+}

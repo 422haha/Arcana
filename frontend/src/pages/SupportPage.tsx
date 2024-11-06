@@ -133,7 +133,7 @@ const SupportPage: React.FC<SupportPageProps> = ({ setPressKitOpen }) => {
         formData.append('screenshots', file);
       });
 
-      const response = await axios.post('/api/support', formData, {
+      const response = await axios.post('/support', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         }

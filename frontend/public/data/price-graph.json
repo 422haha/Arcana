@@ -1,0 +1,154 @@
+{
+  "data": [
+    {
+      "date": "2023-09-01",
+      "price": 100,
+      "expectedPrice": 102
+    },
+    {
+      "date": "2023-09-02",
+      "price": 103,
+      "expectedPrice": 101
+    },
+    {
+      "date": "2023-09-03",
+      "price": 99,
+      "expectedPrice": 100
+    },
+    {
+      "date": "2023-09-04",
+      "price": 98,
+      "expectedPrice": 99
+    },
+    {
+      "date": "2023-09-05",
+      "price": 101,
+      "expectedPrice": 100
+    },
+    {
+      "date": "2023-09-06",
+      "price": 102,
+      "expectedPrice": 103
+    },
+    {
+      "date": "2023-09-07",
+      "price": 105,
+      "expectedPrice": 104
+    },
+    {
+      "date": "2023-09-08",
+      "price": 107,
+      "expectedPrice": 106
+    },
+    {
+      "date": "2023-09-09",
+      "price": 108,
+      "expectedPrice": 109
+    },
+    {
+      "date": "2023-09-10",
+      "price": 110,
+      "expectedPrice": 111
+    },
+    {
+      "date": "2023-09-11",
+      "price": 112,
+      "expectedPrice": 113
+    },
+    {
+      "date": "2023-09-12",
+      "price": 115,
+      "expectedPrice": 114
+    },
+    {
+      "date": "2023-09-13",
+      "price": 118,
+      "expectedPrice": 117
+    },
+    {
+      "date": "2023-09-14",
+      "price": 120,
+      "expectedPrice": 119
+    },
+    {
+      "date": "2023-09-15",
+      "price": 122,
+      "expectedPrice": 121
+    },
+    {
+      "date": "2023-09-16",
+      "price": 123,
+      "expectedPrice": 124
+    },
+    {
+      "date": "2023-09-17",
+      "price": 125,
+      "expectedPrice": 126
+    },
+    {
+      "date": "2023-09-18",
+      "price": 128,
+      "expectedPrice": 127
+    },
+    {
+      "date": "2023-09-19",
+      "price": 130,
+      "expectedPrice": 129
+    },
+    {
+      "date": "2023-09-20",
+      "price": 132,
+      "expectedPrice": 131
+    },
+    {
+      "date": "2023-09-21",
+      "price": 133,
+      "expectedPrice": 134
+    },
+    {
+      "date": "2023-09-22",
+      "price": 135,
+      "expectedPrice": 136
+    },
+    {
+      "date": "2023-09-23",
+      "price": 138,
+      "expectedPrice": 137
+    },
+    {
+      "date": "2023-09-24",
+      "price": 140,
+      "expectedPrice": 139
+    },
+    {
+      "date": "2023-09-25",
+      "price": 142,
+      "expectedPrice": 141
+    },
+    {
+      "date": "2023-09-26",
+      "price": 143,
+      "expectedPrice": 144
+    },
+    {
+      "date": "2023-09-27",
+      "price": 145,
+      "expectedPrice": 146
+    },
+    {
+      "date": "2023-09-28",
+      "price": 148,
+      "expectedPrice": 147
+    },
+    {
+      "date": "2023-09-29",
+      "price": 150,
+      "expectedPrice": 149
+    },
+    {
+      "date": "2023-09-30",
+      "price": 152,
+      "expectedPrice": 151
+    }
+  ]
+}

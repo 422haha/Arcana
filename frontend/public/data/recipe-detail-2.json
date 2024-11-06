@@ -1,0 +1,53 @@
+{
+  "data": {
+    "recipeId": 2,
+    "name": "된장찌개",
+    "kind": "찌개",
+    "image": "",
+    "inbun": "2인분",
+    "level": "아무나",
+    "time": "20분이내",
+    "material": [
+      {
+        "materialId": 1,
+        "name": "된장",
+        "capacity": "2큰술",
+        "type": "재료",
+        "ingredientId": 3
+      },
+      {
+        "materialId": 2,
+        "name": "두부",
+        "capacity": "1/2모",
+        "type": "재료",
+        "ingredientId": 4
+      }
+    ],
+    "etc": [
+      {
+        "etcId": 1,
+        "name": "대파",
+        "capacity": "1대",
+        "type": "재료"
+      },
+      {
+        "etcId": 2,
+        "name": "냄비",
+        "capacity": "",
+        "type": "조리도구"
+      }
+    ],
+    "steps": [
+      {
+        "stepId": 1,
+        "content": "냄비에 물을 붓고 된장을 풀어주세요.",
+        "image": ""
+      },
+      {
+        "stepId": 2,
+        "content": "두부를 깍둑썰기하여 넣고 끓여주세요.",
+        "image": ""
+      }
+    ]
+  }
+}

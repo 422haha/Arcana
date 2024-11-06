@@ -1,0 +1,53 @@
+{
+  "data": {
+    "recipeId": 1,
+    "name": "김치찌개",
+    "kind": "찌개",
+    "image": "",
+    "inbun": "2인분",
+    "level": "초보환영",
+    "time": "30분이내",
+    "material": [
+      {
+        "materialId": 1,
+        "name": "김치",
+        "capacity": "300g",
+        "type": "재료",
+        "ingredientId": 1
+      },
+      {
+        "materialId": 2,
+        "name": "돼지고기",
+        "capacity": "150g",
+        "type": "재료",
+        "ingredientId": 2
+      }
+    ],
+    "etc": [
+      {
+        "etcId": 1,
+        "name": "고춧가루",
+        "capacity": "1큰술",
+        "type": "양념"
+      },
+      {
+        "etcId": 2,
+        "name": "냄비",
+        "capacity": "",
+        "type": "조리도구"
+      }
+    ],
+    "steps": [
+      {
+        "stepId": 1,
+        "content": "김치를 적당한 크기로 썰어주세요.",
+        "image": ""
+      },
+      {
+        "stepId": 2,
+        "content": "돼지고기를 먼저 볶다가 김치를 넣고 함께 볶아주세요.",
+        "image": ""
+      }
+    ]
+  }
+}

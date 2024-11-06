@@ -19,23 +19,10 @@ html, body {
 
 /* Swiper container */
 .swiper {
-  width: 280px;
-  height: 550px;
+  width: 320px;
+  height: 600px;
   padding: 50px 0;
-}
-
-@media (min-width: 640px) {
-  .swiper {
-    width: 320px;
-    height: 600px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .swiper {
-    width: 350px;
-    height: 650px;
-  }
+  will-change: transform, opacity;
 }
 
 /* Slide styling */
@@ -46,14 +33,14 @@ html, body {
   justify-content: flex-start;
   padding: 16px;
   border-radius: 12px;
-  background-color: rgba(24, 24, 27, 0.9);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: rgba(24, 24, 27, 0.95);
   opacity: 0.7;
   border: 1px solid rgba(63, 63, 70, 0.5);
   position: relative;
   overflow: hidden;
   height: 100%;
-  backdrop-filter: blur(8px);
+  transform: translateZ(0); /* 하드웨어 가속 */
+  will-change: transform, opacity;
 }
 
 /* Image container */
@@ -62,13 +49,7 @@ html, body {
   height: 280px;
   margin-bottom: 16px;
   position: relative;
-}
-
-@media (min-width: 640px) {
-  .swiper-slide .image-container {
-    height: 320px;
-    margin-bottom: 20px;
-  }
+  overflow: hidden;
 }
 
 /* Image styling */
@@ -78,21 +59,7 @@ html, body {
   object-fit: cover;
   border-radius: 8px;
   border: 1px solid rgba(59, 130, 246, 0.2);
-  transition: all 0.3s ease;
-}
-
-/* Tech overlay for images */
-.swiper-slide .image-container::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 8px;
-  background: linear-gradient(to bottom, 
-    rgba(59, 130, 246, 0.1), 
-    transparent 50%,
-    rgba(45, 212, 191, 0.1)
-  );
-  pointer-events: none;
+  will-change: opacity;
 }
 
 /* Text content container */
@@ -103,9 +70,10 @@ html, body {
   flex-direction: column;
   gap: 12px;
   padding: 0 8px;
+  overflow: hidden;
 }
 
-/* Typography */
+/* Typography - Title */
 .swiper-slide h3 {
   font-size: 20px;
   margin: 0;
@@ -115,60 +83,45 @@ html, body {
   background-clip: text;
   color: transparent;
   text-align: center;
-  text-shadow: 0 0 20px rgba(96, 165, 250, 0.3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: bold;
 }
 
-@media (min-width: 640px) {
-  .swiper-slide h3 {
-    font-size: 24px;
-  }
-}
-
+/* Typography - Description */
 .swiper-slide p {
   font-size: 14px;
-  text-align: center;
+  text-align: left;
   color: #d1d5db;
   line-height: 1.6;
   margin: 0;
-  flex-grow: 1;
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-@media (min-width: 640px) {
-  .swiper-slide p {
-    font-size: 16px;
-  }
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 /* Active and hover states */
 .swiper-slide-active {
   opacity: 1;
-  transform: scale(1.1);
+  transform: scale(1.02); /* 미세한 확대 */
   border-color: rgba(59, 130, 246, 0.3);
-  box-shadow: 
-    0 0 20px rgba(59, 130, 246, 0.1),
-    inset 0 0 20px rgba(59, 130, 246, 0.05);
-}
-
-.swiper-slide-active:hover {
-  transform: scale(1.12);
-  border-color: rgba(59, 130, 246, 0.4);
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .swiper-slide-active:hover img {
   border-color: rgba(59, 130, 246, 0.4);
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
 }
 
-/* Tech frame corners with gradient */
+/* Tech frame corners */
 .swiper-slide::before,
 .swiper-slide::after {
   content: '';
   position: absolute;
   width: 24px;
   height: 24px;
-  opacity: 0;
-  transition: opacity 0.3s ease, border-color 0.3s ease;
 }
 
 .swiper-slide::before {
@@ -185,46 +138,7 @@ html, body {
   border-right: 2px solid rgba(45, 212, 191, 0.3);
 }
 
-.swiper-slide-active::before,
-.swiper-slide-active::after {
-  opacity: 1;
-}
-
-/* Ambient glow effect */
-.swiper-slide::before {
-  box-shadow: 5px 5px 15px rgba(59, 130, 246, 0.1);
-}
-
-.swiper-slide::after {
-  box-shadow: -5px -5px 15px rgba(45, 212, 191, 0.1);
-}
-
-/* Scan line animation */
-@keyframes scanline {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(100%);
-  }
-}
-
-.swiper-slide::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent 50%,
-    rgba(59, 130, 246, 0.05) 50%
-  );
-  background-size: 100% 4px;
-  animation: scanline 8s linear infinite;
-  pointer-events: none;
-  opacity: 0.3;
-}
-
-/* Modified color variations for better tech feel */
+/* Modified color variations */
 .swiper-slide:nth-child(1n) { background-color: rgba(24, 24, 27, 0.95); }
 .swiper-slide:nth-child(2n) { background-color: rgba(28, 28, 35, 0.95); }
 .swiper-slide:nth-child(3n) { background-color: rgba(32, 32, 40, 0.95); }

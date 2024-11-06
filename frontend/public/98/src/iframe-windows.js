@@ -1,200 +1,185 @@
-
 var programs_being_loaded = 0;
 
 function enhance_iframe(iframe) {
-	var $iframe = $(iframe);
+    var $iframe = $(iframe);
 
-	$("body").addClass("loading-program");
-	programs_being_loaded += 1;
+    $("body").addClass("loading-program");
+    programs_being_loaded += 1;
 
-	$iframe.on("load", function () {
+    $iframe.on("load", function () {
+        if (--programs_being_loaded <= 0) {
+            $("body").removeClass("loading-program");
+        }
 
-		if (--programs_being_loaded <= 0) {
-			$("body").removeClass("loading-program");
-		}
+        try {
+            // iframe 접근 가능성 확인
+            if (!iframe.contentWindow || !iframe.contentDocument) {
+                throw new Error("Cannot access iframe content");
+            }
+        } catch (e) {
+            console.warn(`[enhance_iframe] iframe integration is not available for '${iframe.src}'`);
+            return;
+        }
 
-		try {
-			console.assert(iframe.contentWindow.document === iframe.contentDocument); // just something that won't get optimized away if we were to ever use a minifier (or by the JIT compiler??)
-		} catch (e) {
-			console.warn(`[enhance_iframe] iframe integration is not available for '${iframe.src}'`);
-			return;
-		}
+        // 테마 적용 부분 수정
+        if (window.themeCSSProperties) {
+            try {
+                applyTheme(themeCSSProperties, iframe.contentDocument.documentElement);
+            } catch (e) {
+                console.warn("Failed to apply theme to iframe:", e);
+            }
+        }
 
-		if (window.themeCSSProperties) {
-			applyTheme(themeCSSProperties, iframe.contentDocument.documentElement);
-		}
+        // Let the iframe to handle mouseup events outside itself
+        iframe.contentDocument.addEventListener("mousedown", (event) => {
+            var delegate_pointerup = function() {
+                if (iframe.contentWindow && iframe.contentWindow.jQuery) {
+                    iframe.contentWindow.jQuery("body").trigger("pointerup");
+                }
+                if (iframe.contentWindow) {
+                    const event = new iframe.contentWindow.MouseEvent("mouseup", { button: 0 });
+                    iframe.contentWindow.dispatchEvent(event);
+                    const event2 = new iframe.contentWindow.MouseEvent("mouseup", { button: 2 });
+                    iframe.contentWindow.dispatchEvent(event2);
+                }
+                clean_up_delegation();
+            };
 
-		// Let the iframe to handle mouseup events outside itself
-		// (without using setPointerCapture)
-		iframe.contentDocument.addEventListener("mousedown", (event) => {
-			var delegate_pointerup = function () {
-				if (iframe.contentWindow && iframe.contentWindow.jQuery) {
-					iframe.contentWindow.jQuery("body").trigger("pointerup");
-				}
-				if (iframe.contentWindow) {
-					const event = new iframe.contentWindow.MouseEvent("mouseup", { button: 0 });
-					iframe.contentWindow.dispatchEvent(event);
-					const event2 = new iframe.contentWindow.MouseEvent("mouseup", { button: 2 });
-					iframe.contentWindow.dispatchEvent(event2);
-				}
-				clean_up_delegation();
-			};
-			// @TODO: delegate pointermove events too?
-			// @TODO: do delegation in os-gui.js library instead
-			// is it delegation? I think I mean proxying (but I'm really tired and don't have internet right now so I can't say for sure haha)
+            $G.on("mouseup blur", delegate_pointerup);
+            iframe.contentDocument.addEventListener("mouseup", clean_up_delegation);
+            function clean_up_delegation() {
+                $G.off("mouseup blur", delegate_pointerup);
+                iframe.contentDocument?.removeEventListener("mouseup", clean_up_delegation);
+            }
+        });
 
-			$G.on("mouseup blur", delegate_pointerup);
-			iframe.contentDocument.addEventListener("mouseup", clean_up_delegation);
-			function clean_up_delegation() {
-				$G.off("mouseup blur", delegate_pointerup);
-				iframe.contentDocument?.removeEventListener("mouseup", clean_up_delegation);
-			}
-		});
+        // Let the containing page handle keyboard events
+        proxy_keyboard_events(iframe);
 
-		// Let the containing page handle keyboard events, with an opportunity to cancel them
-		proxy_keyboard_events(iframe);
+        var $contentWindow = $(iframe.contentWindow);
+        $contentWindow.on("pointerdown click", function(e) {
+            iframe.$window && iframe.$window.focus();
+            $(".menu-button").trigger("release");
+            $(".menu-popup").hide();
+        });
 
-		// on Wayback Machine, and iframe's url not saved yet
-		if (iframe.contentDocument.querySelector("#error #livewebInfo.available")) {
-			var message = document.createElement("div");
-			message.style.position = "absolute";
-			message.style.left = "0";
-			message.style.right = "0";
-			message.style.top = "0";
-			message.style.bottom = "0";
-			message.style.background = "#c0c0c0";
-			message.style.color = "#000";
-			message.style.padding = "50px";
-			iframe.contentDocument.body.appendChild(message);
-			message.innerHTML = `<a target="_blank">Save this url in the Wayback Machine</a>`;
-			message.querySelector("a").href =
-				"https://web.archive.org/save/https://98.js.org/" +
-				iframe.src.replace(/.*https:\/\/98.js.org\/?/, "");
-			message.querySelector("a").style.color = "blue";
-		}
+        $contentWindow.on("pointerdown", function(e) {
+            $iframe.css("pointer-events", "all");
+            $("body").addClass("drag");
+        });
 
-		var $contentWindow = $(iframe.contentWindow);
-		$contentWindow.on("pointerdown click", function (e) {
-			iframe.$window && iframe.$window.focus();
+        $contentWindow.on("pointerup", function(e) {
+            $("body").removeClass("drag");
+            $iframe.css("pointer-events", "");
+        });
 
-			// from close_menus in $MenuBar
-			$(".menu-button").trigger("release");
-			// Close any rogue floating submenus
-			$(".menu-popup").hide();
-		});
-		// We want to disable pointer events for other iframes, but not this one
-		$contentWindow.on("pointerdown", function (e) {
-			$iframe.css("pointer-events", "all");
-			$("body").addClass("drag");
-		});
-		$contentWindow.on("pointerup", function (e) {
-			$("body").removeClass("drag");
-			$iframe.css("pointer-events", "");
-		});
-		// $("iframe").css("pointer-events", ""); is called elsewhere.
-		// Otherwise iframes would get stuck in this interaction mode
+        iframe.contentWindow.close = function() {
+            iframe.$window && iframe.$window.close();
+        };
 
-		iframe.contentWindow.close = function () {
-			iframe.$window && iframe.$window.close();
-		};
-		// TODO: hook into saveAs (a la FileSaver.js) and another function for opening files
-		// iframe.contentWindow.saveAs = function(){
-		// 	saveAsDialog();
-		// };
+        // 메시지 박스 처리 부분 수정
+        iframe.contentWindow.showMessageBox = (options) => {
+            return new Promise((resolve, reject) => {
+                try {
+                    showMessageBox({
+                        title: options.title || iframe.contentWindow.defaultMessageBoxTitle || "Message",
+                        message: options.message,
+                        buttons: options.buttons,
+                        iconID: options.iconID,
+                    }).then(resolve).catch(reject);
+                } catch (e) {
+                    console.warn("Message box error:", e);
+                    resolve();
+                }
+            });
+        };
+    });
 
-		// Don't override alert (except within the specific pages)
-		// but override the underlying message box function that
-		// the alert override uses, so that the message boxes can
-		// go outside the window.
-		iframe.contentWindow.showMessageBox = (options) => {
-			return showMessageBox({
-				title: options.title ?? iframe.contentWindow.defaultMessageBoxTitle,
-				...options,
-			});
-		};
-	});
-	$iframe.css({
-		minWidth: 0,
-		minHeight: 0, // overrides user agent styling apparently, fixes Sound Recorder
-		flex: 1,
-		border: 0, // overrides user agent styling
-	});
+    $iframe.css({
+        minWidth: 0,
+        minHeight: 0,
+        flex: 1,
+        border: 0,
+    });
 }
 
-// Let the containing page handle keyboard events, with an opportunity to cancel them
 function proxy_keyboard_events(iframe) {
-	// Note: iframe must be same-origin, or this will fail.
-	for (const event_type of ["keyup", "keydown", "keypress"]) {
-		iframe.contentWindow.addEventListener(event_type, (event) => {
-			const proxied_event = new KeyboardEvent(event_type, {
-				target: iframe,
-				view: iframe.ownerDocument.defaultView,
-				bubbles: true,
-				cancelable: true,
-				key: event.key,
-				keyCode: event.keyCode,
-				which: event.which,
-				code: event.code,
-				shiftKey: event.shiftKey,
-				ctrlKey: event.ctrlKey,
-				metaKey: event.metaKey,
-				altKey: event.altKey,
-				repeat: event.repeat,
-				//...@TODO: should it copy ALL properties?
-			});
-			const result = iframe.dispatchEvent(proxied_event);
-			if (!result) {
-				event.preventDefault();
-			}
-		}, true);
-	}
+    for (const event_type of ["keyup", "keydown", "keypress"]) {
+        iframe.contentWindow.addEventListener(event_type, (event) => {
+            const proxied_event = new KeyboardEvent(event_type, {
+                target: iframe,
+                view: iframe.ownerDocument.defaultView,
+                bubbles: true,
+                cancelable: true,
+                key: event.key,
+                keyCode: event.keyCode,
+                which: event.which,
+                code: event.code,
+                shiftKey: event.shiftKey,
+                ctrlKey: event.ctrlKey,
+                metaKey: event.metaKey,
+                altKey: event.altKey,
+                repeat: event.repeat,
+            });
+            const result = iframe.dispatchEvent(proxied_event);
+            if (!result) {
+                event.preventDefault();
+            }
+        }, true);
+    }
 }
 
 function make_iframe_window(options) {
+    options.resizable ??= true;
+    var $win = new $Window(options);
 
-	options.resizable ??= true;
-	var $win = new $Window(options);
+    var $iframe = $win.$iframe = $("<iframe>").attr({
+        // options.src가 있으면 바로 사용, 없으면 window.html 사용
+        src: options.src || "/98/window.html",
+        frameborder: "0",
+        allowtransparency: "true",
+        allow: "pointer-lock" // 마우스 관련 권한 추가
+    });
 
-	var $iframe = $win.$iframe = $("<iframe>").attr({ src: options.src });
-	enhance_iframe($iframe[0]);
-	$win.$content.append($iframe);
-	var iframe = $win.iframe = $iframe[0];
-	// TODO: should I instead of having iframe.$window, have a get$Window type of dealio?
-	// where all is $window needed?
-	// I know it's used from within the iframe contents as frameElement.$window
-	iframe.$window = $win;
+    enhance_iframe($iframe[0]);
+    $win.$content.append($iframe);
+    var iframe = $win.iframe = $iframe[0];
+    iframe.$window = $win;
 
-	$iframe.on("load", function () {
-		$win.show();
-		$win.focus();
-	});
+    $iframe.on("load", function() {
+        try {
+            if (iframe.contentDocument) {
+                $win.show();
+                $win.focus();
+            }
+        } catch (e) {
+            console.warn("iframe load error:", e);
+        }
+    });
 
-	$win.$content.css({
-		display: "flex",
-		flexDirection: "column",
-	});
+    $win.$content.css({
+        display: "flex",
+        flexDirection: "column",
+        background: "var(--ButtonFace)"
+    });
 
-	// TODO: cascade windows
-	$win.center();
-	$win.hide();
+    $win.center();
+    $win.hide();
 
-	return $win;
+    return $win;
 }
 
-// Fix dragging things (i.e. windows) over iframes (i.e. other windows)
-// (when combined with a bit of css, .drag iframe { pointer-events: none; })
-// (and a similar thing in make_iframe_window)
-$(window).on("pointerdown", function (e) {
-	//console.log(e.type);
-	$("body").addClass("drag");
+// Fix dragging things over iframes
+$(window).on("pointerdown", function(e) {
+    $("body").addClass("drag");
 });
-$(window).on("pointerup dragend blur", function (e) {
-	//console.log(e.type);
-	if (e.type === "blur") {
-		if (document.activeElement.tagName.match(/iframe/i)) {
-			return;
-		}
-	}
-	$("body").removeClass("drag");
-	$("iframe").css("pointer-events", "");
+
+$(window).on("pointerup dragend blur", function(e) {
+    if (e.type === "blur") {
+        if (document.activeElement.tagName.match(/iframe/i)) {
+            return;
+        }
+    }
+    $("body").removeClass("drag");
+    $("iframe").css("pointer-events", "");
 });

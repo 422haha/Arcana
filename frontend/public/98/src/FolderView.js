@@ -86,7 +86,7 @@ const system_folder_path_to_name = {
 	"/my-pictures/": "My Pictures",
 	"/my-documents/": "My Documents",
 	"/network-neighborhood/": "Network Neighborhood",
-	"/desktop/": "Desktop",
+	// "/desktop/": "Desktop",
 	"/programs/": "Program Files",
 	"/recycle-bin/": "Recycle Bin",
 };

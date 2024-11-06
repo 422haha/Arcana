@@ -96,7 +96,7 @@ interface PressKitModalProps {
                   flex items-center justify-center
                   rounded-lg group transition-colors duration-300"
         >
-          <span className="relative z-10">✕</span>
+          {/* <span className="relative z-10">✕</span> */}
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100
                        bg-gradient-to-r from-blue-500/10 to-teal-500/10
                        rounded-lg blur-sm transition-opacity duration-300" />

@@ -1,0 +1,53 @@
+{
+  "data": {
+    "recipeId": 4,
+    "name": "불고기",
+    "kind": "구이",
+    "image": "",
+    "inbun": "3인분",
+    "level": "보통",
+    "time": "1시간이내",
+    "material": [
+      {
+        "materialId": 1,
+        "name": "소고기",
+        "capacity": "400g",
+        "type": "재료",
+        "ingredientId": 7
+      },
+      {
+        "materialId": 2,
+        "name": "간장",
+        "capacity": "3큰술",
+        "type": "재료",
+        "ingredientId": 8
+      }
+    ],
+    "etc": [
+      {
+        "etcId": 1,
+        "name": "설탕",
+        "capacity": "1큰술",
+        "type": "양념"
+      },
+      {
+        "etcId": 2,
+        "name": "팬",
+        "capacity": "",
+        "type": "조리도구"
+      }
+    ],
+    "steps": [
+      {
+        "stepId": 1,
+        "content": "소고기를 얇게 썰어 양념과 함께 재워두세요.",
+        "image": ""
+      },
+      {
+        "stepId": 2,
+        "content": "팬을 달궈 고기를 구워주세요.",
+        "image": ""
+      }
+    ]
+  }
+}

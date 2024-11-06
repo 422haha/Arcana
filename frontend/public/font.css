@@ -1,0 +1,45 @@
+/* 픽셀 폰트 */
+@font-face {
+  font-family: 'NeoDunggeunmo';
+  src: local('NeoDunggeunmo'),
+       url('/fonts/neodgm.woff2') format('woff2'),
+       url('/fonts/neodgm.woff') format('woff');
+  font-display: swap;
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Pretendard - 실제 사용되는 weight만 유지 */
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/fonts/Pretendard-Regular.woff2') format('woff2'),
+       url('/fonts/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/fonts/Pretendard-Medium.woff2') format('woff2'),
+       url('/fonts/Pretendard-Medium.woff') format('woff');
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/fonts/Pretendard-Bold.woff2') format('woff2'),
+       url('/fonts/Pretendard-Bold.woff') format('woff');
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* 한글 본문용 폰트 */
+@font-face {
+  font-family: 'ChosunGu';
+  src: url('/fonts/ChosunGu.woff2') format('woff2'),
+       url('/fonts/ChosunGu.woff') format('woff');
+  font-display: swap;
+  font-weight: normal;
+  font-style: normal;
+}
