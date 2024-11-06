@@ -1,39 +1,23 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
+
 export default defineConfig({
-    base: '/',
     plugins: [react()],
+    base: process.env.NODE_ENV === 'production' ? '/98/' : '/',
     resolve: {
         alias: [
             { find: '@', replacement: path.resolve(__dirname, 'src') }
         ]
     },
     server: {
-        port: 3000,
         proxy: {
             '/api': {
-                target: 'http://localhost:8080',
+                target: process.env.BASE_URL || 'http://localhost:8080',
                 changeOrigin: true,
                 secure: false,
                 ws: true,
-                rewrite: function (path) { return path.replace(/^\/api/, ''); },
-                configure: function (proxy) {
-                    proxy.on('error', function (err) {
-                        console.log('proxy error', err);
-                    });
-                    proxy.on('proxyReq', function (_, req) {
-                        console.log('Sending Request:', req.method, req.url);
-                    });
-                    proxy.on('proxyRes', function (proxyRes, req) {
-                        console.log('Response:', proxyRes.statusCode, req.url);
-                    });
-                },
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Methods': '*',
-                    'Access-Control-Allow-Headers': '*'
-                }
+                rewrite: (path) => path.replace(/^\/api/, ''),
             }
         }
     },
@@ -43,9 +27,15 @@ export default defineConfig({
         rollupOptions: {
             output: {
                 manualChunks: {
-                    vendor: ['react', 'react-dom', 'react-router-dom'],
+                    vendor: ['react', 'react-dom', 'react-router-dom']
                 }
             }
-        }
+        },
+        // 폰트 최적화 설정 추가
+        assetsInlineLimit: 4096,
+        chunkSizeWarningLimit: 1000,
+    },
+    optimizeDeps: {
+        include: ['react', 'react-dom', 'react-router-dom']
     }
 });

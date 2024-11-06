@@ -17,7 +17,7 @@ const MainContent = () => {
                          border-l border-blue-500/20" />
         </div>
         
-        <div className="container mx-auto px-4 relative">
+        <div className="w-[90%] md:w-[85%] lg:w-[80%] mx-auto">
           <GameIntro />
         </div>
       </section>
@@ -39,7 +39,7 @@ const MainContent = () => {
                      bg-[url('/assets/circuit-pattern.png')] bg-repeat
                      pointer-events-none" />
         
-        <div className="container mx-auto px-4 relative">
+        <div className="w-[90%] md:w-[85%] lg:w-[80%] mx-auto relative">
           <RaceFeatures />
         </div>
 
@@ -62,7 +62,7 @@ const MainContent = () => {
                          border-l border-blue-500/20" />
         </div>
 
-        <div className="container mx-auto px-4 relative">
+        <div className="w-[90%] md:w-[85%] lg:w-[80%] mx-auto relative">
           <GameGallery />
         </div>
       </section>

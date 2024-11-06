@@ -1,4 +1,4 @@
-@import './base/font.css';
+@import "/font.css"; 
 @import './base/variables.css';
 @import './components/crt.css';
 @import './components/swiper.css';

@@ -4,36 +4,20 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
+  base: process.env.NODE_ENV === 'production' ? '/98/' : '/',
   resolve: {
     alias: [
       { find: '@', replacement: path.resolve(__dirname, 'src') }
     ]
   },
   server: {
-    port: 3000,
     proxy: {
       '/api': {
-        target: 'http://localhost:8080',
+        target: process.env.BASE_URL || 'http://localhost:8080',
         changeOrigin: true,
         secure: false,
         ws: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
-        configure: (proxy) => {
-          proxy.on('error', (err) => {
-            console.log('proxy error', err);
-          });
-          proxy.on('proxyReq', (_, req) => {
-            console.log('Sending Request:', req.method, req.url);
-          });
-          proxy.on('proxyRes', (proxyRes, req) => {
-            console.log('Response:', proxyRes.statusCode, req.url);
-          });
-        },
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': '*',
-          'Access-Control-Allow-Headers': '*'
-        }
       }
     }
   },
@@ -43,7 +27,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom'],
+          vendor: ['react', 'react-dom', 'react-router-dom']
         }
       }
     }

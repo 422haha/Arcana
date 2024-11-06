@@ -1,5 +1,5 @@
 import React from 'react';
-import HeroSection from '../components/home/HeroSection';
+import { HeroSection } from '@/components/home/HeroSection';
 import MainContent from '../components/home/MainContent';
 import Navbar from '../components/navigation/Navbar';
 
@@ -34,7 +34,7 @@ const MainPage: React.FC<MainPageProps> = ({ setPressKitOpen }) => {
         </div>
 
         {/* Main content section */}
-        <div className="relative px-4 md:px-8 lg:px-12 mt-12">
+        <div className="relative mt-12">
           <div className="absolute top-0 left-0 w-full h-px 
                        bg-gradient-to-r from-transparent via-zinc-700/50 to-transparent" />
           <MainContent />
