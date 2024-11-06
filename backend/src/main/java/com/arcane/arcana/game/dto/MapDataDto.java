@@ -14,5 +14,5 @@ import lombok.Setter;
 @AllArgsConstructor
 public class MapDataDto {
 
-    private String mapsetting;
+    private String mapSetting;
 }
