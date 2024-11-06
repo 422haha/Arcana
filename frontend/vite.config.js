@@ -1,41 +1,41 @@
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 
-export default defineConfig({
+export default defineConfig(({ command, mode }) => {
+  const env = loadEnv(mode, process.cwd(), '');
+  
+  return {
     plugins: [react()],
-    base: process.env.NODE_ENV === 'production' ? '/98/' : '/',
+    base: '/',
     resolve: {
-        alias: [
-            { find: '@', replacement: path.resolve(__dirname, 'src') }
-        ]
+      alias: [
+        { find: '@', replacement: path.resolve(__dirname, 'src') }
+      ]
     },
     server: {
-        proxy: {
-            '/api': {
-                target: process.env.BASE_URL || 'http://localhost:8080',
-                changeOrigin: true,
-                secure: false,
-                ws: true,
-                rewrite: (path) => path.replace(/^\/api/, ''),
-            }
+      proxy: {
+        '/api': {
+          target: mode === 'production' 
+            ? 'https://k11d103.p.ssafy.io'
+            : 'http://localhost:8080',
+          changeOrigin: true,
+          secure: mode === 'production',
+          ws: true,
+          rewrite: (path) => path.replace(/^\/api/, ''),
         }
+      }
     },
     build: {
-        outDir: 'dist',
-        sourcemap: true,
-        rollupOptions: {
-            output: {
-                manualChunks: {
-                    vendor: ['react', 'react-dom', 'react-router-dom']
-                }
-            }
-        },
-        // 폰트 최적화 설정 추가
-        assetsInlineLimit: 4096,
-        chunkSizeWarningLimit: 1000,
-    },
-    optimizeDeps: {
-        include: ['react', 'react-dom', 'react-router-dom']
+      outDir: 'dist',
+      sourcemap: true,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            vendor: ['react', 'react-dom', 'react-router-dom']
+          }
+        }
+      }
     }
+  };
 });
