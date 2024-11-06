@@ -50,10 +50,10 @@ public class GameDataController {
     @Operation(summary = "맵 설정 저장", description = "사용자의 현재 게임 세션에 대한 맵 설정을 저장합니다.")
     @PostMapping("/mapsetting")
     public ResponseEntity<ApiResponse<String>> saveMapSetting(
-        @RequestParam("mapSetting") String mapSetting,
+        @RequestBody MapDataDto mapSettingDto,
         HttpServletRequest request) {
         Long userId = jwtUtil.getUserIdFromToken(request.getHeader("Authorization"));
-        mapDataService.saveMapSetting(userId, mapSetting);
+        mapDataService.saveMapSetting(userId, mapSettingDto.getMapSetting());
         return ResponseEntity.ok(new ApiResponse<>("맵 정보 저장 성공", null));
     }
 
@@ -80,10 +80,10 @@ public class GameDataController {
     @Operation(summary = "진행 정보 저장", description = "사용자의 현재 게임 세션에 대한 진행 정보를 저장합니다.")
     @PostMapping("/progress")
     public ResponseEntity<ApiResponse<String>> saveProgress(
-        @RequestParam("progress") String progress,
+        @RequestBody ProgressDataDto progressDto,
         HttpServletRequest request) {
         Long userId = jwtUtil.getUserIdFromToken(request.getHeader("Authorization"));
-        progressDataService.saveProgress(userId, progress);
+        progressDataService.saveProgress(userId, progressDto.getProgress());
         return ResponseEntity.ok(new ApiResponse<>("진행 정보 저장 성공", null));
     }
 
