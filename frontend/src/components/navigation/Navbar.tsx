@@ -33,31 +33,33 @@ const Navbar: React.FC<NavbarProps> = ({ setPressKitOpen }) => {
       <nav
         ref={navRef}
         className={`w-[85%] mx-auto mt-8 
-          bg-zinc-900/80 backdrop-blur-sm transition-all duration-300 z-50
-          border border-zinc-800/50 overflow-hidden rounded-2xl
+          bg-gradient-to-b from-sky-900/10 to-zinc-800/80
+          backdrop-blur-md transition-all duration-300 z-50
+          border-2 border-zinc-700/40 overflow-hidden rounded-2xl
           ${isFixed ? 'fixed top-4 left-1/2 transform -translate-x-1/2' : 'relative'}
         `}
       >
-        <div className="absolute -top-px left-0 w-full h-px 
-                     bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
+        {/* Ambient glow effect */}
+        <div className="absolute inset-0 bg-gradient-to-r from-sky-400/5 via-blue-400/5 to-sky-400/5" />
         
-        <div className="flex justify-between items-center p-4">
+        <div className="absolute -top-px left-0 w-full h-px 
+                     bg-gradient-to-r from-transparent via-sky-400/50 to-transparent" />
+        
+        <div className="flex justify-between items-center p-4 relative">
           <Link to="/" className="flex items-center gap-5 group">
-            {/* 크기가 조정된 로고 이미지 */}
             <img src="/logo.png" alt="Logo" className="h-14 w-14 relative z-10
                                                      group-hover:scale-105 transition-transform
                                                      duration-300" />
 
-            {/* 로고 이름 텍스트 복원 */}
             <div className="relative">
-              <span className="font-pixel text-3xl text-gray-300 tracking-wider 
+              <span className="font-pixel text-3xl text-gray-200 tracking-wider 
                              group-hover:text-gray-100 transition-colors duration-300
                              flex items-center gap-2">
                 ARCANA
-                <span className="text-sm text-blue-400 font-mono tracking-tight
-                               opacity-60 group-hover:opacity-100 transition-opacity">v1.0.2</span>
+                <span className="text-sm text-sky-400 font-mono tracking-tight
+                               opacity-70 group-hover:opacity-100 transition-opacity">v1.0.2</span>
               </span>
-              <div className="absolute h-px w-0 bg-gradient-to-r from-blue-500/50 to-teal-500/50
+              <div className="absolute h-px w-0 bg-gradient-to-r from-sky-400/50 via-blue-400/50 to-sky-400/50
                             bottom-0 left-0 group-hover:w-full transition-all duration-500" />
             </div>
           </Link>
@@ -75,20 +77,20 @@ const Navbar: React.FC<NavbarProps> = ({ setPressKitOpen }) => {
                   className="relative group"
                 >
                   <div className="relative px-4 py-3">
-                    <span className="font-pixel text-lg text-gray-400 group-hover:text-gray-200
+                    <span className="font-pixel text-lg text-gray-300 group-hover:text-gray-100
                                     relative z-10 transition-colors duration-300">
                       {item.text}
                     </span>
                     <div className="absolute -bottom-1 left-0 w-0 h-px 
-                                  bg-gradient-to-r from-blue-500 to-teal-500
+                                  bg-gradient-to-r from-sky-400 via-blue-400 to-sky-400
                                   group-hover:w-full transition-all duration-300" />
                     <div className="absolute -inset-1 opacity-0 group-hover:opacity-100
-                                  bg-gradient-to-r from-blue-500/10 to-teal-500/10
+                                  bg-gradient-to-r from-sky-400/10 via-blue-400/10 to-sky-400/10
                                   blur-md transition-opacity duration-300
                                   rounded-lg -z-10" />
                   </div>
                   <div className="absolute inset-0 rounded-lg opacity-0 
-                                active:opacity-20 active:bg-blue-500
+                                active:opacity-20 active:bg-sky-400
                                 transition-all duration-150" />
                 </Link>
               ) : (
@@ -98,20 +100,20 @@ const Navbar: React.FC<NavbarProps> = ({ setPressKitOpen }) => {
                   className="relative group"
                 >
                   <div className="relative px-4 py-3">
-                    <span className="font-pixel text-lg text-gray-400 group-hover:text-gray-200
+                    <span className="font-pixel text-lg text-gray-300 group-hover:text-gray-100
                                     relative z-10 transition-colors duration-300">
                       {item.text}
                     </span>
                     <div className="absolute -bottom-1 left-0 w-0 h-px 
-                                  bg-gradient-to-r from-blue-500 to-teal-500
+                                  bg-gradient-to-r from-sky-400 via-blue-400 to-sky-400
                                   group-hover:w-full transition-all duration-300" />
                     <div className="absolute -inset-1 opacity-0 group-hover:opacity-100
-                                  bg-gradient-to-r from-blue-500/10 to-teal-500/10
+                                  bg-gradient-to-r from-sky-400/10 via-blue-400/10 to-sky-400/10
                                   blur-md transition-opacity duration-300
                                   rounded-lg -z-10" />
                   </div>
                   <div className="absolute inset-0 rounded-lg opacity-0 
-                                active:opacity-20 active:bg-blue-500
+                                active:opacity-20 active:bg-sky-400
                                 transition-all duration-150" />
                 </button>
               )
@@ -120,12 +122,16 @@ const Navbar: React.FC<NavbarProps> = ({ setPressKitOpen }) => {
         </div>
 
         <div className="absolute -left-px top-1/2 -translate-y-1/2 w-px h-12
-                     bg-gradient-to-b from-transparent via-blue-500/30 to-transparent" />
+                     bg-gradient-to-b from-transparent via-sky-400/40 to-transparent" />
         <div className="absolute -right-px top-1/2 -translate-y-1/2 w-px h-12
-                     bg-gradient-to-b from-transparent via-blue-500/30 to-transparent" />
+                     bg-gradient-to-b from-transparent via-sky-400/40 to-transparent" />
         
         <div className="absolute -bottom-px left-0 w-full h-px 
-                     bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
+                     bg-gradient-to-r from-transparent via-sky-400/50 to-transparent" />
+
+        {/* Scanline effect */}
+        <div className="absolute inset-0 bg-[url('/assets/scanlines.png')] 
+                     opacity-[0.03] mix-blend-overlay pointer-events-none" />
       </nav>
     </>
   );

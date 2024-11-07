@@ -96,6 +96,86 @@ module.exports = {
         xs: '2px',
       },
       
+      keyframes: {
+        scan: {
+          '0%': { transform: 'translateY(0)' },
+          '100%': { transform: 'translateY(100%)' }
+        },
+        glitch: {
+          '0%, 100%': { transform: 'none' },
+          '33%': { transform: 'skewX(2deg)' },
+          '66%': { transform: 'skewX(-2deg)' }
+        },
+        marqueeRight: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(0)' },
+        },
+        marqueeLeft: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
+        cursor: {
+          '0%, 100%': { opacity: 1 },
+          '50%': { opacity: 0 },
+        },
+        // 새로 추가하는 keyframes
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        shimmer: {
+          '0%': { opacity: '0.3' },
+          '50%': { opacity: '1' },
+          '100%': { opacity: '0.3' },
+        },
+        'pulse-y': {
+          '0%': { transform: 'translateY(-50%) scaleY(1)', opacity: '0.3' },
+          '50%': { transform: 'translateY(-50%) scaleY(1.2)', opacity: '1' },
+          '100%': { transform: 'translateY(-50%) scaleY(1)', opacity: '0.3' },
+        },
+        'pulse-slow': {
+          '0%': { opacity: '0.8' },
+          '50%': { opacity: '1' },
+          '100%': { opacity: '0.8' },
+        },
+        'energy-field': {
+          '0%': { opacity: '0' },
+          '50%': { opacity: '0.3' },
+          '100%': { opacity: '0' },
+        },
+      },
+      animation: {
+        'scan': 'scan 8s linear infinite',
+        'glitch': 'glitch 4s linear infinite',
+        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'marquee-right': 'marqueeRight 30s linear infinite',
+        'marquee-left': 'marqueeLeft 30s linear infinite',
+        'cursor-blink': 'cursor 1s steps(2) infinite',
+        // 새로 추가하는 animations
+        'float': 'float 3s ease-in-out infinite',
+        'shimmer': 'shimmer 2s ease-in-out infinite',
+        'pulse-y': 'pulse-y 2s ease-in-out infinite',
+        'energy-field': 'energy-field 2s ease-in-out infinite',
+        'typing-first': 'typing 2s steps(20, end)',
+        'typing-second': 'typing 2s steps(20, end)',
+        'cursor': 'blink 1s linear infinite',
+        'fade-in': 'fadeIn 0.5s ease-in forwards'
+      },
+      fadeIn: {
+        'from': { opacity: '0' },
+        'to': { opacity: '1' }
+      },
+      typing: {
+        'from': { width: '0' },
+        'to': { width: '100%' }
+      },
+      blink: {
+        'from, to': { borderColor: 'transparent' },
+        '50%': { borderColor: 'rgb(148 163 184)' }
+      },
+      backgroundImage: {
+        'radial-gradient': 'radial-gradient(var(--tw-gradient-stops))',
+      },
     },
   },
   plugins: [],

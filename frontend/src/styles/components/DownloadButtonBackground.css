@@ -1,0 +1,24 @@
+/* C:\11061708\frontend\src\styles\components\DownloadButtonBackground.css */
+
+.mask-radial-gradient {
+    mask-image: radial-gradient(
+      ellipse at center,
+      black,
+      black 30%,
+      rgba(0, 0, 0, 0.9) 40%,
+      rgba(0, 0, 0, 0.7) 50%,
+      rgba(0, 0, 0, 0.5) 60%,
+      rgba(0, 0, 0, 0.1) 70%,
+      transparent 75%
+    ) !important;
+    -webkit-mask-image: radial-gradient(
+      ellipse at center,
+      black,
+      black 30%,
+      rgba(0, 0, 0, 0.9) 40%,
+      rgba(0, 0, 0, 0.7) 50%,
+      rgba(0, 0, 0, 0.5) 60%,
+      rgba(0, 0, 0, 0.1) 70%,
+      transparent 75%
+    ) !important;
+  }
