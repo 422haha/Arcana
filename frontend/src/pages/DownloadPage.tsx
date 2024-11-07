@@ -1,4 +1,3 @@
-// src/pages/DownloadPage.tsx
 import React from 'react';
 import { useState } from 'react';
 import Navbar from '../components/navigation/Navbar';

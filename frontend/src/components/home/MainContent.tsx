@@ -1,6 +1,7 @@
 import GameIntro from './sections/GameIntro';
 import RaceFeatures from './sections/RaceFeatures';
 import GameGallery from './sections/GameGallery';
+import GameDownload from './sections/GameDownload';
 
 const MainContent = () => {
   return (
@@ -67,6 +68,25 @@ const MainContent = () => {
         </div>
       </section>
 
+      <section className="relative py-24">
+        {/* Top separator */}
+        <div className="absolute top-0 left-0 w-full overflow-hidden h-12">
+          <div className="absolute top-0 left-0 w-full h-px 
+                         bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
+          <div className="w-32 h-32 absolute -top-16 -left-16 rotate-45
+                         border-r border-blue-500/20" />
+          <div className="w-32 h-32 absolute -top-16 -right-16 rotate-45
+                         border-l border-blue-500/20" />
+        </div>
+
+        <div className="absolute inset-0 bg-gradient-to-b 
+                       from-zinc-900 via-zinc-900/95 to-zinc-900
+                       pointer-events-none" />
+
+        <div className="w-[90%] md:w-[85%] lg:w-[80%] mx-auto relative">
+          <GameDownload />
+        </div>
+      </section>
       {/* Floating tech elements */}
       <div className="fixed top-1/4 left-0 w-1 h-12 
                    bg-gradient-to-b from-transparent via-blue-500/20 to-transparent" />
