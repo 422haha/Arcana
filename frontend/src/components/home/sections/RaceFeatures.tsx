@@ -71,7 +71,7 @@ const races = [
   {
     name: '트롤 (Troll)',
     description: '강한 재생 능력을 가진 거대한 생물로 햇빛 아래에서 돌로 변하는 약점이 있습니다.',
-    image: '/assets/gallery/Arcana_Card_69~135/95. 춤추는 트롤러.jpg',
+    image: '/assets/gallery/Arcana_Card_69~135/트롤.png',
   },
   {
     name: '자이언트 (Giant)',
