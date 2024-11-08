@@ -21,6 +21,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.spring6.SpringTemplateEngine;
 
 import java.util.Random;
 
@@ -36,6 +38,7 @@ public class UserServiceImpl implements UserService {
     private final RedisService redisService;
     private final JavaMailSender mailSender;
     private final AuthenticationManager authenticationManager;
+    private final SpringTemplateEngine templateEngine;
 
     @Value("${spring.mail.username}")
     private String senderEmail;
@@ -45,13 +48,14 @@ public class UserServiceImpl implements UserService {
 
     public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder,
         JwtUtil jwtUtil, RedisService redisService, JavaMailSender mailSender,
-        AuthenticationManager authenticationManager) {
+        AuthenticationManager authenticationManager, SpringTemplateEngine templateEngine) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtUtil = jwtUtil;
         this.redisService = redisService;
         this.mailSender = mailSender;
         this.authenticationManager = authenticationManager;
+        this.templateEngine = templateEngine;
     }
 
     @Override
@@ -68,14 +72,20 @@ public class UserServiceImpl implements UserService {
 
     private void sendAuthNumberEmail(String recipientEmail, String authNumber) {
         String subject = "Arcana 이메일 인증번호";
-        String content = "<p>Arcana 서비스 인증번호: <b>" + authNumber + "</b></p>";
+
+        // Thymeleaf 컨텍스트 설정
+        Context context = new Context();
+        context.setVariable("authNumber", authNumber);
+
+        // 템플릿을 HTML 문자열로 변환
+        String htmlContent = templateEngine.process("email-verification", context);
 
         MimeMessagePreparator messagePreparator = mimeMessage -> {
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
             helper.setFrom(senderEmail, "Arcana Team");
             helper.setTo(recipientEmail);
             helper.setSubject(subject);
-            helper.setText(content, true);
+            helper.setText(htmlContent, true); // HTML 형식 설정
         };
 
         mailSender.send(messagePreparator);
@@ -120,6 +130,31 @@ public class UserServiceImpl implements UserService {
         user.setNickname(registerDto.getNickname());
         user.encodePassword(registerDto.getPassword(), passwordEncoder);
         userRepository.save(user);
+
+        // 회원 가입 완료 이메일 전송
+        sendRegistrationConfirmationEmail(user);
+    }
+
+    private void sendRegistrationConfirmationEmail(User user) {
+        String subject = "Arcana 회원 가입을 축하드립니다!";
+
+        // Thymeleaf 컨텍스트 설정
+        Context context = new Context();
+        context.setVariable("email", user.getEmail());
+        context.setVariable("nickname", user.getNickname());
+
+        // 템플릿을 HTML 문자열로 변환
+        String htmlContent = templateEngine.process("registration-confirmation", context);
+
+        MimeMessagePreparator messagePreparator = mimeMessage -> {
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+            helper.setFrom(senderEmail, "Arcana Team");
+            helper.setTo(user.getEmail());
+            helper.setSubject(subject);
+            helper.setText(htmlContent, true); // HTML 형식 설정
+        };
+
+        mailSender.send(messagePreparator);
     }
 
     @Override
@@ -196,21 +231,22 @@ public class UserServiceImpl implements UserService {
     }
 
     private void sendPasswordResetEmail(String recipientEmail, String token) {
-        String resetUrl =
-            appDomain + "/user/reset-password?email=" + recipientEmail + "&token=" + token;
-        String subject = "비밀번호 재설정";
-        String content = "<p>안녕하세요!</p>"
-            + "<p>Arcana 서비스의 비밀번호 재설정을 요청하셨습니다.</p>"
-            + "<p>아래 링크를 클릭하여 비밀번호를 재설정해 주세요:</p>"
-            + "<a href=\"" + resetUrl + "\">비밀번호 재설정하기</a>"
-            + "<p>감사합니다.<br>Arcana 팀</p>";
+        String resetUrl = appDomain + "/user/reset-password?email=" + recipientEmail + "&token=" + token;
+        String subject = "Arcana 비밀번호 재설정";
+
+        // Thymeleaf 컨텍스트 설정
+        Context context = new Context();
+        context.setVariable("resetUrl", resetUrl);
+
+        // 템플릿을 HTML 문자열로 변환
+        String htmlContent = templateEngine.process("password-reset-email", context);
 
         MimeMessagePreparator messagePreparator = mimeMessage -> {
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
             helper.setFrom(senderEmail, "Arcana Team");
             helper.setTo(recipientEmail);
             helper.setSubject(subject);
-            helper.setText(content, true);
+            helper.setText(htmlContent, true); // HTML 형식 설정
         };
 
         mailSender.send(messagePreparator);
