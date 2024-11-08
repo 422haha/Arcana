@@ -123,9 +123,9 @@ public class UserController {
 
     @Operation(summary = "비밀번호 재설정", description = "새 비밀번호를 입력하여 비밀번호를 재설정합니다.")
     @PostMapping("/reset-password")
-    public String resetPassword(@RequestParam String email, @RequestParam String token,
-        @RequestParam String newPassword, Model model) {
-        userService.resetPassword(email, token, newPassword);
+    public String resetPassword(@Valid PasswordResetDto passwordResetDto, Model model) {
+        userService.resetPassword(passwordResetDto.getEmail(), passwordResetDto.getToken(),
+            passwordResetDto.getNewPassword());
         model.addAttribute("message", "비밀번호가 성공적으로 재설정되었습니다.");
         return "reset-password-confirm";
     }

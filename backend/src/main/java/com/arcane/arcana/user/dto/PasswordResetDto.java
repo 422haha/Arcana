@@ -1,5 +1,6 @@
 package com.arcane.arcana.user.dto;
 
+import com.arcane.arcana.common.validation.PasswordConstraint;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,5 +15,7 @@ public class PasswordResetDto {
 
     private String email;
     private String token;
+
+    @PasswordConstraint
     private String newPassword;
 }

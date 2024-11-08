@@ -263,6 +263,8 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByEmail(email)
             .orElseThrow(() -> new CustomException("사용자를 찾을 수 없습니다.", HttpStatus.NOT_FOUND));
 
+        newPassword = newPassword.trim();
+
         user.encodePassword(newPassword, passwordEncoder);
         userRepository.save(user);
 
