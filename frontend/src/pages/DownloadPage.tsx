@@ -15,8 +15,8 @@ const DownloadPage: React.FC<DownloadPageProps> = ({ setPressKitOpen }) => {
   };
 
   const handleConfirm = () => {
-    const googleDriveLink = "여기에_구글_드라이브_링크";
-    window.open(googleDriveLink, '_blank', 'noopener,noreferrer');
+    const googleDriveLink = "https://drive.google.com/file/d/1Rimc3DUCLRaJzpiGnDxfcZ5kkhaB8Llv/view?usp=sharing";
+    window.open(googleDriveLink, '_blank');
     setDownloadStarted(true);
     setShowModal(false);
   };
@@ -152,7 +152,7 @@ const DownloadPage: React.FC<DownloadPageProps> = ({ setPressKitOpen }) => {
 
             {/* Version Info */}
             <div className="text-center space-y-2 text-gray-400 font-pixel">
-              <p>버전: 1.0.0 | 파일 크기: 8.5GB</p>
+              <p>버전: 1.0.0 | 파일 크기: 128MB</p>
               <p className="text-sm">* 다운로드 속도는 인터넷 연결 상태에 따라 다를 수 있습니다.</p>
             </div>
           </div>
