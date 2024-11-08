@@ -6,27 +6,30 @@ import com.arcane.arcana.support.repository.SupportRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
-import jakarta.mail.internet.MimeMessage;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.spring6.SpringTemplateEngine;
 
 @Service
 public class SupportServiceImpl implements SupportService {
 
-    private static final Logger logger = LoggerFactory.getLogger(SupportServiceImpl.class);
     private final SupportRepository supportRepository;
     private final JavaMailSender mailSender;
+    private final SpringTemplateEngine templateEngine;
 
     @Value("${spring.mail.username}")
     private String senderEmail;
 
-    public SupportServiceImpl(SupportRepository supportRepository, JavaMailSender mailSender) {
+    @Value("${app.domain}")
+    private String appDomain;
+
+    public SupportServiceImpl(SupportRepository supportRepository, JavaMailSender mailSender,
+        SpringTemplateEngine templateEngine) {
         this.supportRepository = supportRepository;
         this.mailSender = mailSender;
+        this.templateEngine = templateEngine;
     }
 
     @Override
@@ -58,34 +61,28 @@ public class SupportServiceImpl implements SupportService {
         supportRepository.save(request);
 
         // 이메일 전송
-        sendSupportEmail(supportDto);
+        sendSupportConfirmationEmail(supportDto);
     }
 
-    private void sendSupportEmail(SupportDto supportDto) {
-        try {
-            MimeMessage message = mailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+    private void sendSupportConfirmationEmail(SupportDto supportDto) {
+        String subject = "Arcana 문의 접수 완료";
 
-            helper.setFrom(senderEmail);
-            helper.setTo(senderEmail);
-            helper.setSubject("고객 문의: " + supportDto.getTitle());
-            helper.setText("문의 유형: " + supportDto.getCategory() +
-                "\n이메일: " + supportDto.getEmail() +
-                "\n제목: " + supportDto.getTitle() +
-                "\n설명: " + supportDto.getDescription());
+        // Thymeleaf 컨텍스트 설정
+        Context context = new Context();
+        context.setVariable("email", supportDto.getEmail());
+        context.setVariable("title", supportDto.getTitle());
 
-            if (supportDto.getScreenshots() != null) {
-                for (MultipartFile file : supportDto.getScreenshots()) {
-                    if (file != null && !file.isEmpty()) {
-                        helper.addAttachment(file.getOriginalFilename(), file);
-                    }
-                }
-            }
+        // 템플릿을 HTML 문자열로 변환
+        String htmlContent = templateEngine.process("support-confirmation", context);
 
-            mailSender.send(message);
-        } catch (Exception e) {
-            logger.error("Failed to send support email: ", e);
-            throw new RuntimeException("이메일 전송 실패", e);
-        }
+        MimeMessagePreparator messagePreparator = mimeMessage -> {
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+            helper.setFrom(senderEmail, "Arcana Team");
+            helper.setTo(supportDto.getEmail());
+            helper.setSubject(subject);
+            helper.setText(htmlContent, true); // HTML 형식 설정
+        };
+
+        mailSender.send(messagePreparator);
     }
 }
