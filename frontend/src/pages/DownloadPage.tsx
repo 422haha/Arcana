@@ -152,7 +152,7 @@ const DownloadPage: React.FC<DownloadPageProps> = ({ setPressKitOpen }) => {
 
             {/* Version Info */}
             <div className="text-center space-y-2 text-gray-400 font-pixel">
-              <p>버전: 1.0.0 | 파일 크기: 128MB</p>
+              <p>버전: 1.0.0 | 파일 크기: 128 MB</p>
               <p className="text-sm">* 다운로드 속도는 인터넷 연결 상태에 따라 다를 수 있습니다.</p>
             </div>
           </div>

@@ -1,5 +1,5 @@
 // src/pages/SupportPage.tsx
-import React from 'react';
+
 import { useState, useRef } from 'react';
 import Navbar from '../components/navigation/Navbar';
 import axios from 'axios';
@@ -406,19 +406,18 @@ const SupportPage: React.FC<SupportPageProps> = ({ setPressKitOpen }) => {
           <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-8">
             {/* Category Select */}
             <div className="space-y-2">
-            <div className="text-sm text-gray-400 text-right mb-2">
-              * 표시된 항목은 필수 입력사항입니다
-            </div>
               <label className="block font-pixel text-gray-300">문의 유형</label>
               <select
                 value={form.category}
                 onChange={e => setForm({ ...form, category: e.target.value as SupportCategory })}
-                className="w-full p-3 rounded-lg 
+                disabled={isSubmitting}
+                className={`w-full p-3 rounded-lg 
                         bg-zinc-800/80 backdrop-blur-sm
                         border border-zinc-700/50 
                         text-gray-300 font-pixel
                         focus:border-blue-500/50 focus:outline-none
-                        transition-colors duration-300"
+                        transition-colors duration-300
+                        ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
                 <option value="문제도움">게임 플레이 도움</option>
                 <option value="버그신고">버그 신고</option>
@@ -434,12 +433,14 @@ const SupportPage: React.FC<SupportPageProps> = ({ setPressKitOpen }) => {
                 required
                 value={form.email}
                 onChange={e => setForm({ ...form, email: e.target.value })}
-                className="w-full p-3 rounded-lg 
+                disabled={isSubmitting}
+                className={`w-full p-3 rounded-lg 
                         bg-zinc-800/80 backdrop-blur-sm
                         border border-zinc-700/50 
                         text-gray-300
                         focus:border-blue-500/50 focus:outline-none
-                        transition-colors duration-300"
+                        transition-colors duration-300
+                        ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
               />
             </div>
  
@@ -451,32 +452,34 @@ const SupportPage: React.FC<SupportPageProps> = ({ setPressKitOpen }) => {
                 required
                 value={form.title}
                 onChange={e => setForm({ ...form, title: e.target.value })}
-                className="w-full p-3 rounded-lg 
-                        bg-zinc-800/80 backdrop-blur-sm
-                        border border-zinc-700/50 
-                        text-gray-300
-                        focus:border-blue-500/50 focus:outline-none
-                        transition-colors duration-300"
-              />
-            </div>
- 
-            {/* Description Textarea */}
-            <div className="space-y-2">
-              <label className="block font-pixel text-gray-300">
-                설명 * {/* 별표 추가 */}
-              </label>
-              <textarea
-                required  // required 속성 추가
-                value={form.description}
-                onChange={e => setForm({ ...form, description: e.target.value })}
-                placeholder="문의하실 내용을 자세히 작성해주세요"  // 플레이스홀더 추가
-                className="w-full p-3 rounded-lg h-40
+                disabled={isSubmitting}
+                className={`w-full p-3 rounded-lg 
                         bg-zinc-800/80 backdrop-blur-sm
                         border border-zinc-700/50 
                         text-gray-300
                         focus:border-blue-500/50 focus:outline-none
                         transition-colors duration-300
-                        resize-none"
+                        ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+              />
+            </div>
+ 
+            {/* Description Textarea */}
+            <div className="space-y-2">
+              <label className="block font-pixel text-gray-300">설명 *</label>
+              <textarea
+                required
+                value={form.description}
+                onChange={e => setForm({ ...form, description: e.target.value })}
+                disabled={isSubmitting}
+                placeholder="문의하실 내용을 자세히 작성해주세요"
+                className={`w-full p-3 rounded-lg h-40
+                        bg-zinc-800/80 backdrop-blur-sm
+                        border border-zinc-700/50 
+                        text-gray-300
+                        focus:border-blue-500/50 focus:outline-none
+                        transition-colors duration-300
+                        resize-none
+                        ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
               />
             </div>
  
@@ -495,16 +498,23 @@ const SupportPage: React.FC<SupportPageProps> = ({ setPressKitOpen }) => {
               </div>
               <div
                 onDragOver={e => {
-                  e.preventDefault();
-                  setIsDragging(true);
+                  if (!isSubmitting) {
+                    e.preventDefault();
+                    setIsDragging(true);
+                  }
                 }}
                 onDragLeave={() => setIsDragging(false)}
-                onDrop={handleFileDrop}
+                onDrop={e => {
+                  if (!isSubmitting) {
+                    handleFileDrop(e);
+                  }
+                }}
                 className={`relative border-2 border-dashed rounded-lg p-8 text-center
                         transition-colors duration-300 group
                         ${isDragging 
                           ? 'border-blue-500/50 bg-blue-500/10' 
-                          : 'border-zinc-700/50 hover:border-zinc-600/80'}`}
+                          : 'border-zinc-700/50 hover:border-zinc-600/80'}
+                        ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
                 <input
                   type="file"
@@ -512,6 +522,7 @@ const SupportPage: React.FC<SupportPageProps> = ({ setPressKitOpen }) => {
                   onChange={handleFileInput}
                   multiple
                   accept="image/*"
+                  disabled={isSubmitting}
                   className="hidden"
                 />
                 <div className="space-y-2">
@@ -536,8 +547,6 @@ const SupportPage: React.FC<SupportPageProps> = ({ setPressKitOpen }) => {
                 <div className="mt-4 flex flex-wrap gap-2">
                   {form.screenshots.map((file, index) => (
                     <div key={index} className="relative group">
-                      <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/20 to-teal-500/20 
-                                  rounded-lg blur-lg opacity-0 group-hover:opacity-75 transition-opacity duration-500" />
                       <img
                         src={URL.createObjectURL(file)}
                         alt={`Screenshot ${index + 1}`}
@@ -553,12 +562,14 @@ const SupportPage: React.FC<SupportPageProps> = ({ setPressKitOpen }) => {
                             screenshots: prev.screenshots.filter((_, i) => i !== index)
                           }))
                         }
-                        className="absolute -top-2 -right-2 w-6 h-6
+                        disabled={isSubmitting}
+                        className={`absolute -top-2 -right-2 w-6 h-6
                                 bg-zinc-800/80 hover:bg-zinc-800
                                 border border-zinc-700/50 hover:border-zinc-600
                                 rounded-full flex items-center justify-center
                                 text-gray-400 hover:text-gray-200
-                                transition-all duration-300"
+                                transition-all duration-300
+                                ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
                       >
                         ×
                       </button>

@@ -10,80 +10,80 @@ const races = [
   { 
     name: '실키 (Silky)', 
     description: '집안일을 돕는 온순한 요정으로, 물리적 힘은 매우 약하며 청결과 안락함을 책임집니다.',
-    image: '/assets/gallery/Arcana_Card_1~68/11. 수호자 실키.jpg',
+    image: '/assets/gallery/Arcana_Card/11. 수호자 실키.jpg',
   },
   {
     name: '브라우니 (Brownie)',
     description: '가정의 일을 돕는 작은 요정입니다. 밤에 몰래 나타나 집안일을 돕지만 모습을 드러내지 않습니다.',
-    image: '/assets/gallery/Arcana_Card_1~68/13. 밤의 청소부.jpg',
+    image: '/assets/gallery/Arcana_Card/13. 밤의 청소부.jpg',
   },
   {
     name: '그렘린 (Gremlin)',
     description: '기계와 기술에 장난을 치며, 망가뜨리는 능력이 있어 골칫거리가 될 수 있습니다.',
-    image: '/assets/gallery/Arcana_Card_1~68/20. 정비사 그렘린.jpg',
+    image: '/assets/gallery/Arcana_Card/20. 정비사 그렘린.jpg',
   },
   
   // 두번째 그룹 (체력 15)
   {
     name: '임프 (Imp)',
     description: '작은 악마로 장난기 많고 마법 능력을 지니며 사람들을 유혹하거나 혼란스럽게 만듭니다.',
-    image: '/assets/gallery/Arcana_Card_1~68/25. 변장한 임프.jpg',
+    image: '/assets/gallery/Arcana_Card/25. 변장한 임프.jpg',
   },
   {
     name: '코볼트 (Kobold)',
     description: '지하에서 생활하며 마법과 함정을 능숙하게 다룹니다.',
-    image: '/assets/gallery/Arcana_Card_1~68/35. 휴식 중인 코볼트.jpg',
+    image: '/assets/gallery/Arcana_Card/35. 휴식 중인 코볼트.jpg',
   },
   {
     name: '고블린 (Goblin)',
     description: '민첩하고 교활하며, 단체로 행동하며 장난과 약탈을 즐깁니다.',
-    image: '/assets/gallery/Arcana_Card_1~68/42. 깃발 고블린.jpg',
+    image: '/assets/gallery/Arcana_Card/42. 깃발 고블린.jpg',
   },
 
   // 세번째 그룹 (체력 20)
   {
     name: '드워프 (Dwarf)',
     description: '광산과 대장간에서 일하며 강한 체력과 뛰어난 기술력을 가졌습니다.',
-    image: '/assets/gallery/Arcana_Card_1~68/52. 드워프 기사단장.jpg',
+    image: '/assets/gallery/Arcana_Card/52. 드워프 기사단장.jpg',
   },
   {
     name: '유니콘 (Unicorn)',
     description: '순수함과 치유의 상징이며, 마법적 치유 능력을 지니고 있습니다.',
-    image: '/assets/gallery/Arcana_Card_1~68/58. 물을 긷는 유니콘.jpg',
+    image: '/assets/gallery/Arcana_Card/58. 물을 긷는 유니콘.jpg',
   },
   {
     name: '켄타우로스 (Centaur)',
     description: '인간과 말의 모습을 결합한 존재로, 힘과 지혜를 겸비한 전사입니다.',
-    image: '/assets/gallery/Arcana_Card_1~68/65. 돌격대장 켄타우로스.jpg',
+    image: '/assets/gallery/Arcana_Card/65. 돌격대장 켄타우로스.jpg',
   },
 
   // 네번째 그룹 (체력 25)
   {
     name: '엘프 (Elf)',
     description: '마법 능력과 지혜를 가진 불멸의 종족으로 자연과 예술을 사랑합니다.',
-    image: '/assets/gallery/Arcana_Card_69~135/75. 엘프 프린세스.jpg',
+    image: '/assets/gallery/Arcana_Card/75. 엘프 프린세스.jpg',
   },
   {
     name: '오크 (Orc)',
     description: '강한 체력을 지닌 전사 종족으로 조직적인 군대를 이룹니다.',
-    image: '/assets/gallery/Arcana_Card_69~135/79. 길 잃은 오크.jpg',
+    image: '/assets/gallery/Arcana_Card/79. 길 잃은 오크.jpg',
   },
   {
     name: '트롤 (Troll)',
     description: '강한 재생 능력을 가진 거대한 생물로 햇빛 아래에서 돌로 변하는 약점이 있습니다.',
-    image: '/assets/gallery/Arcana_Card_69~135/트롤.png',
+    image: '/assets/gallery/Arcana_Card/트롤.png',
   },
   {
     name: '자이언트 (Giant)',
     description: '거대한 체구와 막강한 힘을 지닌 종족으로 산을 움직일 수 있습니다.',
-    image: '/assets/gallery/Arcana_Card_69~135/97. 온화한 걸리버.jpg',
+    image: '/assets/gallery/Arcana_Card/97. 온화한 걸리버.jpg',
   },
 
   // 마지막 (드래곤)
   {
     name: '드래곤 (Dragon)',
     description: '전설적인 힘과 마법 능력을 지닌 가장 강력한 생물로 불을 뿜고 하늘을 날 수 있습니다.',
-    image: '/assets/gallery/Arcana_Card_69~135/107. 와이번.jpg',
+    image: '/assets/gallery/Arcana_Card/107. 와이번.jpg',
   },
 ];
 

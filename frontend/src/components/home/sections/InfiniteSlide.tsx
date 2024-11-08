@@ -38,21 +38,33 @@ const InfiniteSlide: React.FC<InfiniteSlideProps> = ({ images, onImageClick }) =
     return shuffled;
   };
 
-  // 컴포넌트 마운트 시 한 번만 이미지 섞기
-  const [shuffledRows] = useState(() => {
-    const shuffled = shuffleArray([...images]);
-    const chunkSize = Math.ceil(shuffled.length / 3);
+  // 배열을 세 부분으로 균등하게 나누는 함수
+  const splitArrayIntoThree = <T,>(array: T[]): [T[], T[], T[]] => {
+    const shuffled = shuffleArray([...array]);
+    const chunkSize = Math.floor(array.length / 3);
+    const remainder = array.length % 3;
+    
+    const upper = shuffled.slice(0, chunkSize + (remainder > 0 ? 1 : 0));
+    const middle = shuffled.slice(chunkSize + (remainder > 0 ? 1 : 0), 2 * chunkSize + (remainder > 1 ? 2 : 1));
+    const lower = shuffled.slice(2 * chunkSize + (remainder > 1 ? 2 : 1));
+    
+    return [upper, middle, lower];
+  };
+
+  // 컴포넌트 마운트 시 한 번만 이미지 분배
+  const [rows] = useState(() => {
+    const [upper, middle, lower] = splitArrayIntoThree(images);
     return {
-      upper: shuffled.slice(0, chunkSize),
-      middle: shuffled.slice(chunkSize, chunkSize * 2),
-      lower: shuffled.slice(chunkSize * 2)
+      upper,
+      middle,
+      lower
     };
   });
 
   // 각 줄마다 4번 복제하여 더 부드러운 무한 스크롤 효과 생성
-  const infiniteUpperImages = [...shuffledRows.upper, ...shuffledRows.upper, ...shuffledRows.upper, ...shuffledRows.upper];
-  const infiniteMiddleImages = [...shuffledRows.middle, ...shuffledRows.middle, ...shuffledRows.middle, ...shuffledRows.middle];
-  const infiniteLowerImages = [...shuffledRows.lower, ...shuffledRows.lower, ...shuffledRows.lower, ...shuffledRows.lower];
+  const infiniteUpperImages = [...rows.upper, ...rows.upper, ...rows.upper, ...rows.upper];
+  const infiniteMiddleImages = [...rows.middle, ...rows.middle, ...rows.middle, ...rows.middle];
+  const infiniteLowerImages = [...rows.lower, ...rows.lower, ...rows.lower, ...rows.lower];
 
   const handleMouseEnter = (ref: React.RefObject<HTMLDivElement>) => {
     if (ref.current) {
@@ -66,6 +78,8 @@ const InfiniteSlide: React.FC<InfiniteSlideProps> = ({ images, onImageClick }) =
     }
   };
 
+
+  
   return (
     <div className="py-8">
       <style>
