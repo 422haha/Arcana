@@ -1,6 +1,5 @@
 C:\11061708\frontend\public\assets\gallery\Arcana_Artifact
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135
+C:\11061708\frontend\public\assets\gallery\Arcana_Card
 C:\11061708\frontend\public\assets\gallery\Arcana_Potion
 C:\11061708\frontend\public\assets\gallery\intro.mp4
 C:\11061708\frontend\public\assets\gallery\structure.txt
@@ -14,109 +13,141 @@ C:\11061708\frontend\public\assets\gallery\Arcana_Artifact\6. 드워프 장갑.jpg
 C:\11061708\frontend\public\assets\gallery\Arcana_Artifact\7. 엘프의 목걸이.jpg
 C:\11061708\frontend\public\assets\gallery\Arcana_Artifact\8. 봉인된 자물쇠.jpg
 C:\11061708\frontend\public\assets\gallery\Arcana_Artifact\9. 마법의 정수.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\1. 가드맨.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\10. 쿠키 굽는 실키.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\11. 수호자 실키.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\12. 뒹굴거리는 브라우니.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\17. 간식상자 브라우니.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\18. 시계장치 그렘린.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\19. 공구상자 절도범.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\2. 자원 밀수꾼.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\20. 정비사 그렘린.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\25. 변장한 임프.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\26. 파티 임프.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\27. 로켓을 탄 임프.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\28. 녹색 임프.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\3. 지역 보안관.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\33. 응급병 코볼트.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\34. 코볼트 마법사.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\35. 휴식 중인 코볼트.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\36. 코뿔소 기수 코볼트.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\4. SSAFY 개발자.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\41. 소란스런 고블린.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\42. 깃발 고블린.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\43. 정예 고블린.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\44. 락스타 고블린.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\49. 양손도끼 드워프.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\50. 버려낸 도끼 장인 드워프.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\51. 황금투구 드워프.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\52. 드워프 기사단장.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\57. 무지개 수호병 유니콘.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\58. 물을 긷는 유니콘.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\59. 푸른 갈기 유니콘.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\60. 위대한 뿔 유니콘.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\65. 돌격대장 켄타우로스.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\66. 치어리더 켄타우로스.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\67. 장학사 켄타우로스.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\68. 마스터 켄타우로스.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_1~68\9. 햇빛 수집가.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\100. 정령의 친구.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\101. 암초 투척병.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\102. 설산 관리인.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\103. 화산 파괴자 자이언트.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\104. 타이탄.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\105. 영롱한 구체.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\106. 베이비 드래곤.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\107. 와이번.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\108. 가난한 적룡.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\109. 얹혀 사는 공룡.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\110. 주정뱅이 용.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\111. 쌍두용.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\112. 원소술사 드래곤.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\113. 레어 키퍼.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\114. 신속 사격.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\115. 정조준.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\116. 저격.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\117. 자책.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\118. 암기 투척.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\119. 강한 타격.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\120. 전방위 폭격.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\121. 정밀 폭격.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\122. 빛 쪼이기.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\123. 격전.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\124. 초토화.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\125. 폴리모프.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\126. 응급처치.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\127. 치유의 손길.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\128. 보급품 투하.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\129. 순간 치유.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\130. 치유의 빛 .jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\131. 이상한 스크롤.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\132. 정비부품.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\133. 엘프의 비밀 간식.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\134. 가치 투자.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\135. 방패 부여.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\69. 물을 긷는 엘프.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\70. 하프를 든 엘프.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\71. 엘프 정찰대.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\72 엘프 궁수.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\73. 뿔피리 연주자 엘프.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\74. 엘프 집착자.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\75. 엘프 프린세스.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\76. 치유사 엘프.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\77. 엘리먼트 마스터 엘프.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\78. 오크 방패병.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\79. 길 잃은 오크.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\80. 오크 정예병.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\81. 도끼 투척병 오크.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\82. 완전무장 오크.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\83. 오크 돌격병.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\84. 황금투구 오크.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\85. 방랑자 오크.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\86. 부상입은 전쟁영웅 오크.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\87. 자고 있는 트롤.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\88. 가면 쓴 트롤.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\89. 대형 망치 트롤.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\90. 협잡꾼 트롤러.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\91. 트롤 광전사.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\92. 하찮은 마술사 트롤.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\93. 배북 트롤.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\94. 머슬매니아 트롤.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\95. 춤추는 트롤러.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\96. 모아이 석상 자이언트.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\97. 온화한 걸리버.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\98. 플로깅 거인.jpg
-C:\11061708\frontend\public\assets\gallery\Arcana_Card_69~135\99. 숲의 친구.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\1. 가드맨.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\10. 쿠키 굽는 실키.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\100. 정령의 친구.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\101. 암초 투척병.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\102. 설산 관리인.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\103. 화산 파괴자 자이언트.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\104. 타이탄.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\105. 영롱한 구체.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\106. 베이비 드래곤.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\107. 와이번.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\108. 가난한 적룡.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\109. 얹혀 사는 공룡.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\11. 수호자 실키.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\110. 주정뱅이 용.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\111. 쌍두용.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\112. 원소술사 드래곤.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\113. 레어 키퍼.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\114. 신속 사격.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\115. 정조준.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\116. 저격.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\117. 자책.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\118. 암기 투척.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\119. 강한 타격.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\12. 뒹굴거리는 브라우니.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\120. 전방위 폭격.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\121. 정밀 폭격.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\122. 빛 쪼이기.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\123. 격전.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\124. 초토화.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\125. 폴리모프.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\126. 응급처치.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\127. 치유의 손길.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\128. 보급품 투하.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\129. 순간 치유.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\13. 밤의 청소부.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\130. 치유의 빛 .jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\131. 이상한 스크롤.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\132. 정비부품.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\133. 엘프의 비밀 간식.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\134. 가치 투자.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\135. 방패 부여.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\14. 약초 수집가.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\15. 브라우니 치료사.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\16. 먹보 브라우니.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\17. 간식상자 브라우니.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\18. 시계장치 그렘린.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\19. 공구상자 절도범.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\2. 자원 밀수꾼.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\20. 정비사 그렘린.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\21. 그렘린 정예병.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\22. 채찍 든 그렘린.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\23. 조종사 그렘린.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\24. 삐진 임프.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\25. 변장한 임프.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\26. 파티 임프.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\27. 로켓을 탄 임프.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\28. 녹색 임프.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\29. 배부른 임프.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\3. 지역 보안관.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\30. 습격자 임프.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\31. 간식주머니 코볼트.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\32. 광부 코볼트.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\33. 응급병 코볼트.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\34. 코볼트 마법사.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\35. 휴식 중인 코볼트.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\36. 코뿔소 기수 코볼트.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\37. 룬 수집가 코볼트.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\38. 고블린 경비병.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\39. 고블린 경비대장.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\4. SSAFY 개발자.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\40. 뛰쳐나온 고블린.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\41. 소란스런 고블린.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\42. 깃발 고블린.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\43. 정예 고블린.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\44. 락스타 고블린.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\45. 드워프 조합원.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\46. 무기 없는 드워프.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\47. 창고지기 드워프.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\48. 명사수 드워프.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\49. 양손도끼 드워프.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\5. 연방군.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\50. 버려낸 도끼 장인 드워프.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\51. 황금투구 드워프.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\52. 드워프 기사단장.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\53. 뿔의 정령 유니콘.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\54. 무지개 정령 유니콘.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\55. 분홍빛 유니콘.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\56. 정령 수호자 유니콘.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\57. 무지개 수호병 유니콘.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\58. 물을 긷는 유니콘.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\59. 푸른 갈기 유니콘.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\6. 솜뭉치 실키.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\60. 위대한 뿔 유니콘.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\61. 견습 켄타우로스.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\62. 나무칼 수집가 켄타우로스.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\63. 휴가 중인 켄타우로스.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\64. 과외선생 켄타우로스.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\65. 돌격대장 켄타우로스.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\66. 치어리더 켄타우로스.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\67. 장학사 켄타우로스.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\68. 마스터 켄타우로스.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\69. 물을 긷는 엘프.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\7. 봉고를 든 실키.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\70. 하프를 든 엘프.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\71. 엘프 정찰대.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\72 엘프 궁수.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\73. 뿔피리 연주자 엘프.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\74. 엘프 집착자.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\75. 엘프 프린세스.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\76. 치유사 엘프.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\77. 엘리먼트 마스터 엘프.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\78. 오크 방패병.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\79. 길 잃은 오크.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\8. 파수꾼 실키.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\80. 오크 정예병.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\81. 도끼 투척병 오크.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\82. 완전무장 오크.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\83. 오크 돌격병.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\84. 황금투구 오크.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\85. 방랑자 오크.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\86. 부상입은 전쟁영웅 오크.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\87. 자고 있는 트롤.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\88. 가면 쓴 트롤.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\89. 대형 망치 트롤.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\9. 햇빛 수집가.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\90. 협잡꾼 트롤러.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\91. 트롤 광전사.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\92. 하찮은 마술사 트롤.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\93. 배북 트롤.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\94. 머슬매니아 트롤.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\95. 춤추는 트롤러.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\96. 모아이 석상 자이언트.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\97. 온화한 걸리버.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\98. 플로깅 거인.jpg
+C:\11061708\frontend\public\assets\gallery\Arcana_Card\99. 숲의 친구.jpg
 C:\11061708\frontend\public\assets\gallery\Arcana_Potion\1. 피 포션.jpg
 C:\11061708\frontend\public\assets\gallery\Arcana_Potion\10. 마나 포션.jpg
 C:\11061708\frontend\public\assets\gallery\Arcana_Potion\2. 회복 포션.jpg
