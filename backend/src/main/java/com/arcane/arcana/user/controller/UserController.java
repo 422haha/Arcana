@@ -139,6 +139,25 @@ public class UserController {
         return ResponseEntity.ok(new ApiResponse<>("로그인 성공", responseDto));
     }
 
+    @Operation(summary = "회원 탈퇴", description = "사용자의 계정을 탈퇴 처리합니다.")
+    @ResponseBody
+    @PostMapping("/withdraw")
+    public ResponseEntity<ApiResponse<String>> withdrawUser(HttpServletRequest request) {
+        String email = jwtUtil.extractEmailFromRequest(request);
+        Long userId = userService.getUserIdByEmail(email);
+
+        userService.withdrawUser(userId);
+        return ResponseEntity.ok(new ApiResponse<>("회원 탈퇴가 완료되었습니다.", null));
+    }
+
+    @Operation(summary = "회원 복구", description = "탈퇴한 계정을 복구합니다.")
+    @GetMapping("/restore")
+    public String restoreUser(@RequestParam String email, @RequestParam String token, Model model) {
+        userService.restoreUser(email, token);
+        model.addAttribute("message", "회원 복구가 완료되었습니다.");
+        return "account-restore-confirm";
+    }
+
     private String extractTokenFromRequest(HttpServletRequest request) {
         String authHeader = request.getHeader("Authorization");
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {

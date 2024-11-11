@@ -40,4 +40,8 @@ public interface UserService {
     void verifyAuthNumber(String email, String authNumber);
 
     void sendAuthNumber(String email);
+
+    void withdrawUser(Long userId);
+
+    void restoreUser(String email, String restoreToken);
 }

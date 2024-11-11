@@ -24,8 +24,12 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email)
+        User user = userRepository.findByEmailIncludingDeleted(email)
             .orElseThrow(() -> new CustomException("사용자를 찾을 수 없습니다.", HttpStatus.NOT_FOUND));
+
+        if (user.isDeleted()) {
+            throw new CustomException("탈퇴한 계정입니다.", HttpStatus.FORBIDDEN);
+        }
 
         return new CustomUserDetails(user);
     }

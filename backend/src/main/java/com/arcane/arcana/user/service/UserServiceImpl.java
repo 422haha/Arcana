@@ -25,6 +25,7 @@ import org.thymeleaf.context.Context;
 import org.thymeleaf.spring6.SpringTemplateEngine;
 
 import java.util.Random;
+import java.util.UUID;
 
 /**
  * 사용자 서비스 클래스 구현
@@ -231,7 +232,8 @@ public class UserServiceImpl implements UserService {
     }
 
     private void sendPasswordResetEmail(String recipientEmail, String token) {
-        String resetUrl = appDomain + "/user/reset-password?email=" + recipientEmail + "&token=" + token;
+        String resetUrl =
+            appDomain + "/user/reset-password?email=" + recipientEmail + "&token=" + token;
         String subject = "Arcana 비밀번호 재설정";
 
         // Thymeleaf 컨텍스트 설정
@@ -311,5 +313,58 @@ public class UserServiceImpl implements UserService {
         } catch (AuthenticationException e) {
             throw new CustomException("인증 실패: 이메일 또는 비밀번호가 올바르지 않습니다.", HttpStatus.UNAUTHORIZED);
         }
+    }
+
+    @Override
+    @Transactional
+    public void withdrawUser(Long userId) {
+        User user = userRepository.findById(userId)
+            .orElseThrow(() -> new CustomException("사용자를 찾을 수 없습니다.", HttpStatus.NOT_FOUND));
+
+        user.deactivate();
+        userRepository.save(user);
+
+        // 복구 토큰 생성 및 저장
+        String restoreToken = UUID.randomUUID().toString();
+        redisService.setStringValue("restore_token:" + user.getEmail(), restoreToken, 43200);
+
+        sendRestoreEmail(user.getEmail(), restoreToken);
+    }
+
+    private void sendRestoreEmail(String email, String restoreToken) {
+        String restoreUrl = appDomain + "/user/restore?email=" + email + "&token=" + restoreToken;
+        String subject = "Arcana 계정 복구 링크";
+        Context context = new Context();
+        context.setVariable("restoreUrl", restoreUrl);
+        String htmlContent = templateEngine.process("account-restore-email", context);
+
+        MimeMessagePreparator messagePreparator = mimeMessage -> {
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+            helper.setFrom(senderEmail, "Arcana Team");
+            helper.setTo(email);
+            helper.setSubject(subject);
+            helper.setText(htmlContent, true);
+        };
+        mailSender.send(messagePreparator);
+    }
+
+    @Override
+    @Transactional
+    public void restoreUser(String email, String restoreToken) {
+        String storedToken = redisService.getStringValue("restore_token:" + email);
+        if (storedToken == null || !storedToken.equals(restoreToken)) {
+            throw new CustomException("유효하지 않은 복구 요청입니다.", HttpStatus.BAD_REQUEST);
+        }
+
+        User user = userRepository.findByEmailIncludingDeleted(email)
+            .orElseThrow(() -> new CustomException("사용자를 찾을 수 없습니다.", HttpStatus.NOT_FOUND));
+
+        if (!user.isDeleted()) {
+            throw new CustomException("이미 활성화된 사용자입니다.", HttpStatus.BAD_REQUEST);
+        }
+
+        user.reactivate();
+        userRepository.save(user);
+        redisService.deleteValue("restore_token:" + email);
     }
 }
