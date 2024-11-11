@@ -2,7 +2,10 @@ package com.arcane.arcana.common.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -30,9 +33,6 @@ public class User {
     private String password; // 사용자 비밀번호
 
     @Column(nullable = false)
-    private boolean isDeleted = false; // 탈퇴 여부
-
-    @Column(nullable = false)
     private String language = "ko"; // 사용자 언어 설정, 기본값 "ko"
 
     @Column(nullable = false)
@@ -43,6 +43,16 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProgressData> progressDataList;
+
+    @CreationTimestamp
+    @Column(updatable = false)
+    private LocalDateTime createdAt; // 회원가입 날짜
+
+    @Column(nullable = false)
+    private boolean isDeleted = false; // 탈퇴 여부
+
+    @Column
+    private LocalDateTime deletedAt; // 탈퇴 시각
 
     /**
      * 비밀번호를 암호화
@@ -63,5 +73,21 @@ public class User {
      */
     public void startNewGameSession() {
         this.gameSession += 1;
+    }
+
+    /**
+     * 회원 탈퇴 처리
+     */
+    public void deactivate() {
+        this.isDeleted = true;
+        this.deletedAt = LocalDateTime.now();
+    }
+
+    /**
+     * 회원 복구 처리
+     */
+    public void reactivate() {
+        this.isDeleted = false;
+        this.deletedAt = null;
     }
 }
