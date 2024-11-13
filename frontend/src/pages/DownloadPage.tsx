@@ -71,23 +71,23 @@ const DownloadPage: React.FC<DownloadPageProps> = ({ setPressKitOpen }) => {
                   <ul className="space-y-2 text-gray-300">
                     <li className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-blue-500/50 rounded-full" />
-                      OS: Windows 10 64-bit
+                      OS: Windows 7 32-bit
                     </li>
                     <li className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-blue-500/50 rounded-full" />
-                      프로세서: Intel Core i5-4460
+                      프로세서: Intel Core 2 Duo
                     </li>
                     <li className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-blue-500/50 rounded-full" />
-                      메모리: 8GB RAM
+                      메모리: 2GB RAM
                     </li>
                     <li className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-blue-500/50 rounded-full" />
-                      그래픽: NVIDIA GTX 960
+                      그래픽: Intel HD Graphics
                     </li>
                     <li className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-blue-500/50 rounded-full" />
-                      저장공간: 10GB
+                      저장공간: 500MB
                     </li>
                   </ul>
                 </div>
@@ -101,23 +101,23 @@ const DownloadPage: React.FC<DownloadPageProps> = ({ setPressKitOpen }) => {
                   <ul className="space-y-2 text-gray-300">
                     <li className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-teal-500/50 rounded-full" />
-                      OS: Windows 10 64-bit
+                      OS: Windows 10 32/64-bit
                     </li>
                     <li className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-teal-500/50 rounded-full" />
-                      프로세서: Intel Core i7-8700
+                      프로세서: Intel Core i3
                     </li>
                     <li className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-teal-500/50 rounded-full" />
-                      메모리: 16GB RAM
+                      메모리: 4GB RAM
                     </li>
                     <li className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-teal-500/50 rounded-full" />
-                      그래픽: NVIDIA RTX 2060
+                      그래픽: Intel HD Graphics 4000
                     </li>
                     <li className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-teal-500/50 rounded-full" />
-                      저장공간: 10GB
+                      저장공간: 1GB
                     </li>
                   </ul>
                 </div>
@@ -152,7 +152,7 @@ const DownloadPage: React.FC<DownloadPageProps> = ({ setPressKitOpen }) => {
 
             {/* Version Info */}
             <div className="text-center space-y-2 text-gray-400 font-pixel">
-              <p>버전: 1.0.0 | 파일 크기: 128 MB</p>
+              <p>버전: 1.0.2 | 파일 크기: 128 MB</p>
               <p className="text-sm">* 다운로드 속도는 인터넷 연결 상태에 따라 다를 수 있습니다.</p>
             </div>
           </div>
