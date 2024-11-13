@@ -163,38 +163,35 @@ const Footer: React.FC = () => {
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
       
-      <div className="container mx-auto flex flex-col md:flex-row items-center justify-between h-auto md:h-[100px] space-y-12 md:space-y-0">
-        <div className="flex flex-col items-center justify-center space-y-8 h-full">
-        <div className="flex justify-center space-x-4">
-          {[
-            { platform: 'youtube', url: 'https://www.youtube.com/' },
-            { platform: 'instagram', url: 'https://www.instagram.com/' },
-            { platform: 'twitter', url: 'https://twitter.com/' },
-            { platform: 'discord', url: 'https://discord.com/invite/2egDbgqFNP' }
-          ].map(({ platform, url }) => (
-            <a key={platform} href={url} target="_blank" rel="noopener noreferrer" aria-label={platform} className="group relative">
-              <div className="absolute inset-0 bg-blue-500/20 rounded-lg blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="relative p-2 rounded-lg bg-zinc-800/50 border border-zinc-700 group-hover:border-zinc-600 group-hover:bg-zinc-800 transition-all duration-300">
-                <img 
-                  src={`/assets/icons/${platform}.png`}
-                  alt={platform}
-                  className="h-6 w-6 object-contain group-hover:scale-110 transition-transform saturate-50 group-hover:saturate-100"
-                />
-              </div>
-            </a>
-          ))}
-        </div>
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+        {/* Left Section - Social Media & Links */}
+        <div className="flex flex-col items-center justify-center space-y-8">
+          <div className="w-[264px] flex justify-center space-x-4"> {/* Match newsletter input width */}
+            {[
+              { platform: 'youtube', url: 'https://www.youtube.com/' },
+              { platform: 'instagram', url: 'https://www.instagram.com/' },
+              { platform: 'twitter', url: 'https://twitter.com/' },
+              { platform: 'discord', url: 'https://discord.com/invite/2egDbgqFNP' }
+            ].map(({ platform, url }) => (
+              <a key={platform} href={url} target="_blank" rel="noopener noreferrer" aria-label={platform} className="group relative">
+                <div className="absolute inset-0 bg-blue-500/20 rounded-lg blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="relative p-2 rounded-lg bg-zinc-800/50 border border-zinc-700 group-hover:border-zinc-600 group-hover:bg-zinc-800 transition-all duration-300">
+                  <img 
+                    src={`/assets/icons/${platform}.png`}
+                    alt={platform}
+                    className="h-6 w-6 object-contain group-hover:scale-110 transition-transform saturate-50 group-hover:saturate-100"
+                  />
+                </div>
+              </a>
+            ))}
+          </div>
   
           <div className="text-sm space-x-6 text-gray-400 font-pixel">
-            {[ 
+            {[
               { to: '/terms-of-service', text: '이용약관' },
               { to: '/privacy-policy', text: '개인정보 처리방침' }
             ].map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                className="relative group"
-              >
+              <Link key={link.to} to={link.to} className="relative group">
                 <span className="group-hover:text-gray-200 transition-colors duration-300">
                   {link.text}
                 </span>
@@ -206,29 +203,30 @@ const Footer: React.FC = () => {
           </div>
         </div>
   
-        <div className="flex items-center justify-center md:h-full">
-        {isHome ? (
-          <button 
-            onClick={handleLogoClick} 
-            aria-label="Scroll to top" 
-            className="shine-effect"
-          >
-            <img
-              src="/logo-name.png"
-              alt="Arcana Logo"
-              className="h-20 object-contain transition-transform duration-300 hover:brightness-150"
-            />
-          </button>
-        ) : (
-          <Link to="/" aria-label="Home" className="shine-effect">
-            <img
-              src="/logo-name.png"
-              alt="Arcana Logo"
-              className="h-20 object-contain transition-transform duration-300 hover:brightness-150"
-            />
-          </Link>
-        )}
-      </div>
+        <div className="flex items-center justify-center">
+          {isHome ? (
+            <button 
+              onClick={handleLogoClick} 
+              aria-label="Scroll to top" 
+              className="shine-effect"
+            >
+              <img
+                src="/logo-name.png"
+                alt="Arcana Logo"
+                className="h-20 object-contain transition-transform duration-300 hover:brightness-150"
+              />
+            </button>
+          ) : (
+            <Link to="/" aria-label="Home" className="shine-effect">
+              <img
+                src="/logo-name.png"
+                alt="Arcana Logo"
+                className="h-20 object-contain transition-transform duration-300 hover:brightness-150"
+              />
+            </Link>
+          )}
+        </div>
+
   
         <div className="flex flex-col items-center space-y-4">
           <h3 className="text-2xl font-pixel text-gray-200">Join our newsletter!</h3>
@@ -236,18 +234,20 @@ const Footer: React.FC = () => {
             <div className="relative group">
               <input
                 type="email"
-                placeholder="enter your email"
+                placeholder={email ? '' : 'enter your email'}
                 value={email}
+                onFocus={(e) => e.target.placeholder = 'example@gmail.com'}
+                onBlur={(e) => e.target.placeholder = email ? '' : 'enter your email'}
                 onChange={(e) => setEmail(e.target.value)}
                 onKeyDown={handleKeyDown}
                 disabled={isLoading}
-                className={`relative z-20 p-3 w-64 rounded-lg bg-zinc-800/50
+                className="relative z-20 p-3 w-64 rounded-lg bg-zinc-800/50
                           border border-zinc-700 
                           text-gray-200 placeholder-gray-500
                           focus:outline-none focus:border-blue-500/50
                           font-pixel transition-colors duration-300
                           hover:border-zinc-600 hover:bg-zinc-800/60
-                          disabled:opacity-50 disabled:cursor-not-allowed`}
+                          disabled:opacity-50 disabled:cursor-not-allowed"
               />
             </div>
             <button

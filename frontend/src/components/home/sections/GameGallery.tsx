@@ -181,7 +181,7 @@ const GameGallery = () => {
         <div className="mb-12 sm:mb-16 md:mb-20">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-pixel text-center text-transparent 
                          bg-clip-text bg-gradient-to-r from-blue-400 to-teal-400">
-            135종의 다양한 카드
+            170종의 다양한 카드
           </h2>
         </div>
 
