@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>계정 복구 안내</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #121212; margin: 0; padding: 0;">
+<div style="max-width: 600px; margin: 2rem auto; padding: 2rem; background-color: #1c1c1c; border-radius: 8px; text-align: center;">
+  <div style="color: #00c8ff; font-size: 24px; font-weight: bold; margin-bottom: 1rem;">Arcana 계정 탈퇴 완료</div>
+  <p style="color: #f1f1f1;">안녕하세요! 회원님의 Arcana 계정이 정상적으로 탈퇴 처리되었습니다.</p>
+  <p style="color: #f1f1f1;">계정을 복구하시려면 아래 버튼을 클릭해 주세요:</p>
+  <a th:href="${restoreUrl}" style="background-color: #c832ff; color: #fff; padding: 12px 20px; text-decoration: none; font-size: 16px; font-weight: bold; border-radius: 5px; display: inline-block; margin-top: 1rem; margin-bottom: 1rem;">계정 복구하기</a>
+  <p style="color: #f1f1f1;">이 링크는 30일 동안 유효합니다. 계정을 복구하지 않으시려면 이 이메일을 무시해 주세요.</p>
+  <p style="color: #f1f1f1;">감사합니다, Arcana 팀</p>
+  <div style="color: #888; font-size: 12px; margin-top: 2rem;">© 2024 Arcana. All rights reserved.</div>
+</div>
+</body>
+</html>
