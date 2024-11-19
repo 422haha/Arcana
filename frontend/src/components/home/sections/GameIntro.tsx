@@ -122,9 +122,12 @@ const GameIntro = () => {
               <div className="relative bg-zinc-900/80 backdrop-blur-sm p-2 rounded-xl
                             border border-zinc-800/50 hover:border-zinc-700/50
                             transition-all duration-300">
-                <img 
-                  src="/assets/gameplay.jpg" 
-                  alt="게임 플레이 추가 예정" 
+                <video 
+                  src="/assets/introduce.mp4"
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline
                   className="w-full aspect-video object-cover rounded-lg 
                             border border-zinc-700/50 group-hover:border-zinc-600
                             transition-all duration-300"

@@ -18,11 +18,11 @@ const PressKitModal: React.FC<PressKitModalProps> = ({ isOpen, onClose }) => {
     },
     { 
       name: 'Art & Visuals', 
-      url: '/assets/press/art.zip' 
+      url: 'https://drive.google.com/uc?export=download&id=1vbLvtm0-B31hdGmjYxzHZw-z-cywHwXZ' 
     },
     { 
       name: 'Screenshots', 
-      url: '/assets/press/screenshots.zip' 
+      url: 'https://drive.google.com/uc?export=download&id=1hKif0cLBdVSmwtMiQjNIl7tt3rUy4ie8' 
     },
   ];
 
