@@ -81,12 +81,22 @@
 
 ## 5. 기능 ✨
 
+### 플레이어 진행 관리
+
+- 맵 탐험, 덱 관리, 진행 상황 등이 자동으로 저장되어 언제든지 게임을 이어서 플레이할 수 있습니다.
+- 전투 중에도 진행 상황이 저장되어 중단 없이 게임을 즐길 수 있습니다.
+
+![플레이어 진행 관리](./gif/progress/player_progress_tracking.gif)
+
 ### 덱 빌딩 및 전투 시스템
 
 - 다양한 종족의 카드를 수집하고 덱을 구성하여 전략적인 전투를 진행합니다.
 - 각 카드의 고유한 능력과 종족 특성을 활용하여 전투에서 승리할 수 있습니다.
 
-![덱 빌딩 및 전투 시스템](./gif/battle/deck_building_battle.gif)
+![전투 시작](./gif/battle/start_battle.gif)
+![적의 공격](./gif/battle/enemy_attacks_my_minion.gif)
+![플레이어의 공격](./gif/battle/my_minion_attacks_enemy.gif)
+![전리품 획득](./gif/battle/victory_loot.gif)
 
 ### 로그라이크 기반 진행
 
@@ -100,14 +110,8 @@
 - 게임 내에서 다양한 랜덤 이벤트가 발생하며, 플레이어의 선택에 따라 진행 방향이 달라집니다.
 - 선택에 따라 보상이나 페널티를 받을 수 있어 전략적인 판단이 중요합니다.
 
-![랜덤 이벤트 및 선택 시스템](./gif/events/random_events_choice.gif)
-
-### 플레이어 진행 관리
-
-- 맵 탐험, 덱 관리, 진행 상황 등이 자동으로 저장되어 언제든지 게임을 이어서 플레이할 수 있습니다.
-- 전투 중에도 진행 상황이 저장되어 중단 없이 게임을 즐길 수 있습니다.
-
-![플레이어 진행 관리](./gif/progress/player_progress_tracking.gif)
+![긍정적 이벤트](./gif/events/positive_event.gif)
+![부정적 이벤트](./gif/events/negative_event.gif)
 
 ## 6. 프로젝트 사용 도구 🛠️
 
