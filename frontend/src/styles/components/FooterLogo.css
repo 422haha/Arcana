@@ -1,0 +1,47 @@
+@keyframes shine {
+    0% {
+      mask-image: linear-gradient(
+        -75deg,
+        rgba(0,0,0,0.6) 30%,
+        #000 50%,
+        rgba(0,0,0,0.6) 70%
+      );
+      -webkit-mask-image: linear-gradient(
+        -75deg,
+        rgba(0,0,0,0.6) 30%,
+        #000 50%,
+        rgba(0,0,0,0.6) 70%
+      );
+      mask-size: 200%;
+      -webkit-mask-size: 200%;
+      mask-position: 150%;
+      -webkit-mask-position: 150%;
+    }
+    100% {
+      mask-image: linear-gradient(
+        -75deg, 
+        rgba(0,0,0,0.6) 30%,
+        #000 50%,
+        rgba(0,0,0,0.6) 70%
+      );
+      -webkit-mask-image: linear-gradient(
+        -75deg,
+        rgba(0,0,0,0.6) 30%,
+        #000 50%,
+        rgba(0,0,0,0.6) 70%
+      );
+      mask-size: 200%;
+      -webkit-mask-size: 200%;
+      mask-position: -50%;
+      -webkit-mask-position: -50%;
+    }
+  }
+  
+  .shine-effect {
+    position: relative;
+  }
+  
+  .shine-effect img {
+    filter: brightness(1.1);
+    animation: shine 2s infinite;
+  }

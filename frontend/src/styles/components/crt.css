@@ -1,0 +1,62 @@
+@keyframes refresh {
+    0% {
+      bottom: 100%;
+    }
+    70% {
+      bottom: 100%;
+    }
+    100% {
+      bottom: 0;
+    }
+  }
+  
+  .refresh {
+    position: fixed;
+    bottom: 0;
+    width: 200%;
+    height: 100px;
+    z-index: 10;
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(255, 255, 255, 0.2) 10%,
+      rgba(0, 0, 0, 0.05) 100%
+    );
+    opacity: 0.01;
+    animation: refresh 20s linear infinite;
+  }
+  
+  @keyframes flicker {
+    0%, 50% { opacity: 0.4; }
+    10%, 65% { opacity: 0.6; }
+    30%, 80% { opacity: 0.2; }
+    100% { opacity: 0.5; }
+  }
+  
+  .cligno {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        90deg,
+        rgba(255, 0, 0, 0.04) 0px 1px,
+        rgba(0, 255, 0, 0.04) 1px 2px,
+        rgba(0, 0, 255, 0.04) 2px 3px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent 0px 1px,
+        rgba(0, 0, 0, 0.2) 1px 2px
+      );
+    z-index: 999;
+    opacity: 0.1;
+    animation: flicker 0.01s infinite;
+    pointer-events: none;
+  }
+
+  .refresh, .cligno {
+    pointer-events: none; /* 이벤트가 아래로 전달되도록 */
+    z-index: 999; /* CRT 효과를 최상위에 배치 */
+  }

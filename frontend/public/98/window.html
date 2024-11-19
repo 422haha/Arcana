@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Window</title>
+    <script>
+        window.__vite_is_modern_browser = true;
+        window.__vite_plugin_react_preamble_installed__ = true;
+        window.process = { env: { NODE_ENV: 'production' } };
+    </script>
+    <!-- 스타일시트 -->
+    <link href="/98/layout.css" rel="stylesheet" type="text/css">
+    <link href="/98/lib/os-gui/layout.css" rel="stylesheet" type="text/css">
+    <link href="/98/lib/os-gui/windows-98.css" rel="stylesheet" type="text/css">
+    <link href="/98/classic.css" rel="stylesheet" type="text/css">
+
+    <!-- jQuery와 기본 라이브러리들 -->
+    <script src="/98/lib/jquery.min.js"></script>
+    <script src="/98/lib/browserfs.js"></script>
+    <script>
+        window.BrowserFS = BrowserFS;
+        window.Buffer = BrowserFS.BFSRequire('buffer').Buffer;
+    </script>
+
+    <!-- OS GUI 관련 스크립트들 -->
+    <script src="/98/lib/os-gui/parse-theme.js"></script>
+    <script src="/98/lib/os-gui/MenuBar.js"></script>
+    <script src="/98/lib/os-gui/$Window.js"></script>
+
+    <!-- 시스템 관련 스크립트들 -->
+    <script src="/98/src/filesystem-setup.js"></script>
+    <script src="/98/src/helpers.js"></script>
+    <script src="/98/src/msgbox.js"></script>
+    <script>defaultMessageBoxTitle = "Windows";</script>
+
+    <script>
+        window.defaultMessageBoxTitle = "Windows";
+        
+        // 에러 핸들러
+        window.addEventListener('error', function(event) {
+            console.error('Global error:', event.error);
+        });
+        
+        window.addEventListener('unhandledrejection', function(event) {
+            console.error('Unhandled promise rejection:', event.reason);
+        });
+    </script>
+</head>
+<body>
+    <!-- SVG 필터 정의 -->
+    <svg style="position: absolute; pointer-events: none; bottom: 100%;">
+        <defs>
+            <filter id="disabled-inset-filter" x="0" y="0" width="1px" height="1px">
+                <feColorMatrix
+                    in="SourceGraphic"
+                    type="matrix"
+                    values="
+                        1 0 0 0 0
+                        0 1 0 0 0
+                        0 0 1 0 0
+                        -1000 -1000 -1000 1 0
+                    "
+                    result="black-parts-isolated"
+                />
+                <feFlood result="shadow-color" flood-color="var(--ButtonShadow)"/>
+                <feFlood result="hilight-color" flood-color="var(--ButtonHilight)"/>
+                <feOffset in="black-parts-isolated" dx="1" dy="1" result="offset"/>
+                <feComposite in="hilight-color" in2="offset" operator="in" result="hilight-colored-offset"/>
+                <feComposite in="shadow-color" in2="black-parts-isolated" operator="in" result="shadow-colored"/>
+                <feMerge>
+                    <feMergeNode in="hilight-colored-offset"/>
+                    <feMergeNode in="shadow-colored"/>
+                </feMerge>
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- 에러 핸들링 -->
+    <script>
+        window.addEventListener('error', function(event) {
+            console.error('Global error:', event.error);
+        });
+        
+        window.addEventListener('unhandledrejection', function(event) {
+            console.error('Unhandled promise rejection:', event.reason);
+        });
+
+        // SVG 필터 업데이트
+        window.addEventListener("resize", ()=> {
+            document.getElementById("disabled-inset-filter").setAttribute("x", "0");
+        });
+
+        // 부모 창과의 통신
+        window.addEventListener('message', function(event) {
+            if (event.data.type === 'FORWARD_WHEEL') {
+                window.parent.postMessage(event.data, '*');
+            }
+        });
+    </script>
+</body>
+</html>

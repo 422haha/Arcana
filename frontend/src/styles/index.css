@@ -1,0 +1,29 @@
+@import "/font.css"; 
+@import './base/variables.css';
+@import './components/crt.css';
+@import './components/swiper.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 공통 스타일 */
+@layer base {
+  body {
+    @apply bg-zinc-900 text-gray-200 font-content;
+  }
+}
+
+@layer components {
+  .tech-frame {
+    @apply relative border border-zinc-700/50 rounded-xl bg-zinc-800/50 backdrop-blur-sm;
+  }
+  
+  .gradient-text {
+    @apply font-pixel text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-400;
+  }
+  
+  .hover-glow {
+    @apply hover:bg-zinc-800 hover:border-zinc-600 transition-all duration-300;
+  }
+}
