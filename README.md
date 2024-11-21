@@ -2,7 +2,7 @@
 
 <img src="./logo.png" alt="Logo" width="400" height="400"/>
 
-- **배포 URL**: [여기를 클릭!](https://drive.google.com/uc?export=download&id=19Tnss_JmDvrtUmO6CHv4P-XwWhAqTDO5)
+- **배포 URL**: [여기를 클릭!](https://drive.google.com/uc?export=download&id=18zzFPgu_Nsslnqj7ONoGlC1qylws08oU)
 - **Test 사용자 ID**: user@arcana.com
 - **Test 사용자 PW**: Qwer1234!
 
