@@ -10,6 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * 고객 지원 관련 요청을 처리하는 컨트롤러
+ */
 @RestController
 @RequestMapping("/support")
 public class SupportController {

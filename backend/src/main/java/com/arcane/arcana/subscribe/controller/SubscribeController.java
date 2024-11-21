@@ -7,6 +7,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * 구독 관련 요청을 처리하는 컨트롤러
+ */
 @RestController
 @RequestMapping("/subscribe")
 public class SubscribeController {
