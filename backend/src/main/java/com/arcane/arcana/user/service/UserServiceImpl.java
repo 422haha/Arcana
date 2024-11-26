@@ -185,6 +185,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void logout(String email, String accessToken) {
+        redisService.deleteValue("access_token:" + email);
         redisService.deleteValue("refresh_token:" + email);
     }
 
@@ -292,12 +293,14 @@ public class UserServiceImpl implements UserService {
                 new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword())
             );
 
+            String email = authentication.getName();
+
             String accessToken = jwtUtil.generateAccessToken(authentication.getName());
             String refreshToken = jwtUtil.generateRefreshToken(authentication.getName());
 
-            // Redis에 Refresh Token 저장
-            redisService.setStringValue("refresh_token:" + authentication.getName(), refreshToken,
-                jwtUtil.getRefreshTokenExpirationMinutes());
+            // Redis에 액세스 토큰 저장 (기존 토큰은 덮어씀)
+            redisService.setStringValue("access_token:" + email, accessToken, jwtUtil.getAccessTokenExpirationMinutes());
+            redisService.setStringValue("refresh_token:" + email, refreshToken, jwtUtil.getRefreshTokenExpirationMinutes());
 
             Long userId = getUserIdByEmail(authentication.getName());
             User user = getUserByEmail(authentication.getName());

@@ -117,7 +117,7 @@ public class ProjectSecurityConfig {
      */
     @Bean
     public JWTTokenValidatorFilter jwtTokenValidatorFilter() {
-        return new JWTTokenValidatorFilter(jwtUtil);
+        return new JWTTokenValidatorFilter(jwtUtil, redisService());
     }
 
     /**
