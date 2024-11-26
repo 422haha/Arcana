@@ -123,6 +123,13 @@ public class JwtUtil {
     }
 
     /**
+     * Access Token 유효 기간을 분 단위로 반환
+     */
+    public long getAccessTokenExpirationMinutes() {
+        return accessTokenExpiration / 1000 / 60; // 밀리초 -> 분
+    }
+
+    /**
      * 이메일 인증 토큰 생성
      */
     public String generateEmailVerificationToken(String email) {
