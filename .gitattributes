@@ -1,0 +1,3 @@
+# frontend/public 폴더를 GitHub 언어 통계 및 감지에서 제외
+frontend/public/** linguist-detectable=false
+frontend/public/** linguist-vendored
